@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "Python: 当前文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataset", "D:\\Project\\ml_toolset\\dogs_vs_cats\\datasets\\train",
+                "--output", "D:\\Project\\ml_toolset\\dogs_vs_cats\\datasets\\hdf5\\features.hdf5"
+            ]
+        }
+    ]
+}
