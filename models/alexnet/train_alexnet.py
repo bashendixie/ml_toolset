@@ -1,10 +1,12 @@
 # import the necessary packages
 # set the matplotlib backend so figures can be saved in the background
 import matplotlib
+
 matplotlib.use("Agg")
 
 import sys, os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # __file__获取执行文件相对路径，整行为取上一级的上一级目录
 sys.path.append(BASE_DIR)
 
@@ -16,14 +18,15 @@ from customize.tools.patchpreprocessor import PatchPreprocessor
 from customize.tools.meanpreprocessor import MeanPreprocessor
 from customize.tools.trainingmonitor import TrainingMonitor
 from customize.tools.hdf5datasetgenerator import HDF5DatasetGenerator
-from models.alexnet import AlexNet
+from alexnet import AlexNet
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.optimizers import Adam
 import json
 
 # construct the training image generator for data augmentation
-aug = ImageDataGenerator(rotation_range=20, zoom_range=0.15, 
-    width_shift_range=0.2, height_shift_range=0.2, shear_range=0.15, horizontal_flip=True, fill_mode="nearest")
+aug = ImageDataGenerator(rotation_range=20, zoom_range=0.15,
+                         width_shift_range=0.2, height_shift_range=0.2, shear_range=0.15, horizontal_flip=True,
+                         fill_mode="nearest")
 
 # load the RGB means for the training set
 means = json.loads(open(config.DATASET_MEAN).read())
