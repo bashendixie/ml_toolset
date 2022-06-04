@@ -1,0 +1,5 @@
+需要安装imageai的包，并且在tensorflow2下运行会有一些错误，看log修改对应的错误的imageai的包的文件
+
+1、from tensorflow.python.keras.utils 需要改成from tensorflow.keras.utils
+
+2、optimizer = Adam(lr=self.__initial_learning_rate, decay=1e-4) 改成 optimizer = tf.optimizers.Adam(lr=self.__initial_learning_rate, decay=1e-4)

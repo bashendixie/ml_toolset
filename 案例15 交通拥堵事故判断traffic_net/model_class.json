@@ -1,0 +1,6 @@
+{
+    "0" : "accident",
+    "1" : "dense_traffic",
+    "2" : "fire",
+    "3" : "sparse_traffic"
+}
