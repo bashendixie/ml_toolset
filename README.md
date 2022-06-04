@@ -9,3 +9,4 @@
 7、使用Opencv的DNN模块调用Caffe的人脸识别模型  
 8、使用Face recognition、OpenCV、Python进行人脸识别  
 9、使用K近邻(k-Nearest Neighbo)算法进行手写识别  
+10、决策树是如何工作的  
