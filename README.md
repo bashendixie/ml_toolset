@@ -18,4 +18,6 @@
 案例16、使用LeNet进行简单图像分类  
 案例17、使用Keras、TensorFlow框架进行自定义数据集目标检测训练  
 案例18、TensorFlow2.0全卷积网络FCN图像分类  
-案例19、
+案例19、学习使用dlib训练自定义特征预测器  
+案例20、使用Keras、TensorFlow、UNet进行语义分割  
+案例21、
