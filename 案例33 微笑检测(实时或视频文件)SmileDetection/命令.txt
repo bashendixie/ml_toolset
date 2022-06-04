@@ -1,0 +1,8 @@
+训练
+python train_model.py --dataset D:\deeplearn\dataset\SMILEsmileD-master --model lenet.hdf5
+
+检测1
+python detect_smile.py --cascade haarcascade_frontalface_default.xml --model output/lenet.hdf5
+
+检测2
+python detect_smile.py --cascade haarcascade_frontalface_default.xml --model output/lenet.hdf5 --video path/to/your/video.mov
