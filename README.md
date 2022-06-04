@@ -30,4 +30,5 @@
 案例28、使用Keras，TensorFlow、FCN分割KITTI数据集  
 案例29、使用Mask-Rcnn训练自定义数据集  
 案例30、在animals和CIFAR-10上使用浅层网络  
-案例31、
+案例31、使用LeNet识别手写数字  
+案例32、
