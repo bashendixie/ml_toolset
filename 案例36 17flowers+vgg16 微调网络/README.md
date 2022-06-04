@@ -1,5 +1,5 @@
 ## 简述
-flowers数据集 + vgg16 微调网络
+使用（多个MiniVGGNet）网络集成提高准确性
 
 ## csdn文章
 https://skydance.blog.csdn.net/article/details/121435448
