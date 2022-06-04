@@ -43,4 +43,5 @@
 案例41、minigooglenet上训练cifar10  
 案例42、deepergooglenet上训练tiny_imagenet  
 案例43、resnet上训练cifar10  
-案例44、
+案例44、使用TensorFlow2.0 + ResNet进行疟疾预测  
+案例45、
