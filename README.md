@@ -40,4 +40,5 @@
 案例38、理解rank-1&rank-5精度  
 案例39、AlexNet训练猫狗大战  
 案例40、ResNet50提取猫狗大战特征，后用逻辑回归  
-案例41、
+案例41、minigooglenet上训练cifar10  
+案例42、
