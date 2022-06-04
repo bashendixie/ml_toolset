@@ -29,4 +29,5 @@
 案例27、使用Fcn UNet训练防焊无开口  
 案例28、使用Keras，TensorFlow、FCN分割KITTI数据集  
 案例29、使用Mask-Rcnn训练自定义数据集  
-案例30、
+案例30、在animals和CIFAR-10上使用浅层网络  
+案例31、
