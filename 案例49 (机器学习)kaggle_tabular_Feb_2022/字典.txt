@@ -1,0 +1,10 @@
+Streptococcus_pyogenes	0	20076
+Salmonella_enterica		1	20030
+Enterococcus_hirae		2	19947
+Escherichia_coli		3	19958
+Campylobacter_jejuni	4	20063
+Streptococcus_pneumoniae	5	20074
+Staphylococcus_aureus	6	19929
+Escherichia_fergusonii	7	19937
+Bacteroides_fragilis		8	20139
+Klebsiella_pneumoniae	9	19847

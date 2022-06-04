@@ -48,4 +48,5 @@
 案例46、win10安装Pytorch-GPU版本并训练第一个神经网络  
 案例47、Pytorch要点和实现MNIST分类  
 案例48、参加Kaggle手写体数字识别(MNIST)竞赛并提交预测结果  
-案例49、
+案例49、Kaggle比赛 表格游乐场 Feb 2022  
+案例50、
