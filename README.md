@@ -7,4 +7,5 @@
 5、自定义数据集 + 标准前馈神经网络分类进行训练  
 6、自定义数据集 + 卷积神经网络分类进行训练  
 7、使用Opencv的DNN模块调用Caffe的人脸识别模型  
-8、
+8、使用Face recognition、OpenCV、Python进行人脸识别  
+9、
