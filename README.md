@@ -17,4 +17,5 @@
 案例15、Traffic-Net训练交通拥堵程度  
 案例16、使用LeNet进行简单图像分类  
 案例17、使用Keras、TensorFlow框架进行自定义数据集目标检测训练  
-案例18、
+案例18、TensorFlow2.0全卷积网络FCN图像分类  
+案例19、

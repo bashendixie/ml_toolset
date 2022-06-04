@@ -1,0 +1,10 @@
+1、最好不用原图，训练时间太长、占用显存过大
+2、不收敛，首先把图改小，然后EPOCHS=100 EPOCHS = 100
+3、不收敛，数据集质量还是不是很好，感觉有些人都看不出来是什么花
+
+4、要注意进行预测的时候的图像的处理
+# pre-process the image for classification
+image = cv2.resize(image, (64, 64))
+#image = image.astype("float") / 255.0
+image = img_to_array(image)
+image = np.expand_dims(image, axis=0)
