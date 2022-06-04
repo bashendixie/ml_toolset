@@ -1,0 +1,5 @@
+1、从数据集构建hdf5
+python .\dogs_vs_cats\build_dogs_vs_cats.py
+
+2、训练alexnet
+python .\models\train_alexnet.py
