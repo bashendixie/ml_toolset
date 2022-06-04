@@ -20,4 +20,5 @@
 案例18、TensorFlow2.0全卷积网络FCN图像分类  
 案例19、学习使用dlib训练自定义特征预测器  
 案例20、使用Keras、TensorFlow、UNet进行语义分割  
-案例21、
+案例21、使用Keras、TensorFlow、UNet煤岩分割  
+案例22、
