@@ -42,4 +42,5 @@
 案例40、ResNet50提取猫狗大战特征，后用逻辑回归  
 案例41、minigooglenet上训练cifar10  
 案例42、deepergooglenet上训练tiny_imagenet  
-案例43、
+案例43、resnet上训练cifar10  
+案例44、
