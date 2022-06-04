@@ -10,3 +10,5 @@
 8、使用Face recognition、OpenCV、Python进行人脸识别  
 9、使用K近邻(k-Nearest Neighbo)算法进行手写识别  
 10、决策树是如何工作的  
+11、使用dlib进行训练对猫脸进行识别  
+12、

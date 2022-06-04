@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<?xml-stylesheet type='text/xsl' href='image_metadata_stylesheet.xsl'?>
+<dataset>
+<name>imglab dataset</name>
+<comment>Created by imglab tool.</comment>
+<images>
+<image file='testimages\0.jpg'>
+    <box top='34' left='315' width='102' height='122'/>
+  </image>
+  <image file='testimages\1.jpg'>
+    <box top='145' left='301' width='97' height='104'/>
+  </image>
+  <image file='testimages\10.jpg'>
+    <box top='504' left='33' width='394' height='427'/>
+  </image>
+  <image file='testimages\11.jpg'>
+    <box top='36' left='45' width='322' height='331'/>
+  </image>
+  <image file='testimages\12.jpg'>
+    <box top='219' left='96' width='145' height='139'/>
+  </image>
+  <image file='testimages\13.jpg'>
+    <box top='6' left='249' width='121' height='130'/>
+  </image>
+  <image file='testimages\14.jpg'>
+    <box top='0' left='45' width='127' height='112'/>
+  </image>
+  <image file='testimages\15.jpg'>
+    <box top='114' left='429' width='283' height='283'/>
+  </image>
+  <image file='testimages\16.jpg'>
+    <box top='33' left='366' width='127' height='169'/>
+  </image>
+  <image file='testimages\17.jpg'>
+    <box top='9' left='33' width='310' height='220'/>
+  </image>
+  <image file='testimages\18.jpg'>
+    <box top='3' left='39' width='247' height='160'/>
+  </image>
+  <image file='testimages\19.jpg'>
+    <box top='9' left='114' width='235' height='262'/>
+  </image>
+  <image file='testimages\2.jpg'>
+    <box top='153' left='294' width='121' height='112'/>
+  </image>
+  <image file='testimages\20.jpg'>
+    <box top='90' left='219' width='136' height='127'/>
+  </image>
+  <image file='testimages\3.jpg'>
+    <box top='78' left='6' width='376' height='388'/>
+  </image>
+  <image file='testimages\4.jpg'>
+    <box top='63' left='294' width='478' height='496'/>
+  </image>
+  <image file='testimages\5.jpg'>
+    <box top='147' left='282' width='175' height='175'/>
+  </image>
+  <image file='testimages\6.jpg'>
+    <box top='9' left='162' width='262' height='250'/>
+  </image>
+  <image file='testimages\7.jpg'>
+    <box top='21' left='63' width='280' height='280'/>
+  </image>
+  <image file='testimages\8.jpg'>
+    <box top='15' left='159' width='214' height='223'/>
+  </image>
+  <image file='testimages\9.jpg'>
+    <box top='66' left='297' width='112' height='127'/>
+  </image>
+  <image file='testimages\220.jpg'>
+    <box top='10' left='147' width='184' height='176'/>
+  </image>
+  <image file='testimages\301.jpg'>
+    <box top='16' left='119' width='283' height='251'/>
+  </image>
+  <image file='testimages\306.jpg'>
+    <box top='47' left='242' width='188' height='197'/>
+  </image>
+  <image file='testimages\316.jpg'>
+    <box top='6' left='87' width='119' height='111'/>
+  </image>
+  <image file='testimages\331.jpg'>
+    <box top='21' left='391' width='243' height='243'/>
+  </image>
+  <image file='testimages\446.jpg'>
+    <box top='50' left='225' width='120' height='119'/>
+  </image>
+  <image file='testimages\466.jpg'>
+    <box top='34' left='39' width='331' height='259'/>
+  </image>
+  <image file='testimages\471.jpg'>
+    <box top='19' left='143' width='181' height='203'/>
+  </image>
+  <image file='testimages\478.jpg'>
+    <box top='52' left='71' width='179' height='163'/>
+  </image>
+  <image file='testimages\535.jpg'>
+    <box top='10' left='107' width='208' height='215'/>
+  </image>
+  <image file='testimages\545.jpg'>
+    <box top='76' left='194' width='365' height='379'/>
+  </image>
+  <image file='testimages\585.jpg'>
+    <box top='18' left='240' width='679' height='657'/>
+  </image>
+  <image file='testimages\603.jpg'>
+    <box top='20' left='124' width='553' height='523'/>
+  </image>
+  <image file='testimages\628.jpg'>
+    <box top='10' left='56' width='347' height='307'/>
+  </image>
+  <image file='testimages\640.jpg'>
+    <box top='4' left='224' width='203' height='197'/>
+  </image>
+  <image file='testimages\701.jpg'>
+    <box top='18' left='129' width='859' height='889'/>
+  </image>
+  <image file='testimages\711.jpg'>
+    <box top='0' left='87' width='298' height='283'/>
+  </image>
+  <image file='testimages\723.jpg'>
+    <box top='75' left='81' width='184' height='217'/>
+  </image>
+  <image file='testimages\729.jpg'>
+    <box top='0' left='54' width='190' height='184'/>
+  </image>
+  <image file='testimages\773.jpg'>
+    <box top='3' left='54' width='376' height='400'/>
+  </image>
+</images>
+</dataset>
