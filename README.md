@@ -11,4 +11,5 @@
 9、使用K近邻(k-Nearest Neighbo)算法进行手写识别  
 10、决策树是如何工作的  
 11、使用dlib进行训练对猫脸进行识别  
-12、
+12、Siamese Neural Network 孪生神经网络  
+13、
