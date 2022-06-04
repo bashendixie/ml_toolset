@@ -25,4 +25,5 @@
 案例23、使用Keras，TensorFlow、FCN分割Pascal VOC数据集  
 案例24、在OpenCV中使用Mask R-CNN + COCO权重  
 案例25、使用dlib进行人脸检测  
-案例26、
+案例26、ENet论文解读及模型调用  
+案例27、
