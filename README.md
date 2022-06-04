@@ -8,4 +8,4 @@
 6、自定义数据集 + 卷积神经网络分类进行训练  
 7、使用Opencv的DNN模块调用Caffe的人脸识别模型  
 8、使用Face recognition、OpenCV、Python进行人脸识别  
-9、
+9、使用K近邻(k-Nearest Neighbo)算法进行手写识别  
