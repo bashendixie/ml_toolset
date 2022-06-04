@@ -1,0 +1,30 @@
+Finland	1
+Norway	2
+Sweden	3
+
+
+KaggleRama	1
+KaggleMart	2
+
+
+Kaggle Mug	1
+Kaggle Hat	2
+Kaggle Sticker	3
+
+
+周一	1
+周二	2
+周三	3
+周四	4
+周五	5
+周六	6
+周日	7
+
+
+节日期间		1
+非节日期间	2
+
+
+重要节日
+2月14日		传统情人节
+12月25日		圣诞节
