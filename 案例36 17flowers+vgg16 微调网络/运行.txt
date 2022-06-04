@@ -1,0 +1,3 @@
+python finetune_flowers17.py --dataset D:\\deeplearn\\dataset\\17flowers --model flowers17.model
+
+17flowers
