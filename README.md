@@ -31,4 +31,5 @@
 案例29、使用Mask-Rcnn训练自定义数据集  
 案例30、在animals和CIFAR-10上使用浅层网络  
 案例31、使用LeNet识别手写数字  
-案例32、
+案例32、MiniVGGNet和CIFAR-10,并熟悉批量标准化  
+案例33、
