@@ -8,4 +8,3 @@ https://skydance.blog.csdn.net/article/details/109611163
 链接：https://pan.baidu.com/s/1cMWGq1LxArVqia8xrUNTeg 
 提取码：n27c
 
-![avatar](/home/picture/1.png)
