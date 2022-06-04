@@ -28,4 +28,5 @@
 案例26、ENet论文解读及模型调用  
 案例27、使用Fcn UNet训练防焊无开口  
 案例28、使用Keras，TensorFlow、FCN分割KITTI数据集  
-案例29、
+案例29、使用Mask-Rcnn训练自定义数据集  
+案例30、
