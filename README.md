@@ -45,4 +45,5 @@
 案例43、resnet上训练cifar10  
 案例44、使用TensorFlow2.0 + ResNet进行疟疾预测  
 案例45、Kaggle竞赛：情绪识别  
-案例46、
+案例46、win10安装Pytorch-GPU版本并训练第一个神经网络  
+案例47、
