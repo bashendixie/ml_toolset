@@ -70,4 +70,5 @@
 案例68、基于Torch Hub的DCGAN图像生成 + 调用自定义网络模型  
 案例69、基于Torch Hub的VGG和ResNet  
 案例70、基于Torch Hub和YOLOv5和SSD的目标检测  
-案例71、
+案例71、基于tensorflow从头开始构建图神经网络  
+案例72、
