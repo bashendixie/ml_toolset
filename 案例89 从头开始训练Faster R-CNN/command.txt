@@ -1,0 +1,44 @@
+TENSORFLOW2 OBJECT DETECTION API训练自己的模型
+https://www.freesion.com/article/77881466283/
+
+
+基于Tensorflow2.2 Object detection API使用CenterNet_ResNet50_v2预训练模型训练自己的数据集实现目标检测
+https://blog.csdn.net/l13022736018/article/details/108786039
+
+
+
+
+
+python object_detection/legacy/train.py --logtostderr --pipeline D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\faster_rcnn_resnet101_pets.config --train D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\training
+
+
+C:\self_environment\models-master\research\object_detection/train.py --logtostderr --pipeline D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\faster_rcnn_resnet101_pets.config --train D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\training
+
+
+python object_detection/model_main.py --pipeline_config_path=D:\Project\deeplearn\pre_train_model\resnet_v2_101_2017_04_14\faster_rcnn_resnet101_pets.config --model_dir=D:\Project\deeplearn\pre_train_model\resnet_v2_101_2017_04_14\training --num_train_steps=50000 --num_eval_steps=2000 --alsologtostderr
+
+
+import tensorflow.compat.v1 as tf
+
+python object_detection/model_main.py 
+--pipeline_config_path=D:\Project\deeplearn\pre_train_model\resnet_v2_101_2017_04_14\faster_rcnn_resnet101_pets.config 
+--model_dir=D:\Project\deeplearn\pre_train_model\resnet_v2_101_2017_04_14\training 
+--num_train_steps=50000 
+--num_eval_steps=2000 
+--alsologtostderr
+
+
+C:\self_environment\models-master\research\object_detection\model_main.py \
+--pipeline_config_path=faster_rcnn_resnet101_pets.config \
+--model_dir=training \
+--num_train_steps=50000 /
+--num_eval_steps=2000 /
+--alsologtostder
+
+
+python object_detection/model_main.py --pipeline_config_path=D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\faster_rcnn_resnet101_pets.config --model_dir=D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\training --num_train_steps=50000 --num_eval_steps=2000 --alsologtostderr
+
+
+python object_detection/model_main_tf2.py --pipeline_config_path=D:\\Project\\deeplearn\\pre_train_model\\faster_rcnn_resnet101_v1_800x1333_coco17_gpu-8\\faster_rcnn_resnet101_pets.config --model_dir=D:\\Project\\deeplearn\\pre_train_model\\faster_rcnn_resnet101_v1_800x1333_coco17_gpu-8\\training --num_train_steps=50000 --num_eval_steps=2000 --alsologtostderr
+
+
