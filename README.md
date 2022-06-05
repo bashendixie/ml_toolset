@@ -74,4 +74,5 @@
 案例72、基于Torch Hub的渐进式GAN架构  
 案例73、基于Torch Hub的深度估计模型MiDaS  
 案例74、基于Torch Hub的图像分割模型FCN  
-案例75、
+案例75、使用Flask框架构建ML模型的Web应用程序  
+案例76、
