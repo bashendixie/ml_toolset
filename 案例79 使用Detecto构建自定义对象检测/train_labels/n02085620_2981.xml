@@ -1,0 +1,25 @@
+<annotation>
+	<folder>02085620</folder>
+	<filename>n02085620_2981.jpg</filename>
+	<source>
+		<database>ImageNet database</database>
+	</source>
+	<size>
+		<width>600</width>
+		<height>607</height>
+		<depth>3</depth>
+	</size>
+	<segment>0</segment>
+	<object>
+		<name>Chihuahua</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>399</xmin>
+			<ymin>314</ymin>
+			<xmax>562</xmax>
+			<ymax>525</ymax>
+		</bndbox>
+	</object>
+</annotation>

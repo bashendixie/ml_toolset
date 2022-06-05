@@ -1,0 +1,25 @@
+<annotation>
+	<folder>02099601</folder>
+	<filename>n02099601_5642.jpg</filename>
+	<source>
+		<database>ImageNet database</database>
+	</source>
+	<size>
+		<width>300</width>
+		<height>353</height>
+		<depth>3</depth>
+	</size>
+	<segment>0</segment>
+	<object>
+		<name>golden_retriever</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>36</xmin>
+			<ymin>36</ymin>
+			<xmax>281</xmax>
+			<ymax>335</ymax>
+		</bndbox>
+	</object>
+</annotation>
