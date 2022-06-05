@@ -1,0 +1,51 @@
+TENSORFLOW2 OBJECT DETECTION API训练自己的模型
+https://www.freesion.com/article/77881466283/
+
+
+基于Tensorflow2.2 Object detection API使用CenterNet_ResNet50_v2预训练模型训练自己的数据集实现目标检测
+https://blog.csdn.net/l13022736018/article/details/108786039
+
+
+
+
+
+python object_detection/legacy/train.py --logtostderr --pipeline D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\faster_rcnn_resnet101_pets.config --train D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\training
+
+
+C:\self_environment\models-master\research\object_detection/train.py --logtostderr --pipeline D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\faster_rcnn_resnet101_pets.config --train D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\training
+
+
+python object_detection/model_main.py --pipeline_config_path=D:\Project\deeplearn\pre_train_model\resnet_v2_101_2017_04_14\faster_rcnn_resnet101_pets.config --model_dir=D:\Project\deeplearn\pre_train_model\resnet_v2_101_2017_04_14\training --num_train_steps=50000 --num_eval_steps=2000 --alsologtostderr
+
+
+import tensorflow.compat.v1 as tf
+
+python object_detection/model_main.py 
+--pipeline_config_path=D:\Project\deeplearn\pre_train_model\resnet_v2_101_2017_04_14\faster_rcnn_resnet101_pets.config 
+--model_dir=D:\Project\deeplearn\pre_train_model\resnet_v2_101_2017_04_14\training 
+--num_train_steps=50000 
+--num_eval_steps=2000 
+--alsologtostderr
+
+
+C:\self_environment\models-master\research\object_detection\model_main.py \
+--pipeline_config_path=faster_rcnn_resnet101_pets.config \
+--model_dir=training \
+--num_train_steps=50000 /
+--num_eval_steps=2000 /
+--alsologtostder
+
+
+python object_detection/model_main.py --pipeline_config_path=D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\faster_rcnn_resnet101_pets.config --model_dir=D:\Project\deeplearn\pre_train_model\faster_rcnn_resnet101_coco_2018_01_28\training --num_train_steps=50000 --num_eval_steps=2000 --alsologtostderr
+
+
+python object_detection/model_main_tf2.py --pipeline_config_path=D:\\Project\\deeplearn\\pre_train_model\\ssd_inception_v2_coco_2018_01_28\\ssd_inception_v2_pets.config --model_dir=D:\\Project\\deeplearn\\pre_train_model\\ssd_inception_v2_coco_2018_01_28\\training --num_train_steps=200000 --num_eval_steps=2000 --alsologtostderr
+
+python object_detection/model_main_tf2.py --pipeline_config_path=D:\\Project\\deeplearn\\pre_train_model\\ssd_mobilenet_v2_320x320_coco17_tpu-8\\ssd_mobilenet_v2_320x320_coco17_tpu-8.config --model_dir=D:\\Project\\deeplearn\\pre_train_model\\ssd_mobilenet_v2_320x320_coco17_tpu-8\\training --num_train_steps=200000 --num_eval_steps=2000 --alsologtostderr
+
+
+# tf2版本导出
+python object_detection/exporter_main_v2.py --input_type image_tensor --pipeline_config_path=D:\\Project\\deeplearn\\pre_train_model\\ssd_mobilenet_v2_320x320_coco17_tpu-8\\ssd_mobilenet_v2_320x320_coco17_tpu-8.config --trained_checkpoint_dir=D:\Project\deeplearn\pre_train_model\ssd_mobilenet_v2_320x320_coco17_tpu-8\training --output_directory=D:\Project\deeplearn\pre_train_model\ssd_mobilenet_v2_320x320_coco17_tpu-8\model_export
+
+# tf1版本导出
+python object_detection/export_inference_graph.py --input_type image_tensor --pipeline_config_path=D:\\Project\\deeplearn\\pre_train_model\\ssd_mobilenet_v2_320x320_coco17_tpu-8\\ssd_mobilenet_v2_320x320_coco17_tpu-8.config --trained_checkpoint_prefix=D:\Project\deeplearn\pre_train_model\ssd_mobilenet_v2_320x320_coco17_tpu-8\training\ckpt-5 --output_directory=D:\Project\deeplearn\pre_train_model\ssd_mobilenet_v2_320x320_coco17_tpu-8\model_export
