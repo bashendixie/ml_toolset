@@ -51,4 +51,5 @@
 案例49、Kaggle比赛 表格游乐场 Feb 2022  
 案例50、Kaggle比赛 表格游乐场 Jan 2022  
 案例51、Kaggle竞赛 帮助保护大堡礁，棘冠海星目标检测参赛经历；使用pytorch + yolov5训练自定义数据集  
-案例52、
+案例52、使用Keras + Unet 进行图像分割oxford_iiit_pet  
+案例53、
