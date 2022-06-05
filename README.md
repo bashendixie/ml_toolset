@@ -71,4 +71,5 @@
 案例69、基于Torch Hub的VGG和ResNet  
 案例70、基于Torch Hub和YOLOv5和SSD的目标检测  
 案例71、基于tensorflow从头开始构建图神经网络  
-案例72、
+案例72、基于Torch Hub的渐进式GAN架构  
+案例73、
