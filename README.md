@@ -89,4 +89,5 @@
 案例87、基于keras的Simple RNN训练时间序列数据  
 案例88、什么是图像配准?  
 案例89、从头开始训练Faster R-CNN  
-案例90、
+案例90、自动编码器autoencoder  
+案例91、
