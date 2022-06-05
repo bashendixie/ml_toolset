@@ -64,4 +64,5 @@
 案例62、使用ARIMA模型时间序列预测  
 案例63、Kaggle竞赛 生成莫奈风格图像的GAN  
 案例64、使用TensorFlow2和Keras的简单Conv3D示例  
-案例65、
+案例65、使用TensorFlow进行音乐生成  
+案例66、
