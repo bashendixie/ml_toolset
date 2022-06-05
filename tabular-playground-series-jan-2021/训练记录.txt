@@ -1,0 +1,14 @@
+0.70812	BaggingRegresso_v1.csv	n_estimators=100, oob_score=True
+0.70390   k_and_extra	n_splits=20	n_estimators=200
+0.70394	(BaggingRegresso+k_and_extra）/2
+0.70008	StackingRegressor_v1.csv	RandomForestRegressor	LassoCV	HistGradientBoostingRegressor
+0.69950	StackingRegressor_v2.csv	RandomForestRegressor	LassoCV	HistGradientBoostingRegressor	ExtraTreesRegressor
+0.70786	BaggingRegresso_v2.csv	n_estimators=100, oob_score=True，删除了04几条异常数据
+0.70859	BaggingRegresso_v3.csv	n_estimators=100, oob_score=True，删除了04几条异常数据，增加了最大、最小、平均等等
+0.70871	BaggingRegresso_v4.csv	n_estimators=100, oob_score=True，删除了045几条异常数据，增加了最大、最小、平均等等
+1.19478	BaggingRegresso_v5.csv	主要同上，另外处理了异常数据
+1.19402	BaggingRegresso_v5.csv	主要同上，另外处理了异常数据，删除了cont9那一列
+0.70875	BaggingRegresso_v7.csv	
+0.74919	BaggingRegresso_v8.csv	循环处理了所有异常数据
+0.73331	k_and_extra	n_splits=20	n_estimators=200	循环处理了所有异常数据
+0.74792	auto_keras
