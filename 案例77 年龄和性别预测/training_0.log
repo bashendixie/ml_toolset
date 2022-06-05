@@ -1,0 +1,29 @@
+INFO:root:Start training with [cpu(0)]
+INFO:root:Epoch[0] Batch [0-10]	Speed: 23.97 samples/sec	accuracy=0.510938	cross-entropy=1.323768
+INFO:root:Epoch[0] Batch [10-20]	Speed: 23.10 samples/sec	accuracy=0.535156	cross-entropy=1.159777
+INFO:root:Epoch[0] Batch [20-30]	Speed: 23.26 samples/sec	accuracy=0.564844	cross-entropy=1.125201
+INFO:root:Epoch[0] Batch [30-40]	Speed: 22.20 samples/sec	accuracy=0.564844	cross-entropy=1.115638
+INFO:root:Epoch[0] Batch [40-50]	Speed: 23.00 samples/sec	accuracy=0.579688	cross-entropy=1.030359
+INFO:root:Epoch[0] Batch [50-60]	Speed: 23.06 samples/sec	accuracy=0.566406	cross-entropy=1.008908
+INFO:root:Epoch[0] Batch [60-70]	Speed: 23.37 samples/sec	accuracy=0.589063	cross-entropy=0.989933
+INFO:root:Epoch[0] Batch [70-80]	Speed: 22.88 samples/sec	accuracy=0.594531	cross-entropy=0.927166
+INFO:root:Epoch[0] Batch [80-90]	Speed: 23.31 samples/sec	accuracy=0.585156	cross-entropy=0.934130
+INFO:root:Epoch[0] Resetting Data Iterator
+INFO:root:Epoch[0] Time cost=506.240
+INFO:root:Saved checkpoint to "checkpoints\mxagegendernet-0001.params"
+INFO:root:Epoch[0] Validation-accuracy=0.641406
+INFO:root:Epoch[0] Validation-cross-entropy=0.728320
+INFO:root:Epoch[1] Batch [0-10]	Speed: 25.41 samples/sec	accuracy=0.575781	cross-entropy=0.889978
+INFO:root:Epoch[1] Batch [10-20]	Speed: 23.05 samples/sec	accuracy=0.597656	cross-entropy=0.834235
+INFO:root:Epoch[1] Batch [20-30]	Speed: 23.31 samples/sec	accuracy=0.586719	cross-entropy=0.848999
+INFO:root:Epoch[1] Batch [30-40]	Speed: 23.06 samples/sec	accuracy=0.579688	cross-entropy=0.841554
+INFO:root:Epoch[1] Batch [40-50]	Speed: 23.20 samples/sec	accuracy=0.592969	cross-entropy=0.813369
+INFO:root:Epoch[1] Batch [50-60]	Speed: 22.19 samples/sec	accuracy=0.596875	cross-entropy=0.791522
+INFO:root:Epoch[1] Batch [60-70]	Speed: 22.97 samples/sec	accuracy=0.594531	cross-entropy=0.809042
+INFO:root:Epoch[1] Batch [70-80]	Speed: 22.67 samples/sec	accuracy=0.628906	cross-entropy=0.732478
+INFO:root:Epoch[1] Resetting Data Iterator
+INFO:root:Epoch[1] Time cost=498.128
+INFO:root:Saved checkpoint to "checkpoints\mxagegendernet-0002.params"
+INFO:root:Epoch[1] Validation-accuracy=0.667188
+INFO:root:Epoch[1] Validation-cross-entropy=0.629734
+INFO:root:Epoch[2] Batch [0-10]	Speed: 25.45 samples/sec	accuracy=0.635156	cross-entropy=0.720197

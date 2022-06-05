@@ -1,0 +1,28 @@
+​
+C:\ProgramData\Anaconda3\Lib\site-packages\mxnet\tools
+
+python im2rec.py D:\Project\deeplearn\dataset\Adience_age_gender\lists\gender_val.lst D:\Project\deeplearn\dataset\Adience_age_gender\rec\gender_val.rec --resize=256 --encoding='.jpg' --quality=100
+
+pip install mxnet-cu100 -i https://mirrors.aliyun.com/pypi/simple
+
+问题1、No CUDA toolset found.
+
+问题2、下载准确对应的第三方包。
+
+问题3、cmake版本问题
+
+问题4、mxnet版本问题 1.8.x
+
+问题5、UnicodeDecodeError: 'utf-8' codec can't decode bytes in position 73-74: invalid continuation byte
+
+Windows10下安装MXNet-走过的那些坑_marleylee的博客-CSDN博客_mxnet安装
+
+CUDA11.2环境上MXNet源码和pytorch源码编译 - silence_cho - 博客园
+
+Windows10下安装GPU版本的MXNet_轩辕魂天-CSDN博客_mxnet的gpu版本
+
+Win10 + Python + GPU版MXNet + VS2015 + RTools + R配置 - payton数据之旅 - 博客园
+
+ 
+
+​
