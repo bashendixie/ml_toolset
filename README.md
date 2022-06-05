@@ -54,4 +54,5 @@
 案例52、使用Keras + Unet 进行图像分割oxford_iiit_pet  
 案例53、保护大堡礁(tensorflow + centernet训练自定义数据集)  
 案例54、MediaPipe了解 + 结合OpenCV进行人体姿势估计  
-案例55、
+案例55、口罩检测  
+案例56、
