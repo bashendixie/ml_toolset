@@ -67,4 +67,5 @@
 案例65、使用TensorFlow进行音乐生成  
 案例66、基于tensorflow的人类行为检测  
 案例67、tensorflow 2.8版本不同优化器对比  
-案例68、
+案例68、基于Torch Hub的DCGAN图像生成 + 调用自定义网络模型  
+案例69、
