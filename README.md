@@ -73,4 +73,5 @@
 案例71、基于tensorflow从头开始构建图神经网络  
 案例72、基于Torch Hub的渐进式GAN架构  
 案例73、基于Torch Hub的深度估计模型MiDaS  
-案例74、
+案例74、基于Torch Hub的图像分割模型FCN  
+案例75、
