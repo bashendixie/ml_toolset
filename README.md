@@ -91,4 +91,5 @@
 案例89、从头开始训练Faster R-CNN  
 案例90、自动编码器autoencoder  
 案例91、基于KFold的客户流失预测  
-案例92、
+案例92、使用opencv读取mp4并生成Gif动图  
+案例93、
