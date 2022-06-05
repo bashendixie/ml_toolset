@@ -53,4 +53,5 @@
 案例51、Kaggle竞赛 帮助保护大堡礁，棘冠海星目标检测参赛经历；使用pytorch + yolov5训练自定义数据集  
 案例52、使用Keras + Unet 进行图像分割oxford_iiit_pet  
 案例53、保护大堡礁(tensorflow + centernet训练自定义数据集)  
-案例54、
+案例54、MediaPipe了解 + 结合OpenCV进行人体姿势估计  
+案例55、
