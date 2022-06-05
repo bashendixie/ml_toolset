@@ -55,4 +55,5 @@
 案例53、保护大堡礁(tensorflow + centernet训练自定义数据集)  
 案例54、MediaPipe了解 + 结合OpenCV进行人体姿势估计  
 案例55、口罩检测  
-案例56、
+案例56、pytorch + unet + 数据科学碗竞赛 医学图像分割  
+案例57、
