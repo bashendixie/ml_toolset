@@ -13,7 +13,8 @@ def zone(x, y):
     return 0.5 * (1 + math.cos(x * x + y * y))
 
 SIZE = 597
-image = np.zeros((SIZE, SIZE))
+#image = np.zeros((SIZE, SIZE))
+image = cv2.imread('C:\\Users\\zyh\\Desktop\\111.bmp')
 
 start = -8.2
 end = 8.2
@@ -24,13 +25,13 @@ def dist_center(y, x):
     center = SIZE / 2
     return math.sqrt( (x - center )**2 + (y - center )**2)
 
-for y in range(0, SIZE):
-    for x in range(0, SIZE):
-        if dist_center(y, x) > 300:
-            continue
-        y_val = start + y * step
-        x_val = start + x * step
-        image[y, x] = zone(x_val, y_val)
+# for y in range(0, SIZE):
+#     for x in range(0, SIZE):
+#         if dist_center(y, x) > 300:
+#             continue
+#         y_val = start + y * step
+#         x_val = start + x * step
+#         image[y, x] = zone(x_val, y_val)
 
 kernel_size = 15
 
@@ -52,6 +53,9 @@ lowpass_kernel_box = lowpass_kernel_box / (kernel_size * kernel_size)
 lowpass_image_gaussian = cv2.filter2D(image, -1, lowpass_kernel_gaussian)
 lowpass_image_box = cv2.filter2D(image, -1, lowpass_kernel_box)
 
+
+cv2.imwrite('C:\\Users\\zyh\\Desktop\\222.jpg', lowpass_image_gaussian)
+cv2.imwrite('C:\\Users\\zyh\\Desktop\\333.jpg', lowpass_image_box)
 cv2.imshow("o", image)
 cv2.imshow("g", lowpass_image_gaussian)
 cv2.imshow("b", lowpass_image_box)

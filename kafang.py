@@ -14,6 +14,19 @@ from colormap import rgb2hex
 
 
 
+# from skimage.metrics import structural_similarity as ssim
+#
+# aaa = cv2.imread("C:\\Users\\zyh\\Desktop\\111.jpg")
+# bbb = cv2.imread("C:\\Users\\zyh\\Desktop\\222.jpg")
+#
+# aaa = cv2.cvtColor(aaa, cv2.COLOR_BGR2GRAY)
+# bbb = cv2.cvtColor(bbb, cv2.COLOR_BGR2GRAY)
+# s = ssim(aaa, bbb)
+#
+# aaa1 = cv2.imread("C:\\Users\\zyh\\Desktop\\111.jpg")
+
+
+
 def color_to_df(input):
     colors_pre_list = str(input).replace('([(', '').split(', (')[0:-1]
     df_rgb = [i.split('), ')[0] + ')' for i in colors_pre_list]
