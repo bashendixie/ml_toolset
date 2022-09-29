@@ -1,13 +1,13 @@
 # import the necessary packages
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import BatchNormalization
-from tensorflow.keras.layers import Conv2D
-from tensorflow.keras.layers import MaxPooling2D
-from tensorflow.keras.layers import Activation
-from tensorflow.keras.layers import Flatten
-from tensorflow.keras.layers import Dropout
-from tensorflow.keras.layers import Dense
-from tensorflow.keras import backend as K
+from tensorflow.python.keras.models import Sequential
+from keras.layers import BatchNormalization
+from tensorflow.python.keras.layers import Conv2D
+from tensorflow.python.keras.layers import MaxPooling2D
+from tensorflow.python.keras.layers import Activation
+from tensorflow.python.keras.layers import Flatten
+from tensorflow.python.keras.layers import Dropout
+from tensorflow.python.keras.layers import Dense
+from tensorflow.python.keras import backend as K
 
 # set the matplotlib backend so figures can be saved in the background
 import matplotlib
@@ -15,10 +15,10 @@ matplotlib.use("Agg")
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.optimizers import SGD
+from keras.preprocessing.image import ImageDataGenerator
+from keras.optimizers import gradient_descent_v2
 from imutils import paths
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
@@ -205,7 +205,7 @@ def train():
     # initialize the model and optimizer (you'll want to use
     # binary_crossentropy for 2-class classification)
     print("[INFO] training network...")
-    opt = SGD(lr=INIT_LR, decay=INIT_LR / EPOCHS)
+    opt = gradient_descent_v2.SGD(lr=INIT_LR, decay=INIT_LR / EPOCHS)
     model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
     # train the network
     H = model.fit(x=aug.flow(trainX, trainY, batch_size=BS),

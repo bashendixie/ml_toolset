@@ -1,20 +1,11 @@
 # 孪生神经网络（完整代码）
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import Input
-from tensorflow.keras.layers import Lambda
-from tensorflow.keras.datasets import mnist
+from tensorflow.python.keras.models import Model
+from tensorflow.python.keras.layers import *
+from keras.datasets import mnist
 import numpy as np
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input
-from tensorflow.keras.layers import Conv2D
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import Dropout
-from tensorflow.keras.layers import GlobalAveragePooling2D
-from tensorflow.keras.layers import MaxPooling2D
 import cv2
 import os
-import tensorflow.keras.backend as k
+import tensorflow.python.keras.backend as k
 import matplotlib.pyplot as plt
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = "true"
 

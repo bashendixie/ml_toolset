@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_blobs
 import torch.nn as nn
 import torch
+import os
 
 # define the path to store your model weights
 MODEL_PATH = os.path.join("output", "model_wt.pth")

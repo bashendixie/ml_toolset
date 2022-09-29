@@ -12,28 +12,27 @@ print(D)
 
 class NeuralNetwork:
     def __init__(self, layers, alpha=0.1):
-        # initialize the list of weights matrices, then store the
-        # network architecture and learning rate
+        # initialize the list of weights matrices, then store the network architecture and learning rate
+        # 初始化权重矩阵列表，然后存储网络架构和学习率
         self.W = []
         self.layers = layers
         self.alpha = alpha
-        # start looping from the index of the first layer but
-        # stop before we reach the last two layers
+        # start looping from the index of the first layer but stop before we reach the last two layers
+        # 从第一层的索引开始循环，但在到达最后两层之前停止
         for i in np.arange(0, len(layers) - 2):
-            # randomly initialize a weight matrix connecting the
-            # number of nodes in each respective layer together,
-            # adding an extra node for the bias
+            # randomly initialize a weight matrix connecting the number of nodes in each respective layer together, adding an extra node for the bias
+            # 随机初始化一个权重矩阵，将每个相应层中的节点数连接在一起，为偏置添加一个额外的节点
             w = np.random.randn(layers[i] + 1, layers[i + 1] + 1)
             self.W.append(w / np.sqrt(layers[i]))
 
-        # the last two layers are a special case where the input
-        # connections need a bias term but the output does not
+        # the last two layers are a special case where the input connections need a bias term but the output does not
+        # 最后两层是输入连接需要偏置项但输出不需要的特殊情况
         w = np.random.randn(layers[-2] + 1, layers[-1])
         self.W.append(w / np.sqrt(layers[-2]))
 
     def __repr__(self):
-        # construct and return a string that represents the network
-        # architecture
+        # construct and return a string that represents the network architecture
+        # 构造并返回一个表示网络架构的字符串
         return "NeuralNetwork: {}".format("-".join(str(l) for l in self.layers))
 
     def sigmoid(self, x):

@@ -6,12 +6,12 @@ matplotlib.use("Agg")
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.optimizers import SGD
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense
+from keras.optimizers import gradient_descent_v2
 from imutils import paths
 import matplotlib.pyplot as plt
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 import numpy as np
 import argparse
 import random
@@ -138,7 +138,7 @@ def train():
     # cross-entropy loss (you'll want to use binary_crossentropy
     # for 2-class classification)
     print("[INFO] training network...")
-    opt = SGD(lr=INIT_LR)
+    opt = gradient_descent_v2.SGD(lr=INIT_LR)
     model.compile(loss="categorical_crossentropy", optimizer=opt,metrics=["accuracy"])
 
     # train the neural network

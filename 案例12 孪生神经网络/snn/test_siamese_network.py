@@ -1,5 +1,5 @@
 # import the necessary packages
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 from imutils.paths import list_images
 import matplotlib.pyplot as plt
 import numpy as np
