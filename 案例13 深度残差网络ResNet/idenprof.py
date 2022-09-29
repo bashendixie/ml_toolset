@@ -13,7 +13,7 @@ from zipfile import ZipFile
 import keras
 from keras.layers import Dense, Activation, Conv2D, MaxPool2D, GlobalAvgPool2D, BatchNormalization, add, Input
 from keras.models import Model
-from tensorflow.python.keras.preprocessing import image
+from keras.preprocessing import image
 import numpy as np
 import json
 

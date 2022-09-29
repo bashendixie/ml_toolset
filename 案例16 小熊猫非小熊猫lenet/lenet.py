@@ -1,10 +1,9 @@
 # import the necessary packages
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.optimizers import Adam
+from keras.preprocessing.image import ImageDataGenerator, img_to_array
+from keras.optimizers import gradient_descent_v2
 from sklearn.model_selection import train_test_split
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.models import load_model
+from keras.utils.all_utils import to_categorical
+from keras.models import load_model
 from imutils import paths
 import matplotlib.pyplot as plt
 import numpy as np
@@ -13,13 +12,9 @@ import imutils
 import cv2
 import os
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D
-from tensorflow.keras.layers import MaxPooling2D
-from tensorflow.keras.layers import Activation
-from tensorflow.keras.layers import Flatten
-from tensorflow.keras.layers import Dense
-from tensorflow.keras import backend as K
+from tensorflow.python.keras.models import *
+from tensorflow.python.keras.layers import *
+from tensorflow.python.keras import backend as K
 
 class LeNet:
     @staticmethod
@@ -138,7 +133,7 @@ def train():
     # initialize the model
     print("[INFO] compiling model...")
     model = LeNet.build(width=28, height=28, depth=3, classes=2)
-    opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
+    opt = gradient_descent_v2.Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
     model.compile(loss="binary_crossentropy", optimizer=opt, metrics=["accuracy"])
     # train the network
     print("[INFO] training network...")

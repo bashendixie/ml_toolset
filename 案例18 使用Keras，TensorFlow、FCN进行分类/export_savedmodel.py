@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 
 def export(input_h5_file, export_path):
     # The export path contains the name and the version of the model

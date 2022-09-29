@@ -3,7 +3,7 @@
 # TensorFlow and tf.keras
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
+from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 
 # Commonly used modules 常用模块
 import numpy as np

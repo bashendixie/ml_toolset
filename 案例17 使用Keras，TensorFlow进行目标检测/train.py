@@ -1,13 +1,10 @@
 # import the necessary packages
 import config
-from tensorflow.keras.applications import VGG16
-from tensorflow.keras.layers import Flatten
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import Input
-from tensorflow.keras.models import Model
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.preprocessing.image import load_img
+from keras.applications.vgg16 import VGG16
+from tensorflow.python.keras.layers import *
+from tensorflow.python.keras.models import *
+from keras.optimizers import gradient_descent_v2
+from keras.preprocessing.image import img_to_array, load_img
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
@@ -85,7 +82,7 @@ model = Model(inputs=vgg.input, outputs=bboxHead)
 
 # initialize the optimizer, compile the model, and show the model
 # summary
-opt = Adam(lr=config.INIT_LR)
+opt = gradient_descent_v2.Adam(lr=config.INIT_LR)
 model.compile(loss="mse", optimizer=opt)
 print(model.summary())
 # train the network for bounding box regression
