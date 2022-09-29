@@ -6,14 +6,13 @@ matplotlib.use("Agg")
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from tensorflow.python.keras.models import Sequential
-from tensorflow.python.keras.layers import Dense
+from keras.models import Sequential
+from keras.layers import Dense
 from keras.optimizers import gradient_descent_v2
 from imutils import paths
 import matplotlib.pyplot as plt
 from keras.models import load_model
 import numpy as np
-import argparse
 import random
 import pickle
 import cv2

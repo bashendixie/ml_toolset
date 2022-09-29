@@ -1,13 +1,13 @@
 # import the necessary packages
-from tensorflow.python.keras.models import Sequential
+from keras.models import Sequential
 from keras.layers import BatchNormalization
-from tensorflow.python.keras.layers import Conv2D
-from tensorflow.python.keras.layers import MaxPooling2D
-from tensorflow.python.keras.layers import Activation
-from tensorflow.python.keras.layers import Flatten
-from tensorflow.python.keras.layers import Dropout
-from tensorflow.python.keras.layers import Dense
-from tensorflow.python.keras import backend as K
+from keras.layers import Conv2D
+from keras.layers import MaxPooling2D
+from keras.layers import Activation
+from keras.layers import Flatten
+from keras.layers import Dropout
+from keras.layers import Dense
+from keras import backend as K
 
 # set the matplotlib backend so figures can be saved in the background
 import matplotlib
