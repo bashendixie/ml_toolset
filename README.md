@@ -94,4 +94,8 @@
 案例92、使用opencv读取mp4并生成Gif动图  
 案例93、定向梯度直方图(HOG)描述符  
 案例94、Kaggle竞赛 稻田病害分类  
-案例95、
+案例95 使用TensorFlow的Spatial Transformer网络
+案例96 使用Keras进行乳腺癌分类
+案例97 应用CNN进行图像着色
+案例98 使用GAN进行数据增强以进行缺陷检测
+案例99 使用opencv+LBPH进行人脸识别和对比
