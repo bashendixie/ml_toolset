@@ -101,3 +101,4 @@
 案例99、使用opencv+LBPH进行人脸识别和对比  
 案例100、使用Pix2Pix进行图像翻译  
 案例101、使用SegNet进行语义分割  
+案例102、使用yolov5训练vehicles数据集  
