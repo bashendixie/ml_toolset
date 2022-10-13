@@ -1,11 +1,12 @@
 from lenet import LeNet
-from tensorflow.keras.optimizers import SGD
-from tensorflow.keras.datasets import mnist
+from tensorflow.python.keras.optimizers import *
+from keras.datasets import mnist
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.metrics import classification_report
-from tensorflow.keras import backend as K
+from tensorflow.python.keras import backend as K
 import matplotlib.pyplot as plt
 import numpy as np
+import tensorflow as tf
 
 # grab the MNIST dataset (if this is your first time using this
 # dataset then the 11MB download may take a minute)
@@ -34,14 +35,14 @@ testLabels = le.transform(testLabels)
 
 # initialize the optimizer and model
 print("[INFO] compiling model...")
-opt = SGD(lr=0.01)
+opt = tf.keras.optimizers.SGD(learning_rate=0.01)
 model = LeNet.build(width=28, height=28, depth=1, classes=10)
 model.compile(loss="categorical_crossentropy", optimizer=opt,
 	metrics=["accuracy"])
 # train the network
 print("[INFO] training network...")
 H = model.fit(trainData, trainLabels,
-	validation_data=(testData, testLabels), batch_size=128, epochs=20, verbose=1)
+	validation_data=(testData, testLabels), batch_size=16, epochs=20, verbose=1)
 
 # evaluate the network
 print("[INFO] evaluating network...")
