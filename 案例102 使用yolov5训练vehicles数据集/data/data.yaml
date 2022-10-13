@@ -1,0 +1,8 @@
+path: 'vehicles'
+train: 'train'
+val: 'valid'
+nc: 5
+names: ['Ambulance', 'Bus', 'Car', 'Motorcycle', 'Truck']
+
+#with open("data.yaml", "w") as file:
+#   yaml.dump(config, file, default_flow_style=False)
