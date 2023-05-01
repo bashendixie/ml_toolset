@@ -425,13 +425,13 @@ def run(weights=ROOT / 'yolov5s.pt',  # weights path
         dynamic=False,  # dynamic batch size
         ):
     # PyTorch model
-    im = torch.zeros((batch_size, 3, *imgsz))  # BCHW image
+    im = torch.zeros((batch_size, 3, *imgsz))  # BCHW images
     model = attempt_load(weights, map_location=torch.device('cpu'), inplace=True, fuse=False)
     y = model(im)  # inference
     model.info()
 
     # TensorFlow model
-    im = tf.zeros((batch_size, *imgsz, 3))  # BHWC image
+    im = tf.zeros((batch_size, *imgsz, 3))  # BHWC images
     tf_model = TFModel(cfg=model.yaml, model=model, nc=model.nc, imgsz=imgsz)
     y = tf_model.predict(im)  # inference
 

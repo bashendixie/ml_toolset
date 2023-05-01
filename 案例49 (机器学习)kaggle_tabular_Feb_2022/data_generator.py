@@ -3,7 +3,7 @@ from PIL import Image
 import numpy as np
 
 BATCHSIZE = 10
-root_path = '/home/eric/data/NUS-WIDE/image'
+root_path = '/home/eric/data/NUS-WIDE/images'
 
 
 class data_generator:

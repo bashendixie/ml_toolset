@@ -37,7 +37,7 @@ with torch.no_grad():
 
 	# loop over all the batch
 	for index in range(0, config.PRED_BATCH_SIZE):
-		# grab the image, de-normalize it, scale the raw pixel
+		# grab the images, de-normalize it, scale the raw pixel
 		# intensities to the range [0, 255], and change the channel
 		# ordering from channels first tp channels last
 		image = images[index]
@@ -71,10 +71,10 @@ bestResults = [utils.pick_best(results,
 
 # get coco labels
 classesToLabels = utils.get_coco_object_dictionary()
-# loop over the image batch
+# loop over the images batch
 for image_idx in range(len(bestResults)):
 	(fig, ax) = plt.subplots(1)
-	# denormalize the image and plot the image
+	# denormalize the images and plot the images
 	image = processedInput[image_idx] / 2 + 0.5
 	ax.imshow(image)
 	# grab bbox, class, and confidence values
@@ -82,9 +82,9 @@ for image_idx in range(len(bestResults)):
 
 	# loop over the detected bounding boxes
 	for idx in range(len(bboxes)):
-		# scale values up according to image size
+		# scale values up according to images size
 		(left, bot, right, top) = bboxes[idx ] * 300
-		# draw the bounding box on the image
+		# draw the bounding box on the images
 		(x, y, w, h) = [val for val in [left, bot, right - left,
 			top - bot]]
 		rect = patches.Rectangle((x, y), w, h, linewidth=1,

@@ -22,11 +22,11 @@ import os
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True, help="path to input image (or directory)")
+ap.add_argument("-i", "--images", required=True, help="path to input images (or directory)")
 args = vars(ap.parse_args())
 
-# load the label encoders and mean files
-print("[INFO] loading label encoders and mean files...")
+# load the masks encoders and mean files
+print("[INFO] loading masks encoders and mean files...")
 ageLE = pickle.loads(open(deploy.AGE_LABEL_ENCODER, "rb").read())
 genderLE = pickle.loads(open(deploy.GENDER_LABEL_ENCODER, "rb").read())
 ageMeans = json.loads(open(deploy.AGE_MEANS).read())
@@ -46,7 +46,7 @@ symbol=ageModel.symbol, arg_params=ageModel.arg_params, aux_params=ageModel.aux_
 genderModel = mx.model.FeedForward(ctx=[mx.gpu(0)],
 symbol=genderModel.symbol, arg_params=genderModel.arg_params, aux_params=genderModel.aux_params)
 
-# initialize the image pre-processors
+# initialize the images pre-processors
 sp = SimplePreprocessor(width=256, height=256, inter=cv2.INTER_CUBIC)
 cp = CropPreprocessor(width=227, height=227, horiz=True)
 ageMP = MeanPreprocessor(ageMeans["R"], ageMeans["G"], ageMeans["B"])
@@ -59,24 +59,24 @@ detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(deploy.DLIB_LANDMARK_PATH)
 fa = FaceAligner(predictor)
 
-# initialize the list of image paths as just a single image
-imagePaths = [args["image"]]
+# initialize the list of images paths as just a single images
+imagePaths = [args["images"]]
 
-# if the input path is actually a directory, then list all image
+# if the input path is actually a directory, then list all images
 # paths in the directory
-if os.path.isdir(args["image"]):
-    imagePaths = sorted(list(paths.list_files(args["image"])))
+if os.path.isdir(args["images"]):
+    imagePaths = sorted(list(paths.list_files(args["images"])))
 
-# loop over the image paths
+# loop over the images paths
 for imagePath in imagePaths:
-    # load the image from disk, resize it, and convert it to
+    # load the images from disk, resize it, and convert it to
     # grayscale
     print("[INFO] processing {}".format(imagePath))
     image = cv2.imread(imagePath)
     image = imutils.resize(image, width=800)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    # detect faces in the grayscale image
+    # detect faces in the grayscale images
     rects = detector(gray, 1)
 
     # loop over the face detections
@@ -108,7 +108,7 @@ for imagePath in imagePaths:
         # patches
         agePreds = ageModel.predict(agePatches)
         genderPreds = genderModel.predict(genderPatches)
-        # compute the average for each class label based on the
+        # compute the average for each class masks based on the
         # predictions for the patches
         agePreds = agePreds.mean(axis=0)
         genderPreds = genderPreds.mean(axis=0)
@@ -120,7 +120,7 @@ for imagePath in imagePaths:
         clone = image.copy()
         (x, y, w, h) = face_utils.rect_to_bb(rect)
         cv2.rectangle(clone, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        141  # show the output image
+        141  # show the output images
         cv2.imshow("Input", clone)
         cv2.imshow("Face", face)
         cv2.imshow("Age Probabilities", ageCanvas)

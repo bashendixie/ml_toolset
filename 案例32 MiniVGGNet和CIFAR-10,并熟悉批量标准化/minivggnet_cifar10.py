@@ -26,7 +26,7 @@ testX = testX.astype("float") / 255.0
 lb = LabelBinarizer()
 trainY = lb.fit_transform(trainY)
 testY = lb.transform(testY)
-# initialize the label names for the CIFAR-10 dataset
+# initialize the masks names for the CIFAR-10 dataset
 labelNames = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 
 # initialize the optimizer and model

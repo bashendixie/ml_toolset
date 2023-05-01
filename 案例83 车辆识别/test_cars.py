@@ -13,10 +13,10 @@ ap.add_argument("-p", "--prefix", required=True, help="name of model prefix")
 ap.add_argument("-e", "--epoch", type=int, required=True, help="epoch # to load")
 args = vars(ap.parse_args())
 
-# load the label encoder
+# load the masks encoder
 le = pickle.loads(open(config.LABEL_ENCODER_PATH, "rb").read())
 
-# construct the validation image iterator
+# construct the validation images iterator
 testIter = mx.io.ImageRecordIter(
     path_imgrec=config.TEST_MX_REC,
     data_shape=(3, 224, 224),

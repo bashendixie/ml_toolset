@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.DEBUG, filename="training_{}.log".format(args[
 # determine the batch
 batchSize = config.BATCH_SIZE * config.NUM_DEVICES
 
-# construct the training image iterator
+# construct the training images iterator
 trainIter = mx.io.ImageRecordIter(
     path_imgrec=config.TRAIN_MX_REC,
     data_shape=(3, 224, 224),
@@ -33,7 +33,7 @@ trainIter = mx.io.ImageRecordIter(
     mean_b=config.B_MEAN,
     preprocess_threads=config.NUM_DEVICES * 2)
 
-# construct the validation image iterator
+# construct the validation images iterator
 valIter = mx.io.ImageRecordIter(
     path_imgrec=config.VAL_MX_REC,
     data_shape=(3, 224, 224),

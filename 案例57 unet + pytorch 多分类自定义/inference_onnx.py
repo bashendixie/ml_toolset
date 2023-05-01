@@ -64,10 +64,10 @@ def test_1():
 
     img_nd = np.array(img)
     if len(img_nd.shape) == 2:
-        # mask target image
+        # mask target images
         img_nd = np.expand_dims(img_nd, axis=2)
     else:
-        # grayscale input image
+        # grayscale input images
         # scale between 0 and 1
         img_nd = img_nd / 255
 

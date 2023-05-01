@@ -1,8 +1,8 @@
 # YOLOv5 🚀 by Ultralytics, GPL-3.0 license
-# Builds ultralytics/yolov5:latest image on DockerHub https://hub.docker.com/r/ultralytics/yolov5
+# Builds ultralytics/yolov5:latest images on DockerHub https://hub.docker.com/r/ultralytics/yolov5
 # Image is CUDA-optimized for YOLOv5 single/multi-GPU training and inference
 
-# Start FROM NVIDIA PyTorch image https://ngc.nvidia.com/catalog/containers/nvidia:pytorch
+# Start FROM NVIDIA PyTorch images https://ngc.nvidia.com/catalog/containers/nvidia:pytorch
 FROM nvcr.io/nvidia/pytorch:22.09-py3
 RUN rm -rf /opt/pytorch  # remove 1.2GB dir
 
@@ -46,7 +46,7 @@ ENV OMP_NUM_THREADS=8
 # Kill all
 # sudo docker kill $(sudo docker ps -q)
 
-# Kill all image-based
+# Kill all images-based
 # sudo docker kill $(sudo docker ps -qa --filter ancestor=ultralytics/yolov5:latest)
 
 # DockerHub tag update

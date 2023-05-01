@@ -14,12 +14,12 @@ def make_pairs(images, labels):
 
     # 遍历所有图像
     for idxA in range(len(images)):
-        # grab the current image and label belonging to the current
+        # grab the current images and masks belonging to the current
         # iteration
         currentImage = images[idxA]
         label = labels[idxA]
-        # randomly pick an image that belongs to the *same* class
-        # label
+        # randomly pick an images that belongs to the *same* class
+        # masks
         idxB = np.random.choice(idx[label])
         posImage = images[idxB]
         # prepare a positive pair and update the images and labels
@@ -27,14 +27,14 @@ def make_pairs(images, labels):
         pairImages.append([currentImage, posImage])
         pairLabels.append([1])
         # grab the indices for each of the class labels *not* equal to
-        # the current label and randomly pick an image corresponding
-        # to a label *not* equal to the current label
+        # the current masks and randomly pick an images corresponding
+        # to a masks *not* equal to the current masks
         negIdx = np.where(labels != label)[0]
         negImage = images[np.random.choice(negIdx)]
         # prepare a negative pair of images and update our lists
         pairImages.append([currentImage, negImage])
         pairLabels.append([0])
-        # return a 2-tuple of our image pairs and labels
+        # return a 2-tuple of our images pairs and labels
 
     return (np.array(pairImages), np.array(pairLabels))
 
@@ -64,7 +64,7 @@ def plot_training(H, plotPath):
 # load MNIST dataset and scale the pixel values to the range of [0, 1]
 print("[INFO] loading MNIST dataset...")
 (trainX, trainY), (testX, testY) = mnist.load_data('C:/Users/zyh/Desktop/mnist.npz')
-# build the positive and negative image pairs
+# build the positive and negative images pairs
 print("[INFO] preparing positive and negative pairs...")
 (pairTrain, labelTrain) = make_pairs(trainX, trainY)
 (pairTest, labelTest) = make_pairs(testX, testY)
@@ -74,7 +74,7 @@ images = []
 
 # loop over a sample of our training pairs
 for i in np.random.choice(np.arange(0, len(pairTrain)), size=(49,)):
-	# grab the current image pair and label
+	# grab the current images pair and masks
 	imageA = pairTrain[i][0]
 	imageB = pairTrain[i][1]
 	label = labelTrain[i]
@@ -84,14 +84,14 @@ for i in np.random.choice(np.arange(0, len(pairTrain)), size=(49,)):
 	output = np.zeros((36, 60), dtype="uint8")
 	pair = np.hstack([imageA, imageB])
 	output[4:32, 0:56] = pair
-	# set the text label for the pair along with what color we are
+	# set the text masks for the pair along with what color we are
 	# going to draw the pair in (green for a "positive" pair and
 	# red for a "negative" pair)
 	text = "neg" if label[0] == 0 else "pos"
 	color = (0, 0, 255) if label[0] == 0 else (0, 255, 0)
-	# create a 3-channel RGB image from the grayscale pair, resize
+	# create a 3-channel RGB images from the grayscale pair, resize
 	# it from 60x36 to 96x51 (so we can better see it), and then
-	# draw what type of pair it is on the image
+	# draw what type of pair it is on the images
 	vis = cv2.merge([output] * 3)
 	vis = cv2.resize(vis, (96, 51), interpolation=cv2.INTER_LINEAR)
 	cv2.putText(vis, text, (2, 12), cv2.FONT_HERSHEY_SIMPLEX, 0.75,

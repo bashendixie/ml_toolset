@@ -4,7 +4,7 @@ from tensorflow.data import AUTOTUNE
 import os
 # define AUTOTUNE
 AUTO = AUTOTUNE
-# define the image height, width and channel size
+# define the images height, width and channel size
 IMAGE_HEIGHT = 28
 IMAGE_WIDTH = 28
 CHANNEL = 1

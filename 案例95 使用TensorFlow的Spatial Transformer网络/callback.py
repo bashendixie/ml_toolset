@@ -14,7 +14,7 @@ def get_train_monitor(testDs, outputPath, stnLayerName):
             model = Model(self.model.input,
                           self.model.get_layer(stnLayerName).output)
             testPred = model(testImg)
-            # plot the image and the transformed image
+            # plot the images and the transformed images
             _, axes = plt.subplots(nrows=5, ncols=2, figsize=(5, 10))
             for ax, im, t_im in zip(axes, testImg[:5], testPred[:5]):
                 ax[0].imshow(im[..., 0], cmap="gray")

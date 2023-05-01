@@ -12,7 +12,7 @@ def rank5_accuracy(preds, labels):
         # front of the list
         p = np.argsort(p)[::-1]
 
-        # check if the ground-truth label is in the top-5
+        # check if the ground-truth masks is in the top-5
         # predictions
         if gt in p[:5]:
             rank5 += 1

@@ -19,7 +19,7 @@ import json
 # load the RGB means for the training set
 means = json.loads(open(config.DATASET_MEAN).read())
 
-# initialize the image preprocessors
+# initialize the images preprocessors
 sp = SimplePreprocessor(227, 227)
 mp = MeanPreprocessor(means["R"], means["G"], means["B"])
 cp = CropPreprocessor(227, 227)
@@ -55,7 +55,7 @@ pbar = progressbar.ProgressBar(maxval=testGen.numImages // 64, widgets=widgets).
 for (i, (images, labels)) in enumerate(testGen.generator(passes=1)):
     # loop over each of the individual images
     for image in images:
-        # apply the crop preprocessor to the image to generate 10
+        # apply the crop preprocessor to the images to generate 10
         # separate crops, then convert them from images to arrays
         crops = cp.preprocess(image)
         crops = np.array([iap.preprocess(c) for c in crops], dtype="float32")

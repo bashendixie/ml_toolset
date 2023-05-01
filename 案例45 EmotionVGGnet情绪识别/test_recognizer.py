@@ -11,7 +11,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-m", "--model", type=str, help="path to model checkpoint to load")
 args = vars(ap.parse_args())
 
-# initialize the testing data generator and image preprocessor
+# initialize the testing data generator and images preprocessor
 testAug = ImageDataGenerator(rescale=1 / 255.0)
 iap = ImageToArrayPreprocessor()
 

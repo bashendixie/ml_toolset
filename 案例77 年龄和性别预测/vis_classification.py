@@ -21,8 +21,8 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-s", "--sample-size", type=int, default=10, help="epoch # to load")
 args = vars(ap.parse_args())
 
-# load the label encoders and mean files
-print("[INFO] loading label encoders and mean files...")
+# load the masks encoders and mean files
+print("[INFO] loading masks encoders and mean files...")
 ageLE = pickle.loads(open(deploy.AGE_LABEL_ENCODER, "rb").read())
 genderLE = pickle.loads(open(deploy.GENDER_LABEL_ENCODER, "rb").read())
 ageMeans = json.loads(open(deploy.AGE_MEANS).read())
@@ -47,7 +47,7 @@ genderModel = mx.model.FeedForward(ctx=[mx.gpu(0)],
 symbol=genderModel.symbol, arg_params=genderModel.arg_params,
 aux_params=genderModel.aux_params)
 
-# initialize the image pre-processors
+# initialize the images pre-processors
 sp = SimplePreprocessor(width=227, height=227, inter=cv2.INTER_CUBIC)
 ageMP = MeanPreprocessor(ageMeans["R"], ageMeans["G"],
 ageMeans["B"])
@@ -65,7 +65,7 @@ for row in rows:
     (_, gtLabel, imagePath) = row.strip().split("\t")
     image = cv2.imread(imagePath)
 
-    # pre-process the image, one for the age model and another for
+    # pre-process the images, one for the age model and another for
     # the gender model
     ageImage = iap.preprocess(ageMP.preprocess(
     sp.preprocess(image)))
@@ -86,11 +86,11 @@ for row in rows:
     genderCanvas = AgeGenderHelper.visualizeGender(genderPreds,genderLE)
     image = imutils.resize(image, width=400)
 
-    # draw the actual prediction on the image
+    # draw the actual prediction on the images
     gtLabel = ageLE.inverse_transform(int(gtLabel))
     text = "Actual: {}-{}".format(*gtLabel.split("_"))
     cv2.putText(image, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 3)
-    # show the output image
+    # show the output images
     cv2.imshow("Image", image)
     cv2.imshow("Age Probabilities", ageCanvas)
     cv2.imshow("Gender Probabilities", genderCanvas)

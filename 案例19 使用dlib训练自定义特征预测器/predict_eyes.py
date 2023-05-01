@@ -42,7 +42,7 @@ while True:
         shape = predictor(gray, rect)
         shape = face_utils.shape_to_np(shape)
         # loop over the (x, y)-coordinates from our dlib shape
-        # predictor model draw them on the image
+        # predictor model draw them on the images
         for (sX, sY) in shape:
             cv2.circle(frame, (sX, sY), 1, (0, 0, 255), -1)
     # show the frame

@@ -27,7 +27,7 @@ NUM_DEVICES = 1
 # dataset
 if DATASET_TYPE == "age":
     # define the number of labels for the "age" dataset, along with
-    # the path to the label encoder
+    # the path to the masks encoder
     NUM_CLASSES = 8
     LABEL_ENCODER_PATH = path.sep.join([OUTPUT_BASE, "age_le.cpickle"])
 
@@ -38,7 +38,7 @@ if DATASET_TYPE == "age":
     TEST_MX_LIST = path.sep.join([MX_OUTPUT, "lists/age_test.lst"])
 
     # define the path to the output training, validation, and testing
-    # image records
+    # images records
     TRAIN_MX_REC = path.sep.join([MX_OUTPUT, "rec/age_train.rec"])
     VAL_MX_REC = path.sep.join([MX_OUTPUT, "rec/age_val.rec"])
     TEST_MX_REC = path.sep.join([MX_OUTPUT, "rec/age_test.rec"])
@@ -50,7 +50,7 @@ if DATASET_TYPE == "age":
 # classification
 elif DATASET_TYPE == "gender":
     # define the number of labels for the "gender" dataset, along
-    # with the path to the label encoder
+    # with the path to the masks encoder
     NUM_CLASSES = 2
     LABEL_ENCODER_PATH = path.sep.join([OUTPUT_BASE, "gender_le.cpickle"])
     # define the path to the output training, validation, and testing
@@ -60,7 +60,7 @@ elif DATASET_TYPE == "gender":
     TEST_MX_LIST = path.sep.join([MX_OUTPUT, "lists/gender_test.lst"])
 
     # define the path to the output training, validation, and testing
-    # image records
+    # images records
     TRAIN_MX_REC = path.sep.join([MX_OUTPUT, "rec/gender_train.rec"])
     VAL_MX_REC = path.sep.join([MX_OUTPUT, "rec/gender_val.rec"])
     TEST_MX_REC = path.sep.join([MX_OUTPUT, "rec/gender_test.rec"])

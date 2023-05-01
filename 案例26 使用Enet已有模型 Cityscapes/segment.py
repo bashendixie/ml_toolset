@@ -1,5 +1,5 @@
 # USAGE
-# python segment.py --model enet-cityscapes/enet-model.net --classes enet-cityscapes/enet-classes.txt --colors enet-cityscapes/enet-colors.txt --image images/example_01.png
+# python segment.py --model enet-cityscapes/enet-model.net --classes enet-cityscapes/enet-classes.txt --colors enet-cityscapes/enet-colors.txt --images images/example_01.png
 
 # import the necessary packages
 import numpy as np
@@ -14,15 +14,15 @@ ap.add_argument("-m", "--model", required=True,
 	help="path to deep learning segmentation model")
 ap.add_argument("-c", "--classes", required=True,
 	help="path to .txt file containing class labels")
-ap.add_argument("-i", "--image", required=True,
-	help="path to input image")
+ap.add_argument("-i", "--images", required=True,
+	help="path to input images")
 ap.add_argument("-l", "--colors", type=str,
 	help="path to .txt file containing colors for labels")
 ap.add_argument("-w", "--width", type=int, default=500,
-	help="desired width (in pixels) of input image")
+	help="desired width (in pixels) of input images")
 args = vars(ap.parse_args())
 
-# load the class label names
+# load the class masks names
 CLASSES = open(args["classes"]).read().strip().split("\n")
 
 # if a colors file was supplied, load it from disk
@@ -32,9 +32,9 @@ if args["colors"]:
 	COLORS = np.array(COLORS, dtype="uint8")
 
 # otherwise, we need to randomly generate RGB colors for each class
-# label
+# masks
 else:
-	# initialize a list of colors to represent each class label in
+	# initialize a list of colors to represent each class masks in
 	# the mask (starting with 'black' for the background/unlabeled
 	# regions)
 	np.random.seed(42)
@@ -55,10 +55,10 @@ for (i, (className, color)) in enumerate(zip(CLASSES, COLORS)):
 print("[INFO] loading model...")
 net = cv2.dnn.readNet(args["model"])
 
-# load the input image, resize it, and construct a blob from it,
-# but keeping mind mind that the original input image dimensions
+# load the input images, resize it, and construct a blob from it,
+# but keeping mind mind that the original input images dimensions
 # ENet was trained on was 1024x512
-image = cv2.imread(args["image"])
+image = cv2.imread(args["images"])
 image = imutils.resize(image, width=args["width"])
 blob = cv2.dnn.blobFromImage(image, 1 / 255.0, (1024, 512), 0,
 	swapRB=True, crop=False)
@@ -73,13 +73,13 @@ end = time.time()
 print("[INFO] inference took {:.4f} seconds".format(end - start))
 
 # infer the total number of classes along with the spatial dimensions
-# of the mask image via the shape of the output array
+# of the mask images via the shape of the output array
 (numClasses, height, width) = output.shape[1:4]
 
 # our output class ID map will be num_classes x height x width in
-# size, so we take the argmax to find the class label with the
+# size, so we take the argmax to find the class masks with the
 # largest probability for each and every (x, y)-coordinate in the
-# image
+# images
 classMap = np.argmax(output[0], axis=0)
 
 # given the class ID map, we can map each of the class IDs to its
@@ -87,7 +87,7 @@ classMap = np.argmax(output[0], axis=0)
 mask = COLORS[classMap]
 
 # resize the mask and class map such that its dimensions match the
-# original size of the input image (we're not using the class map
+# original size of the input images (we're not using the class map
 # here for anything else but this is how you would resize it just in
 # case you wanted to extract specific pixels/classes)
 mask = cv2.resize(mask, (image.shape[1], image.shape[0]),
@@ -95,7 +95,7 @@ mask = cv2.resize(mask, (image.shape[1], image.shape[0]),
 classMap = cv2.resize(classMap, (image.shape[1], image.shape[0]),
 	interpolation=cv2.INTER_NEAREST)
 
-# perform a weighted combination of the input image with the mask to
+# perform a weighted combination of the input images with the mask to
 # form an output visualization
 output = ((0.4 * image) + (0.6 * mask)).astype("uint8")
 

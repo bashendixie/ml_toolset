@@ -50,7 +50,7 @@ def affine_grid_generator(B, H, W, theta):
 
 
 def bilinear_sampler(B, H, W, featureMap, x, y):
-    # define the bounds of the image
+    # define the bounds of the images
     maxY = tf.cast(H - 1, "int32")
     maxX = tf.cast(W - 1, "int32")
     zero = tf.zeros([], dtype="int32")

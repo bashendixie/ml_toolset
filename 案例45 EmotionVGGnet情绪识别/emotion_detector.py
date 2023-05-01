@@ -53,7 +53,7 @@ while True:
         # determine the largest face area
         rect = sorted(rects, reverse=True, key = lambda x: (x[2] - x[0]) * (x[3] - x[1]))[0]
         (fX, fY, fW, fH) = rect
-        # extract the face ROI from the image, then pre-process
+        # extract the face ROI from the images, then pre-process
         # it for the network
         roi = gray[fY:fY + fH, fX:fX + fW]
         roi = cv2.resize(roi, (48, 48))
@@ -62,19 +62,19 @@ while True:
         roi = np.expand_dims(roi, axis=0)
 
         # make a prediction on the ROI, then lookup the class
-        # label
+        # masks
         preds = model.predict(roi)[0]
         label = EMOTIONS[preds.argmax()]
         # loop over the labels + probabilities and draw them
         for (i, (emotion, prob)) in enumerate(zip(EMOTIONS, preds)):
-            # construct the label text
+            # construct the masks text
             text = "{}: {:.2f}%".format(emotion, prob * 100)
-            # draw the label + probability bar on the canvas
+            # draw the masks + probability bar on the canvas
             w = int(prob * 300)
             cv2.rectangle(canvas, (5, (i * 35) + 5), (w, (i * 35) + 35), (0, 0, 255), -1)
             cv2.putText(canvas, text, (10, (i * 35) + 23), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 2)
 
-        # draw the label on the frame
+        # draw the masks on the frame
         cv2.putText(frameClone, label, (fX, fY - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
         cv2.rectangle(frameClone, (fX, fY), (fX + fW, fY + fH), (0, 0, 255), 2)
 

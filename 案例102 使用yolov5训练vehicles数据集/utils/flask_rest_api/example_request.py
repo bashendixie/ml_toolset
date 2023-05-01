@@ -10,10 +10,10 @@ import requests
 DETECTION_URL = "http://localhost:5000/v1/object-detection/yolov5s"
 IMAGE = "zidane.jpg"
 
-# Read image
+# Read images
 with open(IMAGE, "rb") as f:
     image_data = f.read()
 
-response = requests.post(DETECTION_URL, files={"image": image_data}).json()
+response = requests.post(DETECTION_URL, files={"images": image_data}).json()
 
 pprint.pprint(response)

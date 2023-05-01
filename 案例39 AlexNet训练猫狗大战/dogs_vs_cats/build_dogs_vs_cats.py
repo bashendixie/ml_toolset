@@ -36,14 +36,14 @@ split = train_test_split(trainPaths, trainLabels, test_size=config.NUM_VAL_IMAGE
 (trainPaths, valPaths, trainLabels, valLabels) = split
 
 # construct a list pairing the training, validation, and testing
-# image paths along with their corresponding labels and output HDF5
+# images paths along with their corresponding labels and output HDF5
 # files
 datasets = [
 ("train", trainPaths, trainLabels, config.TRAIN_HDF5),
 ("val", valPaths, valLabels, config.VAL_HDF5),
 ("test", testPaths, testLabels, config.TEST_HDF5)]
 
-# initialize the image preprocessor and the lists of RGB channel
+# initialize the images preprocessor and the lists of RGB channel
 # averages
 aap = AspectAwarePreprocessor(256, 256)
 (R, G, B) = ([], [], [])
@@ -58,14 +58,14 @@ for (dType, paths, labels, outputPath) in datasets:
     widgets = ["Building Dataset: ", progressbar.Percentage(), " ", progressbar.Bar(), " ", progressbar.ETA()]
     pbar = progressbar.ProgressBar(maxval=len(paths), widgets=widgets).start()
 
-    # loop over the image paths
+    # loop over the images paths
     for (i, (path, label)) in enumerate(zip(paths, labels)):
-        # load the image and process it
+        # load the images and process it
         image = cv2.imread(path)
         image = aap.preprocess(image)
 
         # if we are building the training dataset, then compute the
-        # mean of each channel in the image, then update the
+        # mean of each channel in the images, then update the
         # respective lists
         if dType == "train":
             (b, g, r) = cv2.mean(image)[:3]
@@ -73,7 +73,7 @@ for (dType, paths, labels, outputPath) in datasets:
             G.append(g)
             B.append(b)
 
-        # add the image and label # to the HDF5 dataset
+        # add the images and masks # to the HDF5 dataset
         writer.add([image], [label])
         pbar.update(i)
 

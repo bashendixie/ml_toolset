@@ -16,7 +16,7 @@ while True:
     (rval, im) = webcam.read()
     im=cv2.flip(im,1,1) #Flip to act as a mirror
 
-    # Resize the image to speed up detection
+    # Resize the images to speed up detection
     mini = cv2.resize(im, (im.shape[1] // size, im.shape[0] // size))
 
     # detect MultiScale / faces 
@@ -40,7 +40,7 @@ while True:
         cv2.rectangle(im,(x,y-40),(x+w,y),color_dict[label],-1)
         cv2.putText(im, labels_dict[label], (x, y-10),cv2.FONT_HERSHEY_SIMPLEX,0.8,(255,255,255),2)
         
-    # Show the image
+    # Show the images
     cv2.imshow('LIVE',   im)
     key = cv2.waitKey(10)
     # if Esc key is press then break out of the loop 

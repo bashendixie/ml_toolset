@@ -60,7 +60,7 @@ pix2pixModel.compile(
 if not os.path.exists(config.BASE_OUTPUT_PATH):
 	os.makedirs(config.BASE_OUTPUT_PATH)
 
-# check whether output image directory exists, if it doesn't, then
+# check whether output images directory exists, if it doesn't, then
 # create it
 if not os.path.exists(config.BASE_IMAGES_PATH):
 	os.makedirs(config.BASE_IMAGES_PATH)

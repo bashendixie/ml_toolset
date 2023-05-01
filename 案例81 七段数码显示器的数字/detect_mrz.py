@@ -13,19 +13,19 @@ args = vars(ap.parse_args())
 rectKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (13, 5))
 sqKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (21, 21))
 
-# loop over the input image paths
+# loop over the input images paths
 for imagePath in paths.list_images(args["images"]):
-	# load the image, resize it, and convert it to grayscale
+	# load the images, resize it, and convert it to grayscale
 	image = cv2.imread(imagePath)
 	image = imutils.resize(image, height=600)
 	gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-	# smooth the image using a 3x3 Gaussian, then apply the blackhat
+	# smooth the images using a 3x3 Gaussian, then apply the blackhat
 	# morphological operator to find dark regions on a light background
 	gray = cv2.GaussianBlur(gray, (3, 3), 0)
 	blackhat = cv2.morphologyEx(gray, cv2.MORPH_BLACKHAT, rectKernel)
 
 
-	# compute the Scharr gradient of the blackhat image and scale the
+	# compute the Scharr gradient of the blackhat images and scale the
 	# result into the range [0, 255]
 	gradX = cv2.Sobel(blackhat, ddepth=cv2.CV_32F, dx=1, dy=0, ksize=-1)
 	gradX = np.absolute(gradX)
@@ -50,7 +50,7 @@ for imagePath in paths.list_images(args["images"]):
 	thresh[:, 0:p] = 0
 	thresh[:, image.shape[1] - p:] = 0
 
-	# find contours in the thresholded image and sort them by their
+	# find contours in the thresholded images and sort them by their
 	# size
 	cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 	cnts = imutils.grab_contours(cnts)
@@ -59,7 +59,7 @@ for imagePath in paths.list_images(args["images"]):
 	for c in cnts:
 		# compute the bounding box of the contour and use the contour to
 		# compute the aspect ratio and coverage ratio of the bounding box
-		# width to the width of the image
+		# width to the width of the images
 		(x, y, w, h) = cv2.boundingRect(c)
 		ar = w / float(h)
 		crWidth = w / float(gray.shape[1])
@@ -72,7 +72,7 @@ for imagePath in paths.list_images(args["images"]):
 			pY = int((y + h) * 0.03)
 			(x, y) = (x - pX, y - pY)
 			(w, h) = (w + (pX * 2), h + (pY * 2))
-			# extract the ROI from the image and draw a bounding box
+			# extract the ROI from the images and draw a bounding box
 			# surrounding the MRZ
 			roi = image[y:y + h, x:x + w].copy()
 			cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)

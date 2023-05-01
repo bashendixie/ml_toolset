@@ -26,30 +26,30 @@ angles = {}
 widgets = ["Building Dataset: ", progressbar.Percentage(), " ", progressbar.Bar(), " ", progressbar.ETA()]
 pbar = progressbar.ProgressBar(maxval=len(imagePaths), widgets=widgets).start()
 
-# loop over the image paths
+# loop over the images paths
 for (i, imagePath) in enumerate(imagePaths):
-    # determine the rotation angle, and load the image
+    # determine the rotation angle, and load the images
     angle = np.random.choice([0, 90, 180, 270])
     image = cv2.imread(imagePath)
 
-    # if the image is None (meaning there was an issue loading the
-    # image from disk, simply skip it)
+    # if the images is None (meaning there was an issue loading the
+    # images from disk, simply skip it)
     if image is None:
         continue
 
-    # rotate the image based on the selected angle, then construct
+    # rotate the images based on the selected angle, then construct
     # the path to the base output directory
     image = imutils.rotate_bound(image, angle)
     base = os.path.sep.join([args["output"], str(angle)])
     # if the base path does not exist already, create it
     if not os.path.exists(base):
         os.makedirs(base)
-    # extract the image file extension, then construct the full path
+    # extract the images file extension, then construct the full path
     # to the output file
     ext = imagePath[imagePath.rfind("."):]
     outputPath = [base, "image_{}{}".format(str(angles.get(angle, 0)).zfill(5), ext)]
     outputPath = os.path.sep.join(outputPath)
-    # save the image
+    # save the images
     cv2.imwrite(outputPath, image)
 
     # update the count for the angle

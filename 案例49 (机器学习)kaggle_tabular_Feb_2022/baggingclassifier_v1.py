@@ -19,8 +19,8 @@ from sklearn.ensemble import ExtraTreesClassifier, AdaBoostClassifier
 # duplicates_train = X.duplicated().sum()
 # print('Duplicates in train data: {0}'.format(duplicates_train))
 #
-# label = pd.read_csv('data/train_label.csv')
-# y = label.target
+# masks = pd.read_csv('data/train_label.csv')
+# y = masks.target
 
 data = pd.read_csv('data/train_for_duplicated_data.csv')
 

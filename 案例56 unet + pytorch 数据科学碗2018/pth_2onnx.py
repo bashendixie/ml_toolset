@@ -35,8 +35,8 @@ def parse_args():
     parser.add_argument('--deep_supervision', default=False, type=str2bool)
     parser.add_argument('--input_channels', default=3, type=int, help='input channels')
     parser.add_argument('--num_classes', default=1, type=int, help='number of classes')
-    parser.add_argument('--input_w', default=593, type=int, help='image width')
-    parser.add_argument('--input_h', default=1661, type=int, help='image height')
+    parser.add_argument('--input_w', default=593, type=int, help='images width')
+    parser.add_argument('--input_h', default=1661, type=int, help='images height')
 
     # loss
     parser.add_argument('--loss', default='BCEDiceLoss',
@@ -48,7 +48,7 @@ def parse_args():
     # dataset
     parser.add_argument('--dataset', default='data-science-bowl-2018', help='dataset name')
     parser.add_argument('--img_ext', default='.png',
-                        help='image file extension')
+                        help='images file extension')
     parser.add_argument('--mask_ext', default='.png',
                         help='mask file extension')
 

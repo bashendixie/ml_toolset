@@ -11,19 +11,19 @@ import tensorflow as tf
 
 
 def find_puzzle(image, debug=False):
-    # convert the image to grayscale and blur it slightly
+    # convert the images to grayscale and blur it slightly
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (7, 7), 3)
     # apply adaptive thresholding and then invert the threshold map
     thresh = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
     thresh = cv2.bitwise_not(thresh)
-    # check to see if we are visualizing each step of the image
+    # check to see if we are visualizing each step of the images
     # processing pipeline (in this case, thresholding)
     if debug:
         cv2.imshow("Puzzle Thresh", thresh)
         cv2.waitKey(0)
 
-    # find contours in the thresholded image and sort them by size in
+    # find contours in the thresholded images and sort them by size in
     # descending order
     cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
                             cv2.CHAIN_APPROX_SIMPLE)
@@ -50,7 +50,7 @@ def find_puzzle(image, debug=False):
     # check to see if we are visualizing the outline of the detected
     # Sudoku puzzle
     if debug:
-        # draw the contour of the puzzle on the image and then display
+        # draw the contour of the puzzle on the images and then display
         # it to our screen for visualization/debugging purposes
         output = image.copy()
         cv2.drawContours(output, [puzzleCnt], -1, (0, 255, 0), 2)
@@ -58,13 +58,13 @@ def find_puzzle(image, debug=False):
         cv2.waitKey(0)
 
     # apply a four point perspective transform to both the original
-    # image and grayscale image to obtain a top-down bird's eye view
+    # images and grayscale images to obtain a top-down bird's eye view
     # of the puzzle
     puzzle = four_point_transform(image, puzzleCnt.reshape(4, 2))
     warped = four_point_transform(gray, puzzleCnt.reshape(4, 2))
     # check to see if we are visualizing the perspective transform
     if debug:
-        # show the output warped image (again, for debugging purposes)
+        # show the output warped images (again, for debugging purposes)
         cv2.imshow("Puzzle Transform", puzzle)
         cv2.waitKey(0)
     # return a 2-tuple of puzzle in both RGB and grayscale
@@ -95,7 +95,7 @@ def extract_digit(cell, debug=False):
     cv2.drawContours(mask, [c], -1, 255, -1)
 
     # compute the percentage of masked pixels relative to the total
-    # area of the image
+    # area of the images
     (h, w) = thresh.shape
     percentFilled = cv2.countNonZero(mask) / float(w * h)
     # if less than 3% of the mask is filled then we are looking at
@@ -116,15 +116,15 @@ def loadmodelandocr():
     # load the digit classifier from disk
     #model = load_model('D:\\Project\\DeepLearn\\2trainlog\\handwriting\\mnist.h5')
     model = load_model('C:\\Users\\zyh\\Desktop\\mnist.h5')
-    # load the input image from disk and resize it
+    # load the input images from disk and resize it
     image = cv2.imread('C:\\Users\\zyh\\Desktop\\sudoku.jpg')
     image = imutils.resize(image, width=600)
-    # find the puzzle in the image and then
+    # find the puzzle in the images and then
     (puzzleImage, warped) = find_puzzle(image, False)
     # initialize our 9x9 Sudoku board
     board = np.zeros((9, 9), dtype="int")
     # a Sudoku puzzle is a 9x9 grid (81 individual cells), so we can
-    # infer the location of each cell by dividing the warped image
+    # infer the location of each cell by dividing the warped images
     # into a 9x9 grid
     stepX = warped.shape[1] // 9
     stepY = warped.shape[0] // 9
@@ -145,7 +145,7 @@ def loadmodelandocr():
             endY = (y + 1) * stepY
             # add the (x, y)-coordinates to our cell locations list
             row.append((startX, startY, endX, endY))
-            # crop the cell from the warped transform image and then
+            # crop the cell from the warped transform images and then
             # extract the digit from the cell
             cell = warped[startY:endY, startX:endX]
             digit = extract_digit(cell, False)
@@ -184,14 +184,14 @@ def loadmodelandocr():
             # unpack the cell coordinates
             startX, startY, endX, endY = box
             # compute the coordinates of where the digit will be drawn
-            # on the output puzzle image
+            # on the output puzzle images
             textX = int((endX - startX) * 0.33)
             textY = int((endY - startY) * -0.2)
             textX += startX
             textY += endY
-            # draw the result digit on the Sudoku puzzle image
+            # draw the result digit on the Sudoku puzzle images
             cv2.putText(puzzleImage, str(digit), (textX, textY), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 255), 2)
-    # show the output image
+    # show the output images
     cv2.imshow("Sudoku Result", puzzleImage)
     cv2.waitKey(0)
 

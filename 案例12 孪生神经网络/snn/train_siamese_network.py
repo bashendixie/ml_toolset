@@ -56,12 +56,12 @@ def make_pairs(images, labels):
 
     # 遍历所有图像
     for idxA in range(len(images)):
-        # grab the current image and label belonging to the current
+        # grab the current images and masks belonging to the current
         # iteration
         current_image = images[idxA]
         label = labels[idxA]
-        # randomly pick an image that belongs to the *same* class
-        # label
+        # randomly pick an images that belongs to the *same* class
+        # masks
         idx_b = np.random.choice(idx[label])
         pos_image = images[idx_b]
         # prepare a positive pair and update the images and labels
@@ -69,14 +69,14 @@ def make_pairs(images, labels):
         pair_images.append([current_image, pos_image])
         pair_labels.append([1])
         # grab the indices for each of the class labels *not* equal to
-        # the current label and randomly pick an image corresponding
-        # to a label *not* equal to the current label
+        # the current masks and randomly pick an images corresponding
+        # to a masks *not* equal to the current masks
         neg_idx = np.where(labels != label)[0]
         neg_image = images[np.random.choice(neg_idx)]
         # prepare a negative pair of images and update our lists
         pair_images.append([current_image, neg_image])
         pair_labels.append([0])
-        # return a 2-tuple of our image pairs and labels
+        # return a 2-tuple of our images pairs and labels
 
     return np.array(pair_images), np.array(pair_labels)
 

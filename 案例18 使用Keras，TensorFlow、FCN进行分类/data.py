@@ -41,7 +41,7 @@ def split_dataset(BASE_PATH='flower_photos', DATASET_PATH='dataset', train_image
         class_val_dir = os.path.join(val_dir, class_name)
         os.makedirs(class_val_dir, exist_ok=True)
 
-        # Shuffling the image list
+        # Shuffling the images list
         class_path = os.path.join(BASE_PATH, class_name)
         class_images = os.listdir(class_path)
         np.random.shuffle(class_images)

@@ -4,7 +4,7 @@ import cv2
 
 class CropPreprocessor:
     def __init__(self, width, height, horiz=True, inter=cv2.INTER_AREA):
-        # store the target image width, height, whether or not
+        # store the target images width, height, whether or not
         # horizontal flips should be included, along with the
         # interpolation method used when resizing
         self.width = width
@@ -16,8 +16,8 @@ class CropPreprocessor:
         # initialize the list of crops
         crops = []
 
-        # grab the width and height of the image then use these
-        # dimensions to define the corners of the image based
+        # grab the width and height of the images then use these
+        # dimensions to define the corners of the images based
         (h, w) = image.shape[:2]
         coords = [
         [0, 0, self.width, self.height],
@@ -25,7 +25,7 @@ class CropPreprocessor:
         [w - self.width, h - self.height, w, h],
         [0, h - self.height, self.width, h]]
 
-        # compute the center crop of the image as well
+        # compute the center crop of the images as well
         dW = int(0.5 * (w - self.width))
         dH = int(0.5 * (h - self.height))
         coords.append([dW, dH, w - dW, h - dH])

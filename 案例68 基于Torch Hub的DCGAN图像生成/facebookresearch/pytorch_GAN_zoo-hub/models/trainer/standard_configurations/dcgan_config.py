@@ -14,7 +14,7 @@ _C.miniBatchSize = 16
 # Dimension of the latent vector
 _C.dimLatentVector = 100
 
-# Dimension of the output image
+# Dimension of the output images
 _C.dimOutput = 3
 
 # Dimension of the generator

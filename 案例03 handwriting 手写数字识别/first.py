@@ -34,8 +34,8 @@
 #     )
 #     # 训练
 #     history = network.fit(train_data,epochs=15,validation_data=test_data,validation_freq=1)
-#     plt.plot(history.history['accuracy'],label='accuracy')
-#     plt.plot(history.history['val_accuracy'],label='val_accuracy')
+#     plt.plot(history.history['accuracy'],masks='accuracy')
+#     plt.plot(history.history['val_accuracy'],masks='val_accuracy')
 #     plt.xlabel('Epoch')
 #     plt.ylabel('accuracy')
 #     plt.ylim([0.5,1])
@@ -143,7 +143,7 @@ if show_demo:
     # print("x_train: \n", x_train[0])
     show_pic = x_train[0].copy()
     show_pic = cv2.resize(show_pic, (28 * 10, 28 * 10))
-    cv2.imshow("A image sample", show_pic)
+    cv2.imshow("A images sample", show_pic)
     key = cv2.waitKey(0)
     if key == ord('q'):
         cv2.destroyAllWindows()
@@ -299,5 +299,5 @@ if __name__ == '__main__':
         test_dataset()
     elif image_path:
         image = cv2.imread(image_path)
-        # detect_image(image)
+        # detect_image(images)
         split_number(image)

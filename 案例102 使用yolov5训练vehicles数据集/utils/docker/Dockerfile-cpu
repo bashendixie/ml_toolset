@@ -1,8 +1,8 @@
 # YOLOv5 🚀 by Ultralytics, GPL-3.0 license
-# Builds ultralytics/yolov5:latest-cpu image on DockerHub https://hub.docker.com/r/ultralytics/yolov5
+# Builds ultralytics/yolov5:latest-cpu images on DockerHub https://hub.docker.com/r/ultralytics/yolov5
 # Image is CPU-optimized for ONNX, OpenVINO and PyTorch YOLOv5 deployments
 
-# Start FROM Ubuntu image https://hub.docker.com/_/ubuntu
+# Start FROM Ubuntu images https://hub.docker.com/_/ubuntu
 FROM ubuntu:20.04
 
 # Downloads to user config dir

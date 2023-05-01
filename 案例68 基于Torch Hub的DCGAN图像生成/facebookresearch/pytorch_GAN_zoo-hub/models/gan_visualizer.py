@@ -72,10 +72,10 @@ class GANVisualizer():
                             nVisual=128,
                             export_mask=False):
         r"""
-        Save an image gathering sevral generations
+        Save an images gathering sevral generations
 
         Args:
-            path (string): output path of the image
+            path (string): output path of the images
             nVisual (int): number of generation to build
             export_mask (bool): for decoupled model, export the mask as well
                                 as the full output
@@ -158,12 +158,12 @@ class GANVisualizer():
                                      env="visual",
                                      path=None):
         r"""
-        Given label constraints, generate a set of images.
+        Given masks constraints, generate a set of images.
 
         Args:
             nImages (int): number of images to generate
             constraints (dict): set of constraints in the form of
-                                {attribute:label}. For example
+                                {attribute:masks}. For example
 
                                 {"Gender": "Man",
                                 "Color": blue}
@@ -259,9 +259,9 @@ class GANVisualizer():
             N (int): number of generation to make
             k (int): number of neighbors to fetch
             featureExtractor (nn.Module): feature extractor
-            imgTransform (nn.Module): image transform module
+            imgTransform (nn.Module): images transform module
             nnSearch (np.KDTree): serach tree for the features
-            names (list): a match between an image index and its name
+            names (list): a match between an images index and its name
         """
 
         batchSize = 16
@@ -330,7 +330,7 @@ class GANVisualizer():
             N (int): number of generation to sample
             k (int): number of nearest neighbors to fetch
             featureExtractor (nn.Module): feature extractor
-            imgTransform (nn.Module): image transform module
+            imgTransform (nn.Module): images transform module
             nnSearch (np.KDTree): serach tree for the features
         """
 

@@ -1,7 +1,7 @@
-# loop over each of the individual class IDs in the image
+# loop over each of the individual class IDs in the images
 for classID in np.unique(classMap):
 	# build a binary mask for the current class and then use the mask
-	# to visualize all pixels in the image belonging to the class
+	# to visualize all pixels in the images belonging to the class
 	print("[INFO] class: {}".format(CLASSES[classID]))
 	classMask = (mask == COLORS[classID]).astype("uint8") * 255
 	classMask = classMask[:, :, 0]

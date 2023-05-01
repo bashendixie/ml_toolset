@@ -26,7 +26,7 @@ ap = argparse.ArgumentParser()
 args = vars(ap.parse_args())
 args["model"] = None
 
-# construct the training image generator for data augmentation
+# construct the training images generator for data augmentation
 aug = ImageDataGenerator(rotation_range=18, zoom_range=0.15, width_shift_range=0.2,
                          height_shift_range=0.2, shear_range=0.15,
                         horizontal_flip=True, fill_mode="nearest")
@@ -34,7 +34,7 @@ aug = ImageDataGenerator(rotation_range=18, zoom_range=0.15, width_shift_range=0
 # load the RGB means for the training set
 means = json.loads(open(config.DATASET_MEAN).read())
 
-# initialize the image preprocessors
+# initialize the images preprocessors
 sp = SimplePreprocessor(64, 64)
 mp = MeanPreprocessor(means["R"], means["G"], means["B"])
 iap = ImageToArrayPreprocessor()

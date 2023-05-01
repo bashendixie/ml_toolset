@@ -34,7 +34,7 @@ class GNet(nn.Module):
             - generationActivation (function): activation function of the last
                                                layer (RGB layer). If None, then
                                                the identity is used
-            - dimOutput (int): dimension of the output image. 3 -> RGB, 1 ->
+            - dimOutput (int): dimension of the output images. 3 -> RGB, 1 ->
                                grey levels
             - equalizedlR (bool): set to true to initiualize the layers with
                                   N(0,1) and apply He's constant at runtime
@@ -97,7 +97,7 @@ class GNet(nn.Module):
 
     def getOutputSize(self):
         r"""
-        Get the size of the generated image.
+        Get the size of the generated images.
         """
         side = 4 * (2**(len(self.toRGBLayers) - 1))
         return (side, side)

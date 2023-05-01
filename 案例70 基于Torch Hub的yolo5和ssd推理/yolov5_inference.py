@@ -24,7 +24,7 @@ testLoader = get_dataloader(testDataset, config.PRED_BATCH_SIZE)
 yoloModel = torch.hub.load("ultralytics/yolov5", "yolov5s")
 # initialize iterable variable
 sweeper = iter(testLoader)
-# initialize image
+# initialize images
 imageInput = []
 # grab a batch of test data
 print("[INFO] getting the test data...")
@@ -35,13 +35,13 @@ images = images.to(config.DEVICE)
 
 # loop over all the batch
 for index in range(0, config.PRED_BATCH_SIZE):
-	# grab each image
+	# grab each images
 	# rearrange dimensions to channel last and
-	# append them to image list
+	# append them to images list
 	image = images[index]
 	image = image.permute((1, 2, 0))
 	imageInput.append(image.cpu().detach().numpy()*255.0)
-# pass the image list through the model
+# pass the images list through the model
 print("[INFO] getting detections from the test data...")
 results = yoloModel(imageInput, size=300)
 
@@ -54,7 +54,7 @@ startX = int(imageIndex["xmin"][0])
 startY = int(imageIndex["ymin"][0])
 endX = int(imageIndex["xmax"][0])
 endY = int(imageIndex["ymax"][0])
-# draw the predicted bounding box and class label on the image
+# draw the predicted bounding box and class masks on the images
 y = startY - 10 if startY - 10 > 10 else startY + 10
 cv2.putText(imageInput[randomIndex], imageIndex["name"][0],
 	(startX, y+10), cv2.FONT_HERSHEY_SIMPLEX,0.65, (0, 255, 0), 2)
@@ -64,7 +64,7 @@ cv2.rectangle(imageInput[randomIndex],
 # make the output directory
 if not os.path.exists(config.YOLO_OUTPUT):
     os.makedirs(config.YOLO_OUTPUT)
-# show the output image and save it to path
+# show the output images and save it to path
 plt.imshow(imageInput[randomIndex]/255.0)
 # save plots to output directory
 print("[INFO] saving the inference...")

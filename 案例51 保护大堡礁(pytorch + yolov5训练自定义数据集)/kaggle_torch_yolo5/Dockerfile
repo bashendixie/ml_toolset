@@ -1,6 +1,6 @@
 # YOLOv5 🚀 by Ultralytics, GPL-3.0 license
 
-# Start FROM Nvidia PyTorch image https://ngc.nvidia.com/catalog/containers/nvidia:pytorch
+# Start FROM Nvidia PyTorch images https://ngc.nvidia.com/catalog/containers/nvidia:pytorch
 FROM nvcr.io/nvidia/pytorch:21.10-py3
 
 # Install linux packages
@@ -42,7 +42,7 @@ ADD https://ultralytics.com/assets/Arial.ttf /root/.config/Ultralytics/
 # Kill all
 # sudo docker kill $(sudo docker ps -q)
 
-# Kill all image-based
+# Kill all images-based
 # sudo docker kill $(sudo docker ps -qa --filter ancestor=ultralytics/yolov5:latest)
 
 # Bash into running container

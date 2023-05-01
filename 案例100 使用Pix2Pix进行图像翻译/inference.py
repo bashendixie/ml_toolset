@@ -45,19 +45,19 @@ print("[INFO] saving the predictions...")
 
 # plot the predicted images
 for (ax, inp, pred, tar) in zip(axes, inputMask, pix2pixGenPred, realImage):
-	# plot the input mask image
+	# plot the input mask images
 	ax[0].imshow(array_to_img(inp))
 	ax[0].set_title("Input Image")
 
-	# plot the predicted Pix2Pix image
+	# plot the predicted Pix2Pix images
 	ax[1].imshow(array_to_img(pred))
 	ax[1].set_title("pix2pix prediction")
 
 	# plot the ground truth
 	ax[2].imshow(array_to_img(tar))
-	ax[2].set_title("Target label")
+	ax[2].set_title("Target masks")
 
-# check whether output image directory exists, if it doesn't, then
+# check whether output images directory exists, if it doesn't, then
 # create it
 if not os.path.exists(config.BASE_IMAGEs_PATH):
 	os.makedirs(config.BASE_IMAGES_PATH)

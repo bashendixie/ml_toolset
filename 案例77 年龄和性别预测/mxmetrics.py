@@ -38,7 +38,7 @@ def _compute_one_off(model, dataIter, oneOff):
         # loop over the predicted labels and ground-truth labels
         # in the batch
         for (pred, label) in zip(predictions, labels):
-            # if correct label is in the set of "one off"
+            # if correct masks is in the set of "one off"
             # predictions, then update the correct counter
             if label in oneOff[pred]:
                 correct += 1

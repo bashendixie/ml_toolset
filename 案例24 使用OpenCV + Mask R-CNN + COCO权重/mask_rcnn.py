@@ -1,6 +1,6 @@
 # USAGE
-# python mask_rcnn.py --mask-rcnn mask-rcnn-coco --image images/example_01.jpg
-# python mask_rcnn.py --mask-rcnn mask-rcnn-coco --image images/example_03.jpg --visualize 1
+# python mask_rcnn.py --mask-rcnn mask-rcnn-coco --images images/example_01.jpg
+# python mask_rcnn.py --mask-rcnn mask-rcnn-coco --images images/example_03.jpg --visualize 1
 
 # import the necessary packages
 import numpy as np
@@ -12,8 +12,8 @@ import os
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True,
-	help="path to input image")
+ap.add_argument("-i", "--images", required=True,
+	help="path to input images")
 ap.add_argument("-m", "--mask-rcnn", required=True,
 	help="base path to mask-rcnn directory")
 ap.add_argument("-v", "--visualize", type=int, default=0,
@@ -47,13 +47,13 @@ configPath = os.path.sep.join([args["mask_rcnn"],
 print("[INFO] loading Mask R-CNN from disk...")
 net = cv2.dnn.readNetFromTensorflow(weightsPath, configPath)
 
-# load our input image and grab its spatial dimensions
-image = cv2.imread(args["image"])
+# load our input images and grab its spatial dimensions
+image = cv2.imread(args["images"])
 (H, W) = image.shape[:2]
 
-# construct a blob from the input image and then perform a forward
+# construct a blob from the input images and then perform a forward
 # pass of the Mask R-CNN, giving us (1) the bounding box  coordinates
-# of the objects in the image along with (2) the pixel-wise segmentation
+# of the objects in the images along with (2) the pixel-wise segmentation
 # for each specific object
 blob = cv2.dnn.blobFromImage(image, swapRB=True, crop=False)
 net.setInput(blob)
@@ -76,11 +76,11 @@ for i in range(0, boxes.shape[2]):
 	# filter out weak predictions by ensuring the detected probability
 	# is greater than the minimum probability
 	if confidence > args["confidence"]:
-		# clone our original image so we can draw on it
+		# clone our original images so we can draw on it
 		clone = image.copy()
 
 		# scale the bounding box coordinates back relative to the
-		# size of the image and then compute the width and the height
+		# size of the images and then compute the width and the height
 		# of the bounding box
 		box = boxes[0, 0, i, 3:7] * np.array([W, H, W, H])
 		(startX, startY, endX, endY) = box.astype("int")
@@ -95,7 +95,7 @@ for i in range(0, boxes.shape[2]):
 			interpolation=cv2.INTER_NEAREST)
 		mask = (mask > args["threshold"])
 
-		# extract the ROI of the image
+		# extract the ROI of the images
 		roi = clone[startY:endY, startX:endX]
 
 		# check to see if are going to visualize how to extract the
@@ -122,19 +122,19 @@ for i in range(0, boxes.shape[2]):
 		color = random.choice(COLORS)
 		blended = ((0.4 * color) + (0.6 * roi)).astype("uint8")
 
-		# store the blended ROI in the original image
+		# store the blended ROI in the original images
 		clone[startY:endY, startX:endX][mask] = blended
 
-		# draw the bounding box of the instance on the image
+		# draw the bounding box of the instance on the images
 		color = [int(c) for c in color]
 		cv2.rectangle(clone, (startX, startY), (endX, endY), color, 2)
 
-		# draw the predicted label and associated probability of the
-		# instance segmentation on the image
+		# draw the predicted masks and associated probability of the
+		# instance segmentation on the images
 		text = "{}: {:.4f}".format(LABELS[classID], confidence)
 		cv2.putText(clone, text, (startX, startY - 5),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
-		# show the output image
+		# show the output images
 		cv2.imshow("Output", clone)
 		cv2.waitKey(0)

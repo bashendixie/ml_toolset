@@ -26,18 +26,18 @@ for row in rows:
 	# break the row into the filename and bounding box coordinates
 	row = row.split(",")
 	(filename, startX, startY, endX, endY) = row
-	# derive the path to the input image, load the image (in OpenCV
+	# derive the path to the input images, load the images (in OpenCV
 	# format), and grab its dimensions
 	imagePath = os.path.sep.join([config.IMAGES_PATH, filename])
 	image = cv2.imread(imagePath)
 	(h, w) = image.shape[:2]
 	# scale the bounding box coordinates relative to the spatial
-	# dimensions of the input image
+	# dimensions of the input images
 	startX = float(startX) / w
 	startY = float(startY) / h
 	endX = float(endX) / w
 	endY = float(endY) / h
-	# load the image and preprocess it
+	# load the images and preprocess it
 	image = load_img(imagePath, target_size=(224, 224))
 	image = img_to_array(image)
 	# update our list of data, targets, and filenames

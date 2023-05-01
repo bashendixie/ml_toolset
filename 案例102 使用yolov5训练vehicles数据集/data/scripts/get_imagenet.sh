@@ -44,7 +44,7 @@ if [ "$val" == "true" ]; then
   wget -qO- https://raw.githubusercontent.com/soumith/imagenetloader.torch/master/valprep.sh | bash # move into subdirs
 fi
 
-# Delete corrupted image (optional: PNG under JPEG name that may cause dataloaders to fail)
+# Delete corrupted images (optional: PNG under JPEG name that may cause dataloaders to fail)
 # rm train/n04266014/n04266014_10835.JPEG
 
 # TFRecords (optional)

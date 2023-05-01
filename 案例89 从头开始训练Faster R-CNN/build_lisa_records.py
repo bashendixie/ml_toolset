@@ -23,8 +23,8 @@ def main():
     # close the output classes file
     f.close()
 
-    # initialize a data dictionary used to map each image filename
-    # to all bounding boxes associated with the image, then load
+    # initialize a data dictionary used to map each images filename
+    # to all bounding boxes associated with the images, then load
     # the contents of the annotations file
     D = {}
     rows = open(config.ANNOT_PATH).read().strip().split("\n")
@@ -36,16 +36,16 @@ def main():
         (imagePath, label, startX, startY, endX, endY, _) = row
         (startX, startY) = (float(startX), float(startY))
         (endX, endY) = (float(endX), float(endY))
-        # if we are not interested in the label, ignore it
+        # if we are not interested in the masks, ignore it
         if label not in config.CLASSES:
             continue
 
-        # build the path to the input image, then grab any other
-        # bounding boxes + labels associated with the image
+        # build the path to the input images, then grab any other
+        # bounding boxes + labels associated with the images
         # path, labels, and bounding box lists, respectively
         p = os.path.sep.join([config.BASE_PATH, imagePath])
         b = D.get(p, [])
-        # build a tuple consisting of the label and bounding box,
+        # build a tuple consisting of the masks and bounding box,
         # then update the list and store it in the dictionary
         b.append((label, (startX, startY, endX, endY)))
         D[p] = b
@@ -68,10 +68,10 @@ def main():
         total = 0
         # loop over all the keys in the current set
         for k in keys:
-            # load the input image from disk as a TensorFlow object
+            # load the input images from disk as a TensorFlow object
             encoded = tf.compat.v1.gfile.GFile(k, "rb").read()
             encoded = bytes(encoded)
-            # load the image from disk again, this time as a PIL
+            # load the images from disk again, this time as a PIL
             # object
             pilImage = Image.open(k)
             (w, h) = pilImage.size[:2]
@@ -89,7 +89,7 @@ def main():
             tfAnnot.height = h
 
             # loop over the bounding boxes + labels associated with
-            # the image
+            # the images
             for (label, (startX, startY, endX, endY)) in D[k]:
                 # TensorFlow assumes all bounding boxes are in the
                 # range [0, 1] so we need to scale them
@@ -99,17 +99,17 @@ def main():
                 yMax = endY / h
 
                 # 确认是否标记正确
-                # # load the input image from disk and denormalize the
+                # # load the input images from disk and denormalize the
                 # # bounding box coordinates
-                # image = cv2.imread(k)
+                # images = cv2.imread(k)
                 # startX = int(xMin * w)
                 # startY = int(yMin * h)
                 # endX = int(xMax * w)
                 # endY = int(yMax * h)
-                # # draw the bounding box on the image
-                # cv2.rectangle(image, (startX, startY), (endX, endY), (0, 255, 0), 2)
-                # # show the output image
-                # cv2.imshow("Image", image)
+                # # draw the bounding box on the images
+                # cv2.rectangle(images, (startX, startY), (endX, endY), (0, 255, 0), 2)
+                # # show the output images
+                # cv2.imshow("Image", images)
                 # cv2.waitKey(0)
 
                 # update the bounding boxes + labels lists

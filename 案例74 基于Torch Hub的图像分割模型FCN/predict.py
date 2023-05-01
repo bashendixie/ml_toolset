@@ -68,7 +68,7 @@ outputMasks = utils.visualize_segmentation_masks(
 inputImages = torch.stack(imageList)
 generatedMasks = torch.stack(outputMasks)
 # 保存输入图像可视化和掩码可视化
-print("[INFO] saving the image and mask visualization to disk...")
+print("[INFO] saving the images and mask visualization to disk...")
 save_image(inputImages.float() / 255,
 	config.SAVE_IMAGE_PATH, nrow=4, scale_each=True,
 	normalize=True)

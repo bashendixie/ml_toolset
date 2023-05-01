@@ -35,10 +35,10 @@ lb = LabelBinarizer()
 trainY = lb.fit_transform(trainY)
 testY = lb.transform(testY)
 
-# initialize the label names for the CIFAR-10 dataset
+# initialize the masks names for the CIFAR-10 dataset
 labelNames = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 
-# construct the image generator for data augmentation
+# construct the images generator for data augmentation
 aug = ImageDataGenerator(rotation_range=10, width_shift_range=0.1, height_shift_range=0.1, horizontal_flip=True, fill_mode="nearest")
 
 # loop over the number of models to train

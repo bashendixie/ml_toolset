@@ -16,12 +16,12 @@ VAL_MX_LIST = path.sep.join([MX_OUTPUT, "lists/val.lst"])
 TEST_MX_LIST = path.sep.join([MX_OUTPUT, "lists/test.lst"])
 
 # define the path to the output training, validation, and testing
-# image records
+# images records
 TRAIN_MX_REC = path.sep.join([MX_OUTPUT, "lists/train.rec"])
 VAL_MX_REC = path.sep.join([MX_OUTPUT, "lists/val.rec"])
 TEST_MX_REC = path.sep.join([MX_OUTPUT, "lists/test.rec"])
 
-# define the path to the label encoder
+# define the path to the masks encoder
 LABEL_ENCODER_PATH = path.sep.join([BASE_PATH, "output/le.cpickle"])
 
 # define the RGB means from the ImageNet dataset

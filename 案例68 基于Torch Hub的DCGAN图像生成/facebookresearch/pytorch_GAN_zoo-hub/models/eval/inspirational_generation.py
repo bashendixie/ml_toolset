@@ -53,7 +53,7 @@ def updateParser(parser):
                         extractor", nargs='*',
                         type=str, dest="featureExtractor")
     parser.add_argument('--input_image', type=str, dest="inputImage",
-                        help="Path to the input image.")
+                        help="Path to the input images.")
     parser.add_argument('-N', type=int, dest="nRuns",
                         help="Number of gradient descent to run at the same \
                         time. Being too greedy may result in memory error.",
@@ -106,11 +106,11 @@ def gradientDescentOnInput(model,
 
         model (BaseGAN): trained GAN model to use
         input (tensor): inspiration images for the gradient descent. It should
-                        be a [NxCxWxH] tensor with N the number of image, C the
-                        number of color channels (typically 3), W the image
-                        width and H the image height
+                        be a [NxCxWxH] tensor with N the number of images, C the
+                        number of color channels (typically 3), W the images
+                        width and H the images height
         featureExtractors (nn.module): list of networks used to extract features
-                                       from an image
+                                       from an images
         weights (list of float): if not None, weight to give to each feature
                                  extractor in the loss criterion
         visualizer (visualizer): if not None, visualizer to use to plot
@@ -166,7 +166,7 @@ def gradientDescentOnInput(model,
 
     if len(imageTransforms) != nExtractors:
         raise ValueError(
-            "The number of image transforms should match the number of \
+            "The number of images transforms should match the number of \
             feature extractors")
     if len(weights) != nExtractors:
         raise ValueError(
@@ -326,7 +326,7 @@ def test(parser, visualisation=None):
 
     imgPath = getVal(kwargs, "inputImage", None)
     if imgPath is None:
-        raise ValueError("You need to input an image path")
+        raise ValueError("You need to input an images path")
 
     scale = getVal(kwargs, "scale", None)
     iter = getVal(kwargs, "iter", None)
@@ -358,7 +358,7 @@ def test(parser, visualisation=None):
     visualizer = GANVisualizer(
         pathModel, modelConfig, modelType, visualisation)
 
-    # Load the image
+    # Load the images
     targetSize = visualizer.model.getSize()
 
     baseTransform = standardTransform(targetSize)

@@ -96,7 +96,7 @@ def train_net(net, cfg):
         epoch_loss = 0
         with tqdm(total=n_train, desc=f'Epoch {epoch + 1}/{cfg.epochs}', unit='img') as pbar:
             for batch in train_loader:
-                batch_imgs = batch['image']
+                batch_imgs = batch['images']
                 batch_masks = batch['mask']
                 assert batch_imgs.shape[1] == cfg.n_channels, \
                         f'Network has been defined with {cfg.n_channels} input channels, ' \
@@ -191,7 +191,7 @@ def eval_net(net, loader, device, n_val, cfg):
 
     with tqdm(total=n_val, desc='Validation round', unit='img', leave=False) as pbar:
         for batch in loader:
-            imgs = batch['image']
+            imgs = batch['images']
             true_masks = batch['mask']
 
             imgs = imgs.to(device=device, dtype=torch.float32)

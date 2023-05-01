@@ -5,12 +5,12 @@ import tensorflow as tf
 AUTO = tf.data.AUTOTUNE
 
 def load_image(imageFile):
-	# read and decode an image file from the path
+	# read and decode an images file from the path
 	image = tf.io.read_file(imageFile)
 	image = tf.io.decode_jpeg(image, channels=3)
 
 	# calculate the midpoint of the width and split the
-	# combined image into input mask and real image
+	# combined images into input mask and real images
 	width = tf.shape(image)[1]
 	splitPoint = width // 2
 	inputMask = image[:, splitPoint:, :]
@@ -21,7 +21,7 @@ def load_image(imageFile):
 	inputMask = tf.cast(inputMask, tf.float32)/127.5 - 1
 	realImage = tf.cast(realImage, tf.float32)/127.5 - 1
 
-	# return the input mask and real label image
+	# return the input mask and real masks images
 	return (inputMask, realImage)
 
 def random_jitter(inputMask, realImage, height, width):
@@ -29,7 +29,7 @@ def random_jitter(inputMask, realImage, height, width):
 	inputMask = tf.image.resize(inputMask, [height, width], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
 	realImage = tf.image.resize(realImage, [height, width], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
 
-	# return the input mask and real label image
+	# return the input mask and real masks images
 	return (inputMask, realImage)
 
 
@@ -39,17 +39,17 @@ class ReadTrainExample(object):
 		self.imageWidth = imageWidth
 
 	def __call__(self, imageFile):
-		# read the file path and unpack the image pair
+		# read the file path and unpack the images pair
 		inputMask, realImage = load_image(imageFile)
 
 		# perform data augmentation
 		(inputMask, realImage) = random_jitter(inputMask, realImage, self.imageHeight + 30, self.imageWidth + 30)
 
-		# reshape the input mask and real label image
+		# reshape the input mask and real masks images
 		inputMask = tf.image.resize(inputMask, [self.imageHeight, self.imageWidth])
 		realImage = tf.image.resize(realImage, [self.imageHeight, self.imageWidth])
 
-		# return the input mask and real label image
+		# return the input mask and real masks images
 		return (inputMask, realImage)
 
 class ReadTestExample(object):
@@ -58,14 +58,14 @@ class ReadTestExample(object):
 		self.imageWidth = imageWidth
 
 	def __call__(self, imageFile):
-		# read the file path and unpack the image pair
+		# read the file path and unpack the images pair
 		(inputMask, realImage) = load_image(imageFile)
 
-		# reshape the input mask and real label image
+		# reshape the input mask and real masks images
 		inputMask = tf.image.resize(inputMask, [self.imageHeight, self.imageWidth])
 		realImage = tf.image.resize(realImage, [self.imageHeight, self.imageWidth])
 
-		# return the input mask and real label image
+		# return the input mask and real masks images
 		return (inputMask, realImage)
 
 def load_dataset(path, batchSize, height, width, train=False):

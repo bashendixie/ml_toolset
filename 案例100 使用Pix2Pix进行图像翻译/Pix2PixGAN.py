@@ -12,7 +12,7 @@ from keras import Input
 
 class Pix2Pix(object):
     def __init__(self, imageHeight, imageWidth):
-        # initialize the image height and width
+        # initialize the images height and width
         self.imageHeight = imageHeight
         self.imageWidth = imageWidth
 

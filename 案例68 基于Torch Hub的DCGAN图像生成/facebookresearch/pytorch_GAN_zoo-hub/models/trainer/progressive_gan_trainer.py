@@ -28,7 +28,7 @@ class ProgressiveGANTrainer(GANTrainer):
                  **kwargs):
         r"""
         Args:
-            - pathdb (string): path to the directorty containing the image
+            - pathdb (string): path to the directorty containing the images
                                dataset
             - useGPU (bool): set to True if you want to use the available GPUs
                              for the training procedure

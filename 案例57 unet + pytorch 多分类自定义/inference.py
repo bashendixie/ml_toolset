@@ -99,7 +99,7 @@ if __name__ == "__main__":
     logging.info("Model loaded !")
 
     for i, img_name in tqdm(enumerate(input_imgs)):
-        logging.info("\nPredicting image {} ...".format(img_name))
+        logging.info("\nPredicting images {} ...".format(img_name))
 
         img_path = osp.join(args.input, img_name)
         img = Image.open(img_path)

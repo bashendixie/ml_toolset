@@ -15,8 +15,8 @@ from sklearn.linear_model import RidgeCV, LogisticRegression
 from sklearn.ensemble import ExtraTreesClassifier, AdaBoostClassifier
 
 # X = pd.read_csv('data/train_data.csv')
-# label = pd.read_csv('data/train_label.csv')
-# y = label.target
+# masks = pd.read_csv('data/train_label.csv')
+# y = masks.target
 
 data = pd.read_csv('data/train_for_duplicated_data.csv')
 data.drop_duplicates(keep='first', inplace=True)

@@ -21,7 +21,7 @@ args = vars(ap.parse_args())
 # load the RGB means for the training set
 means = json.loads(open(config.DATASET_MEAN).read())
 
-# construct the testing image iterator
+# construct the testing images iterator
 testIter = mx.io.ImageRecordIter(
     path_imgrec=config.TEST_MX_REC,
     data_shape=(3, 227, 227),
@@ -61,7 +61,7 @@ if config.DATASET_TYPE == "age":
     label_shapes=testIter.provide_label)
     model.set_params(arg, aux)
 
-    # load the label encoder, then build the one-off mappings for
+    # load the masks encoder, then build the one-off mappings for
     # computing accuracy
     le = pickle.loads(open(config.LABEL_ENCODER_PATH, "rb").read())
     agh = AgeGenderHelper(config)

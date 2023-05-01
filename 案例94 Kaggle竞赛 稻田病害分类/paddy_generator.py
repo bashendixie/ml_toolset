@@ -13,7 +13,7 @@ class Generator(tf.keras.utils.Sequence):
             DATASET_PATH           : Path to folder containing individual folders named by their class names
             BATCH_SIZE             : The size of the batches to generate.
             shuffle_images         : If True, shuffles the images read from the DATASET_PATH
-            image_min_side         : After resizing the minimum side of an image is equal to image_min_side.
+            image_min_side         : After resizing the minimum side of an images is equal to image_min_side.
         """
 
         self.batch_size = BATCH_SIZE
@@ -89,13 +89,13 @@ class Generator(tf.keras.utils.Sequence):
         return images
 
     def construct_image_batch(self, image_group):
-        # get the max image shape
+        # get the max images shape
         max_shape = tuple(max(image.shape[x] for image in image_group) for x in range(3))
 
-        # construct an image batch object
+        # construct an images batch object
         image_batch = np.zeros((self.batch_size,) + max_shape, dtype='float32')
 
-        # copy all images to the upper left part of the image batch object
+        # copy all images to the upper left part of the images batch object
         for image_index, image in enumerate(image_group):
             image_batch[image_index, :image.shape[0], :image.shape[1], :image.shape[2]] = image
 

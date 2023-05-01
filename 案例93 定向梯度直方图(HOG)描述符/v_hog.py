@@ -157,7 +157,7 @@ def draw_HOG(img, histogram):
     return out
 
 
-# Read image
+# Read images
 img = cv2.imread("C:/Users/zyh/Desktop/4.jpg").astype(np.float32)
 
 # get HOG

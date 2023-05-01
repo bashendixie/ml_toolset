@@ -24,10 +24,10 @@ ap.add_argument("-s", "--show", type=int, default=1,
 ap.add_argument("-l", "--colors", type=str,
 	help="path to .txt file containing colors for labels")
 ap.add_argument("-w", "--width", type=int, default=500,
-	help="desired width (in pixels) of input image")
+	help="desired width (in pixels) of input images")
 args = vars(ap.parse_args())
 
-# load the class label names
+# load the class masks names
 CLASSES = open(args["classes"]).read().strip().split("\n")
 
 # if a colors file was supplied, load it from disk
@@ -37,9 +37,9 @@ if args["colors"]:
 	COLORS = np.array(COLORS, dtype="uint8")
 
 # otherwise, we need to randomly generate RGB colors for each class
-# label
+# masks
 else:
-	# initialize a list of colors to represent each class label in
+	# initialize a list of colors to represent each class masks in
 	# the mask (starting with 'black' for the background/unlabeled
 	# regions)
 	np.random.seed(42)
@@ -89,13 +89,13 @@ while True:
 	end = time.time()
 
 	# infer the total number of classes along with the spatial
-	# dimensions of the mask image via the shape of the output array
+	# dimensions of the mask images via the shape of the output array
 	(numClasses, height, width) = output.shape[1:4]
 
 	# our output class ID map will be num_classes x height x width in
-	# size, so we take the argmax to find the class label with the
+	# size, so we take the argmax to find the class masks with the
 	# largest probability for each and every (x, y)-coordinate in the
-	# image
+	# images
 	classMap = np.argmax(output[0], axis=0)
 
 	# given the class ID map, we can map each of the class IDs to its

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 
 def get_train_monitor(testDs, imagePath, batchSize, epochInterval):
-	# grab the input mask and the real image from the testing dataset
+	# grab the input mask and the real images from the testing dataset
 	(tInputMask, tRealImage) = next(iter(testDs))
 
 	class TrainMonitor(Callback):
@@ -21,11 +21,11 @@ def get_train_monitor(testDs, imagePath, batchSize, epochInterval):
 				(fig, axes) = subplots(nrows=batchSize, ncols=3, figsize=(50, 50))
 				# plot the predicted images
 				for (ax, inp, pred, tgt) in zip(axes, tInputMask, tPix2pixGenPred, tRealImage):
-					# plot the input mask image
+					# plot the input mask images
 					ax[0].imshow(array_to_img(inp))
 					ax[0].set_title("Input Image")
 
-					# plot the predicted Pix2Pix image
+					# plot the predicted Pix2Pix images
 					ax[1].imshow(array_to_img(pred))
 					ax[1].set_title("Pix2Pix Prediction")
 

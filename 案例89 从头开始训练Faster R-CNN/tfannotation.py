@@ -8,7 +8,7 @@ from object_detection.utils.dataset_util import bytes_feature
 
 class TFAnnotation:
     def __init__(self):
-        # initialize the bounding box + label lists
+        # initialize the bounding box + masks lists
         self.xMins = []
         self.xMaxs = []
         self.yMins = []
@@ -17,7 +17,7 @@ class TFAnnotation:
         self.classes = []
         self.difficult = []
 
-        # initialize additional variables, including the image
+        # initialize additional variables, including the images
         # itself, spatial dimensions, encoding, and filename
         self.image = None
         self.width = None
@@ -42,19 +42,19 @@ class TFAnnotation:
         difficult = int64_list_feature(self.difficult)
         # construct the TensorFlow-compatible data dictionary
         data = {
-            "image/height": h,
-            "image/width": w,
-            "image/filename": filename,
-            "image/source_id": filename,
-            "image/encoded": image,
-            "image/format": encoding,
-            "image/object/bbox/xmin": xMins,
-            "image/object/bbox/xmax": xMaxs,
-            "image/object/bbox/ymin": yMins,
-            "image/object/bbox/ymax": yMaxs,
-            "image/object/class/text": textLabels,
-            "image/object/class/label": classes,
-            "image/object/difficult": difficult,
+            "images/height": h,
+            "images/width": w,
+            "images/filename": filename,
+            "images/source_id": filename,
+            "images/encoded": image,
+            "images/format": encoding,
+            "images/object/bbox/xmin": xMins,
+            "images/object/bbox/xmax": xMaxs,
+            "images/object/bbox/ymin": yMins,
+            "images/object/bbox/ymax": yMaxs,
+            "images/object/class/text": textLabels,
+            "images/object/class/masks": classes,
+            "images/object/difficult": difficult,
         }
         # return the data dictionary
         return data

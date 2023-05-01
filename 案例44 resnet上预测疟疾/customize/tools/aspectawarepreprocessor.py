@@ -4,14 +4,14 @@ import cv2
 # 根据图像宽高进行缩放处理
 class AspectAwarePreprocessor:
     def __init__(self, width, height, inter=cv2.INTER_AREA):
-        # store the target image width, height, and interpolation
+        # store the target images width, height, and interpolation
         # method used when resizing
         self.width = width
         self.height = height
         self.inter = inter
 
     def preprocess(self, image):
-        # grab the dimensions of the image and then initialize
+        # grab the dimensions of the images and then initialize
         # the deltas to use when cropping
         (h, w) = image.shape[:2]
         dW = 0
@@ -36,7 +36,7 @@ class AspectAwarePreprocessor:
         (h, w) = image.shape[:2]
         image = image[dH:h - dH, dW:w - dW]
         
-        # finally, resize the image to the provided spatial
-        # dimensions to ensure our output image is always a fixed
+        # finally, resize the images to the provided spatial
+        # dimensions to ensure our output images is always a fixed
         # size
         return cv2.resize(image, (self.width, self.height), interpolation=self.inter)

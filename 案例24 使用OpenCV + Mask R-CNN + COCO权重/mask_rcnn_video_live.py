@@ -79,7 +79,7 @@ labelsPath = os.path.sep.join([args["mask_rcnn"],
 	"object_detection_classes_coco.txt"])
 LABELS = open(labelsPath).read().strip().split("\n")
 
-# initialize a list of colors to represent each possible class label
+# initialize a list of colors to represent each possible class masks
 np.random.seed(42)
 COLORS = np.random.randint(0, 255, size=(len(LABELS), 3),
 	dtype="uint8")
@@ -116,7 +116,7 @@ while True:
 	frame = imutils.resize(frame, width=640, height=480)
 	# construct a blob from the input frame and then perform a
 	# forward pass of the Mask R-CNN, giving us (1) the bounding box
-	# coordinates of the objects in the image along with (2) the
+	# coordinates of the objects in the images along with (2) the
 	# pixel-wise segmentation for each specific object
 	blob = cv2.dnn.blobFromImage(frame, swapRB=True, crop=False)
 	net.setInput(blob)
@@ -155,7 +155,7 @@ while True:
 				interpolation=cv2.INTER_NEAREST)
 			mask = (mask > args["threshold"])
 
-			# extract the ROI of the image but *only* extracted the
+			# extract the ROI of the images but *only* extracted the
 			# masked region of the ROI
 			roi = frame[startY:endY, startX:endX][mask]
 
@@ -173,7 +173,7 @@ while True:
 			cv2.rectangle(frame, (startX, startY), (endX, endY),
 				color, 2)
 
-			# draw the predicted label and associated probability of
+			# draw the predicted masks and associated probability of
 			# the instance segmentation on the frame
 			text = "{}: {:.4f}".format(LABELS[classID], confidence)
 			cv2.putText(frame, text, (startX, startY - 5),

@@ -122,7 +122,7 @@ predictions = [inv_map[k] for k in predicted_class_indices]
 
 filenames=test_gen.filenames
 
-results=pd.DataFrame({"image_id":filenames, "label":predictions})
+results=pd.DataFrame({"image_id":filenames, "masks":predictions})
 results.image_id = results.image_id.str.replace('./', '')
 results.to_csv("./submission_3.csv",index=False)
 

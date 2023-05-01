@@ -67,10 +67,10 @@ def decode_image(image):
 
 def read_tfrecord(example):
     tfrecord_format = {"image_name": tf.io.FixedLenFeature([], tf.string),
-                       "image": tf.io.FixedLenFeature([], tf.string),
+                       "images": tf.io.FixedLenFeature([], tf.string),
                        "target": tf.io.FixedLenFeature([], tf.string)}
     example = tf.io.parse_single_example(example, tfrecord_format)
-    image = decode_image(example['image'])
+    image = decode_image(example['images'])
     return image
 
 def load_dataset(filenames):

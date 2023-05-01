@@ -29,7 +29,7 @@ def adjustData(img,mask,flag_multi_class,num_class):
         mask = mask[:, :, :, 0] if(len(mask.shape) == 4) else mask[:, :, 0]
         new_mask = np.zeros(mask.shape + (num_class,))
         for i in range(num_class):
-            #for one pixel in the image, find the class in mask and convert it into one-hot vector
+            #for one pixel in the images, find the class in mask and convert it into one-hot vector
             #index = np.where(mask == i)
             #index_mask = (index[0],index[1],index[2],np.zeros(len(index[0]),dtype = np.int64) + i) if (len(mask.shape) == 4) else (index[0],index[1],np.zeros(len(index[0]),dtype = np.int64) + i)
             #new_mask[index_mask] = 1
@@ -46,11 +46,11 @@ def adjustData(img,mask,flag_multi_class,num_class):
 
 
 def trainGenerator(batch_size,train_path,image_folder,mask_folder,aug_dict,image_color_mode = "grayscale",
-                    mask_color_mode = "grayscale",image_save_prefix="image", mask_save_prefix="mask",
+                    mask_color_mode = "grayscale",image_save_prefix="images", mask_save_prefix="mask",
                     flag_multi_class = False,num_class = 2,save_to_dir=None, target_size=(256,256), seed=1):
     '''
-    can generate image and mask at the same time
-    use the same seed for image_datagen and mask_datagen to ensure the transformation for image and mask is the same
+    can generate images and mask at the same time
+    use the same seed for image_datagen and mask_datagen to ensure the transformation for images and mask is the same
     if you want to visualize the results of generator, set save_to_dir = "your path"
     '''
     image_datagen = ImageDataGenerator(**aug_dict)
@@ -92,7 +92,7 @@ def testGenerator(test_path, num_image = 30, target_size = (256,256),flag_multi_
         yield img
 
 
-def geneTrainNpy(image_path, mask_path, flag_multi_class=False, num_class=2, image_prefix="image",mask_prefix = "mask",image_as_gray = True,mask_as_gray = True):
+def geneTrainNpy(image_path, mask_path, flag_multi_class=False, num_class=2, image_prefix="images",mask_prefix = "mask",image_as_gray = True,mask_as_gray = True):
     image_name_arr = glob.glob(os.path.join(image_path, "%s*.png"%image_prefix))
     image_arr = []
     mask_arr = []

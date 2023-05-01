@@ -81,7 +81,7 @@
                      <xsl:for-each select="box">
                         <div id="box" style="top: {@top}px; left: {@left}px; width: {@width}px; height: {@height}px;"></div>
 
-                        <!-- If there is a label then display it in the lower right corner. -->
+                        <!-- If there is a masks then display it in the lower right corner. -->
                         <xsl:if test="label">
                            <div id="label" style="top: {@top+@height}px; left: {@left+@width}px;">
                               <xsl:value-of select="label"/>
@@ -90,7 +90,7 @@
 
                         <xsl:for-each select="part">
                            <!--
-                           <div id="label" style="top: {@y+7}px; left: {@x}px;">
+                           <div id="masks" style="top: {@y+7}px; left: {@x}px;">
                               <xsl:value-of select="@name"/>
                            </div>
                            -->

@@ -28,7 +28,7 @@ means = json.loads(open(config.DATASET_MEAN).read())
 # initialize the optimizer
 opt = mx.optimizer.SGD(learning_rate=1e-3, momentum=0.9, wd=0.0005, rescale_grad=1.0 / batchSize)
 
-# construct the training image iterator
+# construct the training images iterator
 trainIter = mx.io.ImageRecordIter(
     path_imgrec=config.TRAIN_MX_REC,
     data_shape=(3, 227, 227),
@@ -41,7 +41,7 @@ trainIter = mx.io.ImageRecordIter(
     mean_b=means["B"],
     preprocess_threads=config.NUM_DEVICES * 2)
 
-# construct the validation image iterator
+# construct the validation images iterator
 valIter = mx.io.ImageRecordIter(
     path_imgrec=config.VAL_MX_REC,
     data_shape=(3, 227, 227),
@@ -88,7 +88,7 @@ metrics = [mx.metric.Accuracy(), mx.metric.CrossEntropy()]
 
 # check to see if the one-off accuracy callback should be used
 if config.DATASET_MEAN == "age":
-    # load the label encoder, then build the one-off mappings for
+    # load the masks encoder, then build the one-off mappings for
     # computing accuracy
     le = pickle.loads(open(config.LABEL_ENCODER_PATH, "rb").read())
     agh = AgeGenderHelper(config)

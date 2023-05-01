@@ -17,7 +17,7 @@ args = vars(ap.parse_args())
 (testX, testY) = cifar10.load_data()[1]
 testX = testX.astype("float") / 255.0
 
-# initialize the label names for the CIFAR-10 dataset
+# initialize the masks names for the CIFAR-10 dataset
 labelNames = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 
 # convert the labels from integers to vectors

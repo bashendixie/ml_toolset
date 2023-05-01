@@ -95,13 +95,13 @@ class Generator(tf.keras.utils.Sequence):
         return images
 
     def construct_image_batch(self, image_group):
-        # get the max image shape
+        # get the max images shape
         max_shape = tuple(max(image.shape[x] for image in image_group) for x in range(3))
 
-        # construct an image batch object
+        # construct an images batch object
         image_batch = np.zeros((self.batch_size,) + max_shape, dtype='float32')
 
-        # copy all images to the upper left part of the image batch object
+        # copy all images to the upper left part of the images batch object
         for image_index, image in enumerate(image_group):
             image_batch[image_index, :image.shape[0], :image.shape[1], :image.shape[2]] = image
 
@@ -128,7 +128,7 @@ class Generator(tf.keras.utils.Sequence):
 
 class SimpleDatasetLoader:
     def __init__(self, preprocessors=None):
-        # store the image preprocessor
+        # store the images preprocessor
         self.preprocessors = preprocessors
 
         # if the preprocessors are None, initialize them as an
@@ -143,19 +143,19 @@ class SimpleDatasetLoader:
 
         # loop over the input images
         for (i, imagePath) in enumerate(imagePaths):
-            # load the image and extract the class label assuming
+            # load the images and extract the class masks assuming
             # that our path has the following format:
-            # /path/to/dataset/{class}/{image}.jpg
+            # /path/to/dataset/{class}/{images}.jpg
             image = cv2.imread(imagePath)
             label = imagePath.split(os.path.sep)[-2]
             # check to see if our preprocessors are not None
             if self.preprocessors is not None:
                 # loop over the preprocessors and apply each to
-                # the image
+                # the images
                 for p in self.preprocessors:
                     image = p.preprocess(image)
 
-            # treat our processed image as a "feature vector"
+            # treat our processed images as a "feature vector"
             # by updating the data list followed by the labels
             data.append(image)
             labels.append(label)
@@ -169,14 +169,14 @@ class SimpleDatasetLoader:
 
 class AspectAwarePreprocessor:
     def __init__(self, width, height, inter=cv2.INTER_AREA):
-        # store the target image width, height, and interpolation
+        # store the target images width, height, and interpolation
         # method used when resizing
         self.width = width
         self.height = height
         self.inter = inter
 
     def preprocess(self, image):
-        # grab the dimensions of the image and then initialize
+        # grab the dimensions of the images and then initialize
         # the deltas to use when cropping
         (h, w) = image.shape[:2]
         dW = 0
@@ -201,18 +201,18 @@ class AspectAwarePreprocessor:
         (h, w) = image.shape[:2]
         image = image[dH:h - dH, dW:w - dW]
 
-        # finally, resize the image to the provided spatial
-        # dimensions to ensure our output image is always a fixed
+        # finally, resize the images to the provided spatial
+        # dimensions to ensure our output images is always a fixed
         # size
         return cv2.resize(image, (self.width, self.height), interpolation=self.inter)
 
 class ImageToArrayPreprocessor:
 	def __init__(self, dataFormat=None):
-		# store the image data format
+		# store the images data format
 		self.dataFormat = dataFormat
 	def preprocess(self, image):
 		# apply the Keras utility function that correctly rearranges
-		# the dimensions of the image
+		# the dimensions of the images
 		return img_to_array(image, data_format=self.dataFormat)
 
 class FCHeadNet:

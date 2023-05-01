@@ -35,7 +35,7 @@ class test_Dataset(torch.utils.data.Dataset):
         img = cv2.imread(os.path.join(self.img_dir, img_id + '.png'))
         if self.transform is not None:
             augmented = self.transform(image=img)
-            img = augmented['image']
+            img = augmented['images']
 
         img = img.astype('float32') / 255
 
@@ -107,9 +107,9 @@ def test_1():
 
 
     # 输出保存semseg图
-    # draw semseg mask image
+    # draw semseg mask images
     img2 = cv2.imread('inputs/data-science-bowl-2018/stage1_train/6bc8cda54f5b66a2a27d962ac219f8075bf7cc43b87ba0c9e776404370429e80/images/6bc8cda54f5b66a2a27d962ac219f8075bf7cc43b87ba0c9e776404370429e80.png', )  # 01_test.tif')#demo.png')
-    img2 = cv2.resize(img2, (96, 96))  # 256,256)) # you can also use other way to create a temp image
+    img2 = cv2.resize(img2, (96, 96))  # 256,256)) # you can also use other way to create a temp images
     img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
     for k in range(0, 1):

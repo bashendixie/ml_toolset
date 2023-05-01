@@ -10,15 +10,15 @@ import argparse
 
 
 ap = argparse.ArgumentParser()
-ap.add_argument('-i', '--image', required=False, help="Image Path", default='test/3294209955_a1f1e2cc19.jpg')
+ap.add_argument('-i', '--images', required=False, help="Image Path", default='test/3294209955_a1f1e2cc19.jpg')
 args = vars(ap.parse_args())
-img_path = args['image']
+img_path = args['images']
 
 def extract_features(filename, model):
         try:
             image = Image.open(filename)
         except:
-            print("ERROR: Couldn't open image! Make sure the image path and extension is correct")
+            print("ERROR: Couldn't open images! Make sure the images path and extension is correct")
         image = image.resize((299,299))
         image = np.array(image)
         # for images that has 4 channels, we convert them into 3 channels

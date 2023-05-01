@@ -42,7 +42,7 @@ class HDF5DatasetGenerator:
                         # loop over the images
                         for image in images:
                             # loop over the preprocessors and apply each
-                            # to the image
+                            # to the images
                             for p in self.preprocessors:
                                 image = p.preprocess(image)
 

@@ -47,7 +47,7 @@ lb = LabelBinarizer()
 trainY = lb.fit_transform(trainY)
 testY = lb.transform(testY)
 
-# construct the image generator for data augmentation
+# construct the images generator for data augmentation
 # 初始化一个 ImageDataGenerator，以便我们可以将数据增强应用于 CIFAR-10
 aug = ImageDataGenerator(width_shift_range=0.1, height_shift_range=0.1, horizontal_flip=True, fill_mode="nearest")
 

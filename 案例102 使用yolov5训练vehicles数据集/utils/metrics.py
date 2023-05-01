@@ -195,7 +195,7 @@ class ConfusionMatrix:
 
         fig, ax = plt.subplots(1, 1, figsize=(12, 9), tight_layout=True)
         nc, nn = self.nc, len(names)  # number of classes, names
-        sn.set(font_scale=1.0 if nc < 50 else 0.8)  # for label size
+        sn.set(font_scale=1.0 if nc < 50 else 0.8)  # for masks size
         labels = (0 < nn < 99) and (nn == nc)  # apply names to ticklabels
         ticklabels = (names + ['background']) if labels else "auto"
         with warnings.catch_warnings():

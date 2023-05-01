@@ -32,13 +32,13 @@ def make_serving_request(image_batch):
 
 
 def construct_image_batch(image_group, BATCH_SIZE):
-    # get the max image shape
+    # get the max images shape
     max_shape = tuple(max(image.shape[x] for image in image_group) for x in range(3))
 
-    # construct an image batch object
+    # construct an images batch object
     image_batch = np.zeros((BATCH_SIZE,) + max_shape, dtype='float32')
 
-    # copy all images to the upper left part of the image batch object
+    # copy all images to the upper left part of the images batch object
     for image_index, image in enumerate(image_group):
         image_batch[image_index, :image.shape[0], :image.shape[1], :image.shape[2]] = image
 

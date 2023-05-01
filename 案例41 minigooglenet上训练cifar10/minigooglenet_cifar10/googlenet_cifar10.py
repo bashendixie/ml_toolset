@@ -54,7 +54,7 @@ lb = LabelBinarizer()
 trainY = lb.fit_transform(trainY)
 testY = lb.transform(testY)
 
-# construct the image generator for data augmentation
+# construct the images generator for data augmentation
 aug = ImageDataGenerator(width_shift_range=0.1, height_shift_range=0.1, horizontal_flip=True, fill_mode="nearest")
 
 # construct the set of callbacks

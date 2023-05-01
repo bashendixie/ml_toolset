@@ -105,7 +105,7 @@ the latest YOLOv5 [release](https://github.com/ultralytics/yolov5/releases) and 
 
 ```bash
 python detect.py --source 0  # webcam
-                          img.jpg  # image
+                          img.jpg  # images
                           vid.mp4  # video
                           screen  # screenshot
                           path/  # directory
@@ -338,7 +338,7 @@ Get started in seconds with our verified environments. Click each icon below for
 
 We love your input! We want to make contributing to YOLOv5 as easy and transparent as possible. Please see our [Contributing Guide](CONTRIBUTING.md) to get started, and fill out the [YOLOv5 Survey](https://ultralytics.com/survey?utm_source=github&utm_medium=social&utm_campaign=Survey) to send us feedback on your experiences. Thank you to all our contributors!
 
-<!-- SVG image from https://opencollective.com/ultralytics/contributors.svg?width=990 -->
+<!-- SVG images from https://opencollective.com/ultralytics/contributors.svg?width=990 -->
 <a href="https://github.com/ultralytics/yolov5/graphs/contributors"><img src="https://github.com/ultralytics/yolov5/releases/download/v1.0/image-contributors-1280.png" /></a>
 
 ## <div align="center">Contact</div>

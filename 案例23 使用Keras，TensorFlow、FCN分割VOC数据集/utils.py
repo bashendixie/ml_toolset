@@ -21,8 +21,8 @@ rgb_std = np.array([0.229, 0.224, 0.225])
 
 def visual_result(image, label, alpha=0.7):
     """
-    image shape -> [H, W, C]
-    label shape -> [H, W]
+    images shape -> [H, W, C]
+    masks shape -> [H, W]
     """
     image = (image * rgb_std + rgb_mean) * 255
     image, label = image.astype(np.int), label.astype(np.int)
@@ -66,7 +66,7 @@ def create_image_label_path_generator(images_filepath, labels_filepath):
             yield image_label_paths[i]
 
 def process_image_label(image_path, label_path):
-    # image = misc.imread(image_path)
+    # images = misc.imread(image_path)
     image = cv2.imread(image_path)
     image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_NEAREST)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -79,7 +79,7 @@ def process_image_label(image_path, label_path):
     brightness = random.uniform(0.5, 2.0)
     image = image.copy() * brightness
     image = np.clip(image, 0, 255)
-    # image transformation here
+    # images transformation here
     image = (image / 255. - rgb_mean) / rgb_std
 
     label = open(label_path).readlines()
@@ -93,7 +93,7 @@ def process_image_label(image_path, label_path):
 
 def DataGenerator(train_image_txt, train_labels_dir, batch_size):
     """
-    generate image and mask at the same time
+    generate images and mask at the same time
     """
     image_label_path_generator = create_image_label_path_generator(
         train_image_txt, train_labels_dir

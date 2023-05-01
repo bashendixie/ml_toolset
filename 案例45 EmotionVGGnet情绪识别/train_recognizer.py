@@ -23,8 +23,8 @@ ap.add_argument("-m", "--model", type=str, help="path to *specific* model checkp
 ap.add_argument("-s", "--start-epoch", type=int, default=0, help="epoch to restart training at")
 args = vars(ap.parse_args())
 
-# construct the training and testing image generators for data
-# augmentation, then initialize the image preprocessor
+# construct the training and testing images generators for data
+# augmentation, then initialize the images preprocessor
 trainAug = ImageDataGenerator(rotation_range=10, zoom_range=0.1, horizontal_flip=True, rescale=1 / 255.0, fill_mode="nearest")
 valAug = ImageDataGenerator(rescale=1 / 255.0)
 iap = ImageToArrayPreprocessor()

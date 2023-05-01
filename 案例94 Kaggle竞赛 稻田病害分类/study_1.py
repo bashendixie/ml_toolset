@@ -120,12 +120,12 @@ predictions = [inv_map[k] for k in predicted_class_indices]
 filenames=test_gen.filenames
 
 results=pd.DataFrame({"image_id":filenames,
-                      "label":predictions})
+                      "masks":predictions})
 results.image_id = results.image_id.str.replace('./', '')
 results.to_csv("submission.csv",index=False)
 results.head()
 
-results['label'].value_counts()
+results['masks'].value_counts()
 
 
 

@@ -49,14 +49,14 @@ class ShapesConfig(Config):
     NUM_CLASSES = 1 + 1  # background + 3 shapes
  
     # Use small images for faster training. Set the limits of the small side
-    # the large side, and that determines the image shape.
+    # the large side, and that determines the images shape.
     IMAGE_MIN_DIM = 320
     IMAGE_MAX_DIM = 384
  
-    # Use smaller anchors because our image and objects are small
+    # Use smaller anchors because our images and objects are small
     RPN_ANCHOR_SCALES = (8 * 6, 16 * 6, 32 * 6, 64 * 6, 128 * 6)  # anchor side in pixels
  
-    # Reduce training ROIs per image because the images are small and have
+    # Reduce training ROIs per images because the images are small and have
     # few objects. Aim to allow ROI sampling to pick 33% positive ROIs.
     TRAIN_ROIS_PER_IMAGE =100
  
@@ -70,7 +70,7 @@ class ShapesConfig(Config):
 #class InferenceConfig(coco.CocoConfig):
 class InferenceConfig(ShapesConfig):
     # Set batch size to 1 since we'll be running inference on
-    # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
+    # one images at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
  
@@ -85,7 +85,7 @@ model.load_weights(COCO_MODEL_PATH, by_name=True)
 # Index of the class in the list is its ID. For example, to get ID of
 # the teddy bear class, use: class_names.index('teddy bear')
 class_names = ['BG', 'cat']
-# Load a random image from the images folder
+# Load a random images from the images folder
 file_names = next(os.walk(IMAGE_DIR))[2]
 image = skimage.io.imread("151.jpg")
  

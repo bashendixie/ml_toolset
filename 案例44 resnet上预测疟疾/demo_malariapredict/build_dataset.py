@@ -34,19 +34,19 @@ for (dType, imagePaths, baseOutput) in datasets:
 	if not os.path.exists(baseOutput):
 		print("[INFO] 'creating {}' directory".format(baseOutput))
 		os.makedirs(baseOutput)
-	# loop over the input image paths
+	# loop over the input images paths
 	for inputPath in imagePaths:
-		# extract the filename of the input image along with its
-		# corresponding class label
+		# extract the filename of the input images along with its
+		# corresponding class masks
 		filename = inputPath.split(os.path.sep)[-1]
 		label = inputPath.split(os.path.sep)[-2]
-		# build the path to the label directory
+		# build the path to the masks directory
 		labelPath = os.path.sep.join([baseOutput, label])
-		# if the label output directory does not exist, create it
+		# if the masks output directory does not exist, create it
 		if not os.path.exists(labelPath):
 			print("[INFO] 'creating {}' directory".format(labelPath))
 			os.makedirs(labelPath)
-		# construct the path to the destination image and then copy
-		# the image itself
+		# construct the path to the destination images and then copy
+		# the images itself
 		p = os.path.sep.join([labelPath, filename])
 		shutil.copy2(inputPath, p)

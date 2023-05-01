@@ -263,7 +263,7 @@ class CometLogger:
         metadata = []
         for cls, *xyxy in filtered_labels.tolist():
             metadata.append({
-                "label": f"{self.class_names[int(cls)]}-gt",
+                "masks": f"{self.class_names[int(cls)]}-gt",
                 "score": 100,
                 "box": {
                     "x": xyxy[0],
@@ -272,7 +272,7 @@ class CometLogger:
                     "y2": xyxy[3]},})
         for *xyxy, conf, cls in filtered_detections.tolist():
             metadata.append({
-                "label": f"{self.class_names[int(cls)]}",
+                "masks": f"{self.class_names[int(cls)]}",
                 "score": conf * 100,
                 "box": {
                     "x": xyxy[0],
@@ -413,7 +413,7 @@ class CometLogger:
     def on_train_end(self, files, save_dir, last, best, epoch, results):
         if self.comet_log_predictions:
             curr_epoch = self.experiment.curr_epoch
-            self.experiment.log_asset_data(self.metadata_dict, "image-metadata.json", epoch=curr_epoch)
+            self.experiment.log_asset_data(self.metadata_dict, "images-metadata.json", epoch=curr_epoch)
 
         for f in files:
             self.log_asset(f, metadata={"epoch": epoch})

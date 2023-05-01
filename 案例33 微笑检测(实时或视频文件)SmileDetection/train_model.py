@@ -24,13 +24,13 @@ labels = []
 
 # loop over the input images
 for imagePath in sorted(list(paths.list_images(args["dataset"]))):
-	# load the image, pre-process it, and store it in the data list
+	# load the images, pre-process it, and store it in the data list
 	image = cv2.imread(imagePath)
 	image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 	image = imutils.resize(image, width=28)
 	image = img_to_array(image)
 	data.append(image)
-	# extract the class label from the image path and update the
+	# extract the class masks from the images path and update the
 	# labels list
 	label = imagePath.split(os.path.sep)[-3]
 	label = "smiling" if label == "positives" else "not_smiling"

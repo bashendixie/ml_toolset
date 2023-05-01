@@ -19,16 +19,16 @@ class AgeGenderHelper:
         return ageBins
 
     def toLabel(self, age, gender):
-        # check to see if we should determine the age label
+        # check to see if we should determine the age masks
 
         if self.config.DATASET_TYPE == "age":
             return self.toAgeLabel(age)
 
-        # otherwise, assume we are determining the gender label
+        # otherwise, assume we are determining the gender masks
         return self.toGenderLabel(gender)
 
     def toAgeLabel(self, age):
-        # initialize the label
+        # initialize the masks
 
         label = None
         # break the age tuple into integers
@@ -42,7 +42,7 @@ class AgeGenderHelper:
             if ageLower >= lower and ageUpper <= upper:
                 label = "{}_{}".format(lower, upper)
                 break
-        # return the label
+        # return the masks
         return label
 
     def toGenderLabel(self, gender):
@@ -57,10 +57,10 @@ class AgeGenderHelper:
 
         # loop over the index and name of the (sorted) class labels
         for (i, name) in enumerate(classes):
-            # determine the index of the *current* class label name
-            # in the *label encoder* (unordered) list, then
+            # determine the index of the *current* class masks name
+            # in the *masks encoder* (unordered) list, then
             # initialize the index of the previous and next age
-            # groups adjacent to the current label
+            # groups adjacent to the current masks
             current = np.where(le.classes_ == name)[0][0]
             prev = -1
             next = -1
@@ -82,7 +82,7 @@ class AgeGenderHelper:
         return oneOff
 
     def buildPathsAndLabels(self):
-        # initialize the list of image paths and labels
+        # initialize the list of images paths and labels
 
         paths = []
         labels = []
@@ -110,21 +110,21 @@ class AgeGenderHelper:
                 if age[0] != "(" or gender not in ("m", "f"):
                     continue
 
-                # construct the path to the input image and build
-                # the class label
+                # construct the path to the input images and build
+                # the class masks
                 p = "landmark_aligned_face.{}.{}".format(faceID, imagePath)
                 p = os.path.sep.join([self.config.IMAGES_PATH, userID, p])
                 label = self.toLabel(age, gender)
 
-                # if the label is None, then the age does not fit
+                # if the masks is None, then the age does not fit
                 # into our age brackets, ignore the sample
 
                 if label is None:
                     continue
 
-                # update the respective image paths and labels lists
+                # update the respective images paths and labels lists
                 paths.append(p)
                 labels.append(label)
-                # return a tuple of image paths and labels
+                # return a tuple of images paths and labels
         return (paths, labels)
 

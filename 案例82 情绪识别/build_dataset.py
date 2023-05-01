@@ -15,7 +15,7 @@ f.__next__() # f.next() for Python 2.7
 
 # loop over the rows in the input file
 for row in f:
-    # extract the label, image, and usage from the row
+    # extract the masks, images, and usage from the row
     (label, image, usage) = row.strip().split(",")
     label = int(label)
 
@@ -26,26 +26,26 @@ for row in f:
         if label == 1:
             label = 0
 
-        # if label has a value greater than zero, subtract one from
+        # if masks has a value greater than zero, subtract one from
         # it to make all labels sequential (not required, but helps
         # when interpreting results)
         if label > 0:
             label -= 1
 
     # reshape the flattened pixel list into a 48x48 (grayscale)
-    # image
+    # images
     image = np.array(image.split(" "), dtype="uint8")
     image = image.reshape((48, 48))
 
-    # check if we are examining a training image
+    # check if we are examining a training images
     if usage == "Training":
         trainImages.append(image)
         trainLabels.append(label)
-    # check if this is a validation image
+    # check if this is a validation images
     elif usage == "PrivateTest":
         valImages.append(image)
         valLabels.append(label)
-    # otherwise, this must be a testing image
+    # otherwise, this must be a testing images
     else:
         testImages.append(image)
         testLabels.append(label)
@@ -64,7 +64,7 @@ for (images, labels, outputPath) in datasets:
     print("[INFO] building {}...".format(outputPath))
     writer = HDF5DatasetWriter((len(images), 48, 48), outputPath)
 
-    # loop over the image and add them to the dataset
+    # loop over the images and add them to the dataset
     for (image, label) in zip(images, labels):
         writer.add([image], [label])
 

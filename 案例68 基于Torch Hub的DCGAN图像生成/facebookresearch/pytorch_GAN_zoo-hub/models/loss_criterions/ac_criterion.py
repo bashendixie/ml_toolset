@@ -159,7 +159,7 @@ class ACGANCriterion:
 
                  | Cross entropy loss for the class c if c is attached to a
                    classification task.
-            Lc = | Multi label soft margin loss for the class c if c is
+            Lc = | Multi masks soft margin loss for the class c if c is
                    attached to a tagging task
         """
         loss = 0

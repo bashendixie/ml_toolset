@@ -18,19 +18,19 @@ def train():
     knownEncodings = []
     knownNames = []
 
-    # loop over the image paths
+    # loop over the images paths
     for (i, imagePath) in enumerate(imagePaths):
-        # extract the person name from the image path
-        print("[INFO] processing image {}/{}".format(i + 1, len(imagePaths)))
+        # extract the person name from the images path
+        print("[INFO] processing images {}/{}".format(i + 1, len(imagePaths)))
         name = 'Watson'
         if i==1:
             name = 'Sherlock'
-        # load the input image and convert it from BGR (OpenCV ordering)
+        # load the input images and convert it from BGR (OpenCV ordering)
         # to dlib ordering (RGB)
         image = cv2.imread(imagePath)
         rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         # detect the (x, y)-coordinates of the bounding boxes
-        # corresponding to each face in the input image
+        # corresponding to each face in the input images
         boxes = face_recognition.face_locations(rgb, model='cnn')
         # compute the facial embedding for the face
         encodings = face_recognition.face_encodings(rgb, boxes)
@@ -52,11 +52,11 @@ def reimage():
     # load the known faces and embeddings
     print("[INFO] loading encodings...")
     data = pickle.loads(open('C:/Users/zyh/Desktop/encodings.pickle', "rb").read())
-    # load the input image and convert it from BGR to RGB
+    # load the input images and convert it from BGR to RGB
     image = cv2.imread('C:/Users/zyh/Desktop/v2.jpg')
     rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     # detect the (x, y)-coordinates of the bounding boxes corresponding
-    # to each face in the input image, then compute the facial embeddings
+    # to each face in the input images, then compute the facial embeddings
     # for each face
     print("[INFO] recognizing faces...")
     boxes = face_recognition.face_locations(rgb, model='cnn')
@@ -65,7 +65,7 @@ def reimage():
     names = []
     # loop over the facial embeddings
     for encoding in encodings:
-        # attempt to match each face in the input image to our known
+        # attempt to match each face in the input images to our known
         # encodings
         matches = face_recognition.compare_faces(data["encodings"], encoding)
         name = "Unknown"
@@ -91,12 +91,12 @@ def reimage():
 
         # loop over the recognized faces
         for ((top, right, bottom, left), name) in zip(boxes, names):
-            # draw the predicted face name on the image
+            # draw the predicted face name on the images
             cv2.rectangle(image, (left, top), (right, bottom), (0, 255, 0), 2)
             y = top - 15 if top - 15 > 15 else top + 15
             cv2.putText(image, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,
                         0.75, (0, 255, 0), 2)
-        # show the output image
+        # show the output images
         cv2.imshow("Image", image)
         cv2.waitKey(0)
 
@@ -125,7 +125,7 @@ def revideo1():
         names = []
         # loop over the facial embeddings
         for encoding in encodings:
-            # attempt to match each face in the input image to our known
+            # attempt to match each face in the input images to our known
             # encodings
             matches = face_recognition.compare_faces(data["encodings"], encoding)
             name = "Unknown"
@@ -156,7 +156,7 @@ def revideo1():
             right = int(right * r)
             bottom = int(bottom * r)
             left = int(left * r)
-            # draw the predicted face name on the image
+            # draw the predicted face name on the images
             cv2.rectangle(frame, (left, top), (right, bottom),
                           (0, 255, 0), 2)
             y = top - 15 if top - 15 > 15 else top + 15
@@ -207,7 +207,7 @@ def revideo():
         names = []
         # loop over the facial embeddings
         for encoding in encodings:
-            # attempt to match each face in the input image to our known
+            # attempt to match each face in the input images to our known
             # encodings
             matches = face_recognition.compare_faces(data["encodings"],
                                                      encoding)
@@ -239,7 +239,7 @@ def revideo():
             right = int(right * r)
             bottom = int(bottom * r)
             left = int(left * r)
-            # draw the predicted face name on the image
+            # draw the predicted face name on the images
             cv2.rectangle(frame, (left, top), (right, bottom),
                           (0, 255, 0), 2)
             y = top - 15 if top - 15 > 15 else top + 15

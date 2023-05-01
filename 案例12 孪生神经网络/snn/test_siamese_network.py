@@ -11,8 +11,8 @@ import cv2
 # ap.add_argument("-i", "--input", required=True, help="path to input directory of testing images")
 # args = vars(ap.parse_args())
 
-# grab the test dataset image paths and then randomly generate a
-# total of 10 image pairs
+# grab the test dataset images paths and then randomly generate a
+# total of 10 images pairs
 print("[INFO] loading test dataset...")
 testImagePaths = list(list_images('C:/Users/zyh/Desktop/num'))
 np.random.seed(42)
@@ -21,7 +21,7 @@ pairs = np.random.choice(testImagePaths, size=(10, 2))
 print("[INFO] loading siamese model...")
 model = load_model('C:/Users/zyh/Desktop/siamese_model/')
 
-# loop over all image pairs
+# loop over all images pairs
 for (i, (pathA, pathB)) in enumerate(pairs):
     # load both the images and convert them to grayscale
     imageA = cv2.imread(pathA, 0)
@@ -38,18 +38,18 @@ for (i, (pathA, pathB)) in enumerate(pairs):
     # scale the pixel values to the range of [0, 1]
     imageA = imageA / 255.0
     imageB = imageB / 255.0
-    # use our siamese model to make predictions on the image pair,
+    # use our siamese model to make predictions on the images pair,
     # indicating whether or not the images belong to the same class
     preds = model.predict([imageA, imageB])
     proba = preds[0][0]
     # initialize the figure
     fig = plt.figure("Pair #{}".format(i + 1), figsize=(4, 2))
     plt.suptitle("Similarity: {:.2f}".format(proba))
-    # show first image
+    # show first images
     ax = fig.add_subplot(1, 2, 1)
     plt.imshow(origA, cmap=plt.cm.gray)
     plt.axis("off")
-    # show the second image
+    # show the second images
     ax = fig.add_subplot(1, 2, 2)
     plt.imshow(origB, cmap=plt.cm.gray)
     plt.axis("off")

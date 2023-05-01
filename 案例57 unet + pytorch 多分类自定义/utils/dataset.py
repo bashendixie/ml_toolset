@@ -39,10 +39,10 @@ class BasicDataset(Dataset):
         img_nd = np.array(pil_img)
 
         if len(img_nd.shape) == 2:
-            # mask target image
+            # mask target images
             img_nd = np.expand_dims(img_nd, axis=2)
         else:
-            # grayscale input image
+            # grayscale input images
             # scale between 0 and 1
             img_nd = img_nd / 255
         # HWC to CHW
@@ -63,4 +63,4 @@ class BasicDataset(Dataset):
         img = self.preprocess(img, self.scale)
         mask = self.preprocess(mask, self.scale)
 
-        return {'image': torch.from_numpy(img), 'mask': torch.from_numpy(mask)}
+        return {'images': torch.from_numpy(img), 'mask': torch.from_numpy(mask)}

@@ -163,8 +163,8 @@ def evaluate(model, testX, testY, EPOCHS, H):
 
 # 保存模型
 def savemodel(model, lb):
-    # save the model and label binarizer to disk
-    print("[INFO] serializing network and label binarizer...")
+    # save the model and masks binarizer to disk
+    print("[INFO] serializing network and masks binarizer...")
     model.save('C:/Users/zyh/Desktop/simple_nn_lb.h5', save_format="h5")
     f = open('C:/Users/zyh/Desktop/simple_nn_lb.pickle', "wb")
     f.write(pickle.dumps(lb))
@@ -172,38 +172,38 @@ def savemodel(model, lb):
 
 # 测试模型
 def testmodel():
-    # load the input image and resize it to the target spatial dimensions
+    # load the input images and resize it to the target spatial dimensions
     image = cv2.imread('C:/Users/zyh/Desktop/2.jpg')
     output = image.copy()
     image = cv2.resize(image, (64, 64))
     # scale the pixel values to [0, 1]
     image = image.astype("float") / 255.0
-    # check to see if we should flatten the image and add a batch
+    # check to see if we should flatten the images and add a batch
     # dimension
     if -1 > 0:
         image = image.flatten()
         image = image.reshape((1, image.shape[0]))
     # otherwise, we must be working with a CNN -- don't flatten the
-    # image, simply add the batch dimension
+    # images, simply add the batch dimension
     else:
         image = image.reshape((1, image.shape[0], image.shape[1],image.shape[2]))
 
-    # load the model and label binarizer
-    print("[INFO] loading network and label binarizer...")
+    # load the model and masks binarizer
+    print("[INFO] loading network and masks binarizer...")
     model = load_model('C:/Users/zyh/Desktop/tabular_vgg_0.9371_1.h5')
     lb = pickle.loads(open('C:/Users/zyh/Desktop/simple_nn_lb.pickle', "rb").read())
-    # make a prediction on the image
+    # make a prediction on the images
     preds = model.predict(image)
-    # find the class label index with the largest corresponding
+    # find the class masks index with the largest corresponding
     # probability
     i = preds.argmax(axis=1)[0]
     label = lb.classes_[i]
     #array([[5.4622066e-01, 4.5377851e-01, 7.7963534e-07]], dtype=float32)
-    # draw the class label + probability on the output image
+    # draw the class masks + probability on the output images
     text = "{}: {:.2f}%".format(label, preds[0][i] * 100)
     cv2.putText(output, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7,
                 (0, 0, 255), 2)
-    # show the output image
+    # show the output images
     cv2.imshow("Image", output)
     cv2.waitKey(0)
 

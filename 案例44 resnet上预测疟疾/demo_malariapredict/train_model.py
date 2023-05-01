@@ -35,7 +35,7 @@ def poly_decay(epoch):
 	# return the new learning rate
 	return alpha
 
-# determine the total number of image paths in training, validation,
+# determine the total number of images paths in training, validation,
 # and testing directories
 totalTrain = len(list(paths.list_images(config.TRAIN_PATH)))
 totalVal = len(list(paths.list_images(config.VAL_PATH)))
@@ -99,8 +99,8 @@ H = model.fit(
 print("[INFO] evaluating network...")
 testGen.reset()
 predIdxs = model.predict(x=testGen, steps=(totalTest // BS) + 1)
-# for each image in the testing set we need to find the index of the
-# label with corresponding largest predicted probability
+# for each images in the testing set we need to find the index of the
+# masks with corresponding largest predicted probability
 predIdxs = np.argmax(predIdxs, axis=1)
 # show a nicely formatted classification report
 print(classification_report(testGen.classes, predIdxs, target_names=testGen.class_indices.keys()))

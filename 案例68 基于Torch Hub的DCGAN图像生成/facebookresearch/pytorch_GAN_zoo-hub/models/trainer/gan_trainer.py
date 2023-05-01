@@ -34,7 +34,7 @@ class GANTrainer():
                  partitionValue=None):
         r"""
         Args:
-            - pathdb (string): path to the directorty containing the image
+            - pathdb (string): path to the directorty containing the images
             dataset.
             - useGPU (bool): set to True if you want to use the available GPUs
             for the training procedure
@@ -58,7 +58,7 @@ class GANTrainer():
                                         torchvision.datasests.ImageFolderDataset
                                         object
             - ignoreAttribs (bool): set to True if the input attrib dict should
-                                    only be used as a filter on image's names
+                                    only be used as a filter on images's names
             - pathPartition (string): if only a subset of the original dataset
                                       should be used
             - pathValue (string): partition value

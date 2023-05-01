@@ -135,6 +135,6 @@ class ProgressiveGAN(BaseGAN):
 
     def getSize(self):
         r"""
-        Get output image size (W, H)
+        Get output images size (W, H)
         """
         return self.getOriginalG().getOutputSize()

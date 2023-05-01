@@ -200,7 +200,7 @@ class Loggers():
             self.comet_logger.on_val_start()
 
     def on_val_image_end(self, pred, predn, path, names, im):
-        # Callback runs on val image end
+        # Callback runs on val images end
         if self.wandb:
             self.wandb.val_one_image(pred, predn, path, names, im)
         if self.clearml:
@@ -249,7 +249,7 @@ class Loggers():
             self.wandb.end_epoch(best_result=best_fitness == fi)
 
         if self.clearml:
-            self.clearml.current_epoch_logged_images = set()  # reset epoch image limit
+            self.clearml.current_epoch_logged_images = set()  # reset epoch images limit
             self.clearml.current_epoch += 1
 
         if self.comet_logger:
@@ -388,7 +388,7 @@ def log_tensorboard_graph(tb, model, imgsz=(640, 640)):
     try:
         p = next(model.parameters())  # for device, type
         imgsz = (imgsz, imgsz) if isinstance(imgsz, int) else imgsz  # expand
-        im = torch.zeros((1, 3, *imgsz)).to(p.device).type_as(p)  # input image (WARNING: must be zeros, not empty)
+        im = torch.zeros((1, 3, *imgsz)).to(p.device).type_as(p)  # input images (WARNING: must be zeros, not empty)
         with warnings.catch_warnings():
             warnings.simplefilter('ignore')  # suppress jit trace warning
             tb.add_graph(torch.jit.trace(de_parallel(model), im, strict=False), [])

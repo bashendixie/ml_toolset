@@ -50,7 +50,7 @@ class ConvAutoencoder:
 			x = LeakyReLU(alpha=0.2)(x)
 			x = BatchNormalization(axis=chanDim)(x)
 		# apply a single CONV_TRANSPOSE layer used to recover the
-		# original depth of the image
+		# original depth of the images
 		x = Conv2DTranspose(depth, (3, 3), padding="same")(x)
 		outputs = Activation("sigmoid")(x)
 		# build the decoder model
@@ -84,7 +84,7 @@ BS = 32
 # load the MNIST dataset
 print("[INFO] loading MNIST dataset...")
 ((trainX, _), (testX, _)) = mnist.load_data()
-# add a channel dimension to every image in the dataset, then scale
+# add a channel dimension to every images in the dataset, then scale
 # the pixel intensities to the range [0, 1]
 trainX = np.expand_dims(trainX, axis=-1)
 testX = np.expand_dims(testX, axis=-1)
@@ -125,17 +125,17 @@ decoded = autoencoder.predict(testXNoisy)
 outputs = None
 # loop over our number of output samples
 for i in range(0, args["samples"]):
-	# grab the original image and reconstructed image
+	# grab the original images and reconstructed images
 	original = (testXNoisy[i] * 255).astype("uint8")
 	recon = (decoded[i] * 255).astype("uint8")
-	# stack the original and reconstructed image side-by-side
+	# stack the original and reconstructed images side-by-side
 	output = np.hstack([original, recon])
 	# if the outputs array is empty, initialize it as the current
-	# side-by-side image display
+	# side-by-side images display
 	if outputs is None:
 		outputs = output
 	# otherwise, vertically stack the outputs
 	else:
 		outputs = np.vstack([outputs, output])
-# save the outputs image to disk
+# save the outputs images to disk
 cv2.imwrite(args["output"], outputs)

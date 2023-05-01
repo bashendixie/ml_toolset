@@ -24,16 +24,16 @@ help="path to input dataset")
 ap.add_argument("-m", "--model", required=True, help="path to output model")
 args = vars(ap.parse_args())
 
-# construct the image generator for data augmentation
+# construct the images generator for data augmentation
 aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
 height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,horizontal_flip=True, fill_mode="nearest")
 # grab the list of images that we’ll be describing, then extract
-# the class label names from the image paths
+# the class masks names from the images paths
 print("[INFO] loading images...")
 imagePaths = list(paths.list_images(args["dataset"]))
 classNames = [pt.split(os.path.sep)[-2] for pt in imagePaths]
 classNames = [str(x) for x in np.unique(classNames)]
-# initialize the image preprocessors
+# initialize the images preprocessors
 aap = AspectAwarePreprocessor(224, 224)
 iap = ImageToArrayPreprocessor()
 

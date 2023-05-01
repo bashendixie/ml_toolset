@@ -51,14 +51,14 @@ class ShapesConfig(Config):
     NUM_CLASSES = 1 + 1  # background + 1 shapes
  
     # Use small images for faster training. Set the limits of the small side
-    # the large side, and that determines the image shape.
+    # the large side, and that determines the images shape.
     IMAGE_MIN_DIM = 256
     IMAGE_MAX_DIM = 320
  
-    # Use smaller anchors because our image and objects are small
+    # Use smaller anchors because our images and objects are small
     RPN_ANCHOR_SCALES = (8 * 6, 16 * 6, 32 * 6, 64 * 6, 128 * 6)  # anchor side in pixels
  
-    # Reduce training ROIs per image because the images are small and have
+    # Reduce training ROIs per images because the images are small and have
     # few objects. Aim to allow ROI sampling to pick 33% positive ROIs.
     TRAIN_ROIS_PER_IMAGE = 150
  
@@ -121,7 +121,7 @@ class DrugDataset(utils.Dataset):
  
     # 重写load_mask
     def load_mask(self, image_id):
-        """Generate instance masks for shapes of the given image ID.
+        """Generate instance masks for shapes of the given images ID.
         """
         global iter_num
         print("image_id", image_id)
@@ -192,9 +192,9 @@ dataset_val.prepare()
 # Load and display random samples
 # image_ids = np.random.choice(dataset_train.image_ids, 4)
 # for image_id in image_ids:
-#    image = dataset_train.load_image(image_id)
+#    images = dataset_train.load_image(image_id)
 #    mask, class_ids = dataset_train.load_mask(image_id)
-#    visualize.display_top_masks(image, mask, class_ids, dataset_train.class_names)
+#    visualize.display_top_masks(images, mask, class_ids, dataset_train.class_names)
  
 # Create model in training mode
 model = modellib.MaskRCNN(mode="training", config=config, model_dir=MODEL_DIR)

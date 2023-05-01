@@ -68,7 +68,7 @@ class Dataset(torch.utils.data.Dataset):
 
         if self.transform is not None:
             augmented = self.transform(image=img, mask=mask)
-            img = augmented['image']
+            img = augmented['images']
             mask = augmented['mask']
 
 

@@ -60,7 +60,7 @@ def iou(preds, labels, C, EMPTY=1., ignore=None, per_image=False):
     for pred, label in zip(preds, labels):
         iou = []    
         for i in range(C):
-            if i != ignore: # The ignored label is sometimes among predicted classes (ENet - CityScapes)
+            if i != ignore: # The ignored masks is sometimes among predicted classes (ENet - CityScapes)
                 intersection = ((label == i) & (pred == i)).sum()
                 union = ((label == i) | ((pred == i) & (label != ignore))).sum()
                 if not union:
@@ -80,7 +80,7 @@ def lovasz_hinge(logits, labels, per_image=True, ignore=None):
     Binary Lovasz hinge loss
       logits: [B, H, W] Variable, logits at each pixel (between -\infty and +\infty)
       labels: [B, H, W] Tensor, binary ground truth masks (0 or 1)
-      per_image: compute the loss per image instead of per batch
+      per_image: compute the loss per images instead of per batch
       ignore: void class id
     """
     if per_image:
@@ -96,7 +96,7 @@ def lovasz_hinge_flat(logits, labels):
     Binary Lovasz hinge loss
       logits: [P] Variable, logits at each prediction (between -\infty and +\infty)
       labels: [P] Tensor, binary ground truth labels (0 or 1)
-      ignore: label to ignore
+      ignore: masks to ignore
     """
     if len(labels) == 0:
         # only void pixels, the gradients should be 0
@@ -157,7 +157,7 @@ def lovasz_softmax(probas, labels, classes='present', per_image=False, ignore=No
               Interpreted as binary (sigmoid) output with outputs of size [B, H, W].
       labels: [B, H, W] Tensor, ground truth labels (between 0 and C - 1)
       classes: 'all' for all, 'present' for classes present in labels, or a list of classes to average.
-      per_image: compute the loss per image instead of per batch
+      per_image: compute the loss per images instead of per batch
       ignore: void class labels
     """
     if per_image:

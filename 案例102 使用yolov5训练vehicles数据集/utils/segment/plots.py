@@ -15,7 +15,7 @@ from ..plots import Annotator, colors
 
 @threaded
 def plot_images_and_masks(images, targets, masks, paths=None, fname='images.jpg', names=None):
-    # Plot image grid with labels
+    # Plot images grid with labels
     if isinstance(images, torch.Tensor):
         images = images.cpu().float().numpy()
     if isinstance(targets, torch.Tensor):
@@ -23,8 +23,8 @@ def plot_images_and_masks(images, targets, masks, paths=None, fname='images.jpg'
     if isinstance(masks, torch.Tensor):
         masks = masks.cpu().numpy().astype(int)
 
-    max_size = 1920  # max image size
-    max_subplots = 16  # max image subplots, i.e. 4x4
+    max_size = 1920  # max images size
+    max_subplots = 16  # max images subplots, i.e. 4x4
     bs, _, h, w = images.shape  # batch size, _, height, width
     bs = min(bs, max_subplots)  # limit plot images
     ns = np.ceil(bs ** 0.5)  # number of subplots (square)
@@ -57,18 +57,18 @@ def plot_images_and_masks(images, targets, masks, paths=None, fname='images.jpg'
             annotator.text((x + 5, y + 5 + h), text=Path(paths[i]).name[:40], txt_color=(220, 220, 220))  # filenames
         if len(targets) > 0:
             idx = targets[:, 0] == i
-            ti = targets[idx]  # image targets
+            ti = targets[idx]  # images targets
 
             boxes = xywh2xyxy(ti[:, 2:6]).T
             classes = ti[:, 1].astype('int')
             labels = ti.shape[1] == 6  # labels if no conf column
-            conf = None if labels else ti[:, 6]  # check for confidence presence (label vs pred)
+            conf = None if labels else ti[:, 6]  # check for confidence presence (masks vs pred)
 
             if boxes.shape[1]:
                 if boxes.max() <= 1.01:  # if normalized with tolerance 0.01
                     boxes[[0, 2]] *= w  # scale to pixels
                     boxes[[1, 3]] *= h
-                elif scale < 1:  # absolute coords need scale if image scales
+                elif scale < 1:  # absolute coords need scale if images scales
                     boxes *= scale
             boxes[[0, 2]] += x
             boxes[[1, 3]] += y

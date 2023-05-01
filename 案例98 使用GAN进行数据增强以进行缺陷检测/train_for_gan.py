@@ -61,7 +61,7 @@ beta1 = 0.5
 ngpu = 1
 
 
-# We can use an image folder dataset the way we have it setup.
+# We can use an images folder dataset the way we have it setup.
 # Create the dataset
 dataset = dset.ImageFolder(root=dataroot,
                            transform=transforms.Compose([
@@ -227,7 +227,7 @@ for epoch in range(num_epochs):
         ## Train with all-fake batch
         # Generate batch of latent vectors
         noise = torch.randn(b_size, nz, 1, 1, device=device)
-        # Generate fake image batch with G
+        # Generate fake images batch with G
         fake = netG(noise)
         label.fill_(fake_label)
         # Classify all fake batch with D

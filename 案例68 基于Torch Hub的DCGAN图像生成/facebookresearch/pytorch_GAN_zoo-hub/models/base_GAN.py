@@ -34,7 +34,7 @@ class BaseGAN():
         r"""
         Args:
             dimLatentVector (int): dimension of the latent vector in the model
-            dimOutput (int): number of channels of the output image
+            dimOutput (int): number of channels of the output images
             useGPU (bool): set to true if the computation should be distribued
                            in the availanle GPUs
             baseLearningRate (float): target learning rate.
@@ -80,7 +80,7 @@ class BaseGAN():
         # Latent vector dimension
         self.config.noiseVectorDim = dimLatentVector
 
-        # Output image dimension
+        # Output images dimension
         self.config.dimOutput = dimOutput
 
         # Actual learning rate

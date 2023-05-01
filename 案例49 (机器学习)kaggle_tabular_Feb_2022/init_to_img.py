@@ -31,7 +31,7 @@ for row in data.values:
     flatNumpyArray = np.array(randomByteArray)
     flatNumpyArray = normalization(flatNumpyArray) * 255
     grayImage = flatNumpyArray.reshape(286, 286)
-    # show gray image
+    # show gray images
     path = 'to_img/test/' + str(int(row[0])) + '.jpg'
     print(path)
     cv2.imwrite(path, grayImage)

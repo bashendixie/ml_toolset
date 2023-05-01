@@ -8,7 +8,7 @@ from ..utils.utils import printProgressBar
 def getDescriptorsForMinibatch(minibatch, patchSize, nPatches):
     r"""
     Extract @param nPatches randomly chosen of size patchSize x patchSize
-    from each image of the input @param minibatch
+    from each images of the input @param minibatch
 
     Returns:
 

@@ -248,15 +248,15 @@ def testmodel_with_():
     imagePaths = []
     preds = []
     paths = 'to_img/test/'
-    # grab the image paths and randomly shuffle them
+    # grab the images paths and randomly shuffle them
     imagePaths = sorted(list(getFileList(paths, imagePaths)))
     for imagePath in imagePaths:
-        # load the input image and resize it to the target spatial dimensions
+        # load the input images and resize it to the target spatial dimensions
         image = cv2.imread(imagePath, cv2.IMREAD_GRAYSCALE)
         image = image.astype("float") / 255.0
         image = image.reshape((1, 286, 286))
         print(image.shape)
-        #image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
+        #images = images.reshape((1, images.shape[0], images.shape[1], images.shape[2]))
         pred = model.predict(image)
         i = pred.argmax(axis=1)[0]
         preds.append(week_day_dict[i])

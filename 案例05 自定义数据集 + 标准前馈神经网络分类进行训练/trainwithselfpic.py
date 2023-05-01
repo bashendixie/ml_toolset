@@ -50,60 +50,60 @@ def train():
 
     imagePaths = []
     paths = 'D:/Project/DeepLearn/1dataset/custom/raccoon/'
-    # grab the image paths and randomly shuffle them
+    # grab the images paths and randomly shuffle them
     imagePaths = sorted(list(getFileList(paths, imagePaths)))
     random.seed(42)
     random.shuffle(imagePaths)
 
     # 浣熊
     for imagePath in imagePaths:
-        # load the image, resize the image to be 32x32 pixels (ignoring
-        # aspect ratio), flatten the image into 32x32x3=3072 pixel image
-        # into a list, and store the image in the data list
+        # load the images, resize the images to be 32x32 pixels (ignoring
+        # aspect ratio), flatten the images into 32x32x3=3072 pixel images
+        # into a list, and store the images in the data list
         image = cv2.imread(imagePath)
         image = cv2.resize(image, (32, 32)).flatten()
         data.append(image)
-        # extract the class label from the image path and update the
+        # extract the class masks from the images path and update the
         # labels list
         label = 'raccoon'#imagePath.split(os.path.sep)[-2]
         labels.append(label)
 
     imagePaths = []
     paths = 'D:/Project/DeepLearn/1dataset/custom/fish/'
-    # grab the image paths and randomly shuffle them
+    # grab the images paths and randomly shuffle them
     imagePaths = sorted(list(getFileList(paths, imagePaths)))
     random.seed(42)
     random.shuffle(imagePaths)
 
     # 鱼
     for imagePath in imagePaths:
-        # load the image, resize the image to be 32x32 pixels (ignoring
-        # aspect ratio), flatten the image into 32x32x3=3072 pixel image
-        # into a list, and store the image in the data list
+        # load the images, resize the images to be 32x32 pixels (ignoring
+        # aspect ratio), flatten the images into 32x32x3=3072 pixel images
+        # into a list, and store the images in the data list
         image = cv2.imread(imagePath)
         image = cv2.resize(image, (32, 32)).flatten()
         data.append(image)
-        # extract the class label from the image path and update the
+        # extract the class masks from the images path and update the
         # labels list
         label = 'fish'#imagePath.split(os.path.sep)[-2]
         labels.append(label)
 
     imagePaths = []
     paths = 'D:/Project/DeepLearn/1dataset/custom/cat/'
-    # grab the image paths and randomly shuffle them
+    # grab the images paths and randomly shuffle them
     imagePaths = sorted(list(getFileList(paths, imagePaths)))
     random.seed(42)
     random.shuffle(imagePaths)
 
     # 猫
     for imagePath in imagePaths:
-        # load the image, resize the image to be 32x32 pixels (ignoring
-        # aspect ratio), flatten the image into 32x32x3=3072 pixel image
-        # into a list, and store the image in the data list
+        # load the images, resize the images to be 32x32 pixels (ignoring
+        # aspect ratio), flatten the images into 32x32x3=3072 pixel images
+        # into a list, and store the images in the data list
         image = cv2.imread(imagePath)
         image = cv2.resize(image, (32, 32)).flatten()
         data.append(image)
-        # extract the class label from the image path and update the
+        # extract the class masks from the images path and update the
         # labels list
         label = 'cat'#imagePath.split(os.path.sep)[-2]
         labels.append(label)
@@ -168,8 +168,8 @@ def evaluate(model, testX, testY, EPOCHS, H):
 
 # 保存模型
 def savemodel(model, lb):
-    # save the model and label binarizer to disk
-    print("[INFO] serializing network and label binarizer...")
+    # save the model and masks binarizer to disk
+    print("[INFO] serializing network and masks binarizer...")
     model.save('C:/Users/zyh/Desktop/simple_nn_lb.h5', save_format="h5")
     f = open('C:/Users/zyh/Desktop/simple_nn_lb.pickle', "wb")
     f.write(pickle.dumps(lb))
@@ -177,38 +177,38 @@ def savemodel(model, lb):
 
 # 测试模型
 def testmodel():
-    # load the input image and resize it to the target spatial dimensions
+    # load the input images and resize it to the target spatial dimensions
     image = cv2.imread('C:/Users/zyh/Desktop/2.jpg')
     output = image.copy()
     image = cv2.resize(image, (32, 32))
     # scale the pixel values to [0, 1]
     image = image.astype("float") / 255.0
-    # check to see if we should flatten the image and add a batch
+    # check to see if we should flatten the images and add a batch
     # dimension
     if 1 > 0:
         image = image.flatten()
         image = image.reshape((1, image.shape[0]))
     # otherwise, we must be working with a CNN -- don't flatten the
-    # image, simply add the batch dimension
+    # images, simply add the batch dimension
     else:
         image = image.reshape((1, image.shape[0], image.shape[1],image.shape[2]))
 
-    # load the model and label binarizer
-    print("[INFO] loading network and label binarizer...")
+    # load the model and masks binarizer
+    print("[INFO] loading network and masks binarizer...")
     model = load_model('C:/Users/zyh/Desktop/simple_nn_lb.h5')
     lb = pickle.loads(open('C:/Users/zyh/Desktop/simple_nn_lb.pickle', "rb").read())
-    # make a prediction on the image
+    # make a prediction on the images
     preds = model.predict(image)
-    # find the class label index with the largest corresponding
+    # find the class masks index with the largest corresponding
     # probability
     i = preds.argmax(axis=1)[0]
     label = lb.classes_[i]
     #array([[5.4622066e-01, 4.5377851e-01, 7.7963534e-07]], dtype=float32)
-    # draw the class label + probability on the output image
+    # draw the class masks + probability on the output images
     text = "{}: {:.2f}%".format(label, preds[0][i] * 100)
     cv2.putText(output, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7,
                 (0, 0, 255), 2)
-    # show the output image
+    # show the output images
     cv2.imshow("Image", output)
     cv2.waitKey(0)
 

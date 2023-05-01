@@ -21,11 +21,11 @@ class NumpyResize(object):
         r"""
         Args:
 
-            img (np array): image to be resized
+            img (np array): images to be resized
 
         Returns:
 
-            np array: resized image
+            np array: resized images
         """
 
         return scipy.misc.imresize(img, self.size, interp='bilinear')
@@ -45,7 +45,7 @@ class NumpyFlip(object):
         Args:
             img (PIL Image): Image to be flipped.
         Returns:
-            PIL Image: Randomly flipped image.
+            PIL Image: Randomly flipped images.
         """
         if random.random() < self.p:
             return np.flip(img, 1).copy()

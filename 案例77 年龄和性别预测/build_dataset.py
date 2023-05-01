@@ -9,7 +9,7 @@ import pickle
 import json
 import cv2
 
-# initialize our helper class, then build the set of image paths
+# initialize our helper class, then build the set of images paths
 # and class labels
 print("[INFO] building paths and labels...")
 agh = AgeGenderHelper(config)
@@ -40,7 +40,7 @@ split = train_test_split(trainPaths, trainLabels, test_size=numTest, stratify=tr
 (trainPaths, testPaths, trainLabels, testLabels) = split
 
 # construct a list pairing the training, validation, and testing
-# image paths along with their corresponding labels and output list
+# images paths along with their corresponding labels and output list
 # files
 datasets = [
  ("train", trainPaths, trainLabels, config.TRAIN_MX_LIST),
@@ -63,7 +63,7 @@ for (dType, paths, labels, outputPath) in datasets:
     # loop over each of the individual images + labels
     for (i, (path, label)) in enumerate(zip(paths, labels)):
         # if we are building the training dataset, then compute the
-        # mean of each channel in the image, then update the
+        # mean of each channel in the images, then update the
         # respective lists
         if dType == "train":
             image = cv2.imread(path)
@@ -71,7 +71,7 @@ for (dType, paths, labels, outputPath) in datasets:
             R.append(r)
             G.append(g)
             B.append(b)
-        # write the image index, label, and output path to file
+        # write the images index, masks, and output path to file
         row = "\t".join([str(i), str(label), path])
         f.write("{}\n".format(row))
         pbar.update(i)
@@ -87,8 +87,8 @@ f = open(config.DATASET_MEAN, "w")
 f.write(json.dumps(D))
 f.close()
 
-# serialize the label encoder
-print("[INFO] serializing label encoder...")
+# serialize the masks encoder
+print("[INFO] serializing masks encoder...")
 f = open(config.LABEL_ENCODER_PATH, "wb")
 f.write(pickle.dumps(le))
 f.close()

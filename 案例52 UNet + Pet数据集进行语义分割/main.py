@@ -75,7 +75,7 @@ def resize(input_image, input_mask):
 # 水平翻转
 def augment(input_image, input_mask):
    if tf.random.uniform(()) > 0.5:
-       # Random flipping of the image and mask
+       # Random flipping of the images and mask
        input_image = tf.image.flip_left_right(input_image)
        input_mask = tf.image.flip_left_right(input_mask)
    return input_image, input_mask
@@ -88,7 +88,7 @@ def normalize(input_image, input_mask):
 
 # 加载训练集
 def load_image_train(datapoint):
-   input_image = datapoint["image"]
+   input_image = datapoint["images"]
    input_mask = datapoint["segmentation_mask"]
    input_image, input_mask = resize(input_image, input_mask)
    input_image, input_mask = augment(input_image, input_mask)
@@ -97,7 +97,7 @@ def load_image_train(datapoint):
 
 # 加载测试集
 def load_image_test(datapoint):
-   input_image = datapoint["image"]
+   input_image = datapoint["images"]
    input_mask = datapoint["segmentation_mask"]
    input_image, input_mask = resize(input_image, input_mask)
    input_image, input_mask = normalize(input_image, input_mask)

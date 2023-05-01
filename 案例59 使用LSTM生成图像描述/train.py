@@ -132,7 +132,7 @@ def extract_features(directory):
         image = Image.open(filename)
         image = image.resize((299, 299))
         image = np.expand_dims(image, axis=0)
-        # image = preprocess_input(image)
+        # images = preprocess_input(images)
         image = image / 127.5
         image = image - 1.0
 
@@ -232,7 +232,7 @@ print(features['1000268201_693b08cb0e.jpg'][0])
 #2 Sequence processor - word embedding layer that handles text, followed by LSTM
 #3 Decoder - Both 1 and 2 model produce fixed length vector. They are merged together and processed by dense layer to make final prediction
 
-#create input-output sequence pairs from the image description.
+#create input-output sequence pairs from the images description.
 
 #data generator, used by model.fit_generator()
 def data_generator(descriptions, features, tokenizer, max_length):
@@ -245,7 +245,7 @@ def data_generator(descriptions, features, tokenizer, max_length):
 
 def create_sequences(tokenizer, max_length, desc_list, feature):
     X1, X2, y = list(), list(), list()
-    # walk through each description for the image
+    # walk through each description for the images
     for desc in desc_list:
         # encode the sequence
         seq = tokenizer.texts_to_sequences([desc])[0]
@@ -287,7 +287,7 @@ def define_model(vocab_size, max_length):
     decoder2 = Dense(256, activation='relu')(decoder1)
     outputs = Dense(vocab_size, activation='softmax')(decoder2)
 
-    # tie it together [image, seq] [word]
+    # tie it together [images, seq] [word]
     model = Model(inputs=[inputs1, inputs2], outputs=outputs)
     model.compile(loss='categorical_crossentropy', optimizer='adam')
 

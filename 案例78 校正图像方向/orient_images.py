@@ -18,7 +18,7 @@ ap.add_argument("-i", "--dataset", required=True, help="path to the input images
 ap.add_argument("-m", "--model", required=True, help="path to trained orientation model")
 args = vars(ap.parse_args())
 
-# load the label names (i.e., angles) from the HDF5 dataset
+# load the masks names (i.e., angles) from the HDF5 dataset
 db = h5py.File(args["db"])
 labelNames = [int(angle) for angle in db["label_names"][:]]
 db.close()
@@ -35,24 +35,24 @@ vgg = VGG16(weights="imagenet", include_top=False)
 print("[INFO] loading model...")
 model = pickle.loads(open(args["model"], "rb").read())
 
-# loop over the image paths
+# loop over the images paths
 for imagePath in imagePaths:
-    # load the image via OpenCV so we can manipulate it after
+    # load the images via OpenCV so we can manipulate it after
     # classification
     orig = cv2.imread(imagePath)
 
-    # load the input image using the Keras helper utility while
-    # ensuring the image is resized to 224x224 pixels
+    # load the input images using the Keras helper utility while
+    # ensuring the images is resized to 224x224 pixels
     image = load_img(imagePath, target_size=(224, 224))
     image = img_to_array(image)
 
-    # preprocess the image by (1) expanding the dimensions and (2)
+    # preprocess the images by (1) expanding the dimensions and (2)
     # subtracting the mean RGB pixel intensity from the ImageNet
     # dataset
     image = np.expand_dims(image, axis=0)
     image = imagenet_utils.preprocess_input(image)
 
-    # pass the image through the network to obtain the feature vector
+    # pass the images through the network to obtain the feature vector
     features = vgg.predict(image)
     features = features.reshape((features.shape[0], 512 * 7 * 7))
 
@@ -61,7 +61,7 @@ for imagePath in imagePaths:
     angle = model.predict(features)
     angle = labelNames[angle[0]]
 
-    # now that we have the predicted orientation of the image we can
+    # now that we have the predicted orientation of the images we can
     # correct for it
     rotated = imutils.rotate_bound(orig, 360 - angle)
 

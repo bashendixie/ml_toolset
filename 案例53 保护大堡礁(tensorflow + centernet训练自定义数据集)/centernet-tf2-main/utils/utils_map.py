@@ -31,7 +31,7 @@ def log_average_miss_rate(precision, fp_cumsum, num_images):
         output:
                 lamr | log-average miss rate
                 mr | miss rate
-                fppi | false positives per image
+                fppi | false positives per images
 
         references:
             [1] Dollar, Piotr, et al. "Pedestrian Detection: An Evaluation of the
@@ -142,7 +142,7 @@ def file_lines_to_list(path):
     return content
 
 """
- Draws text in image
+ Draws text in images
 """
 def draw_text_in_image(img, text, pos, color, line_width):
     font = cv2.FONT_HERSHEY_PLAIN
@@ -261,7 +261,7 @@ def draw_plot_func(dictionary, n_classes, window_title, plot_title, x_label, out
     fig.tight_layout()
     # save the plot
     fig.savefig(output_path)
-    # show image
+    # show images
     if to_show:
         plt.show()
     # close the plot
@@ -433,7 +433,7 @@ def get_map(MINOVERLAP, draw_plot, path = './map_out'):
                     if len(ground_truth_img) == 0:
                         error("Error. Image not found with id: " + file_id)
                     elif len(ground_truth_img) > 1:
-                        error("Error. Multiple image with id: " + file_id)
+                        error("Error. Multiple images with id: " + file_id)
                     else:
                         img = cv2.imread(IMG_PATH + "/" + ground_truth_img[0])
                         img_cumulative_path = RESULTS_FILES_PATH + "/images/" + ground_truth_img[0]
@@ -488,7 +488,7 @@ def get_map(MINOVERLAP, draw_plot, path = './map_out'):
                         status = "INSUFFICIENT OVERLAP"
 
                 """
-                Draw image to show animation
+                Draw images to show animation
                 """
                 if show_animation:
                     height, widht = img.shape[:2]

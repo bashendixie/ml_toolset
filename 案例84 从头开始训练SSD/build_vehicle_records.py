@@ -39,13 +39,13 @@ def main():
         writer = tf.compat.v1.python_io.TFRecordWriter(outputPath)
         total = 0
 
-        # loop over all image elements
-        for image in soup.find_all("image"):
-            # load the input image from disk as a TensorFlow object
+        # loop over all images elements
+        for image in soup.find_all("images"):
+            # load the input images from disk as a TensorFlow object
             p = os.path.sep.join([config.BASE_PATH, image["file"]])
             encoded = tf.compat.v1.gfile.GFile(p, "rb").read()
             encoded = bytes(encoded)
-            # load the image from disk again, this time as a PIL
+            # load the images from disk again, this time as a PIL
             # object
             pilImage = Image.open(p)
             (w, h) = pilImage.size[:2]
@@ -61,19 +61,19 @@ def main():
             tfAnnot.width = w
             tfAnnot.height = h
 
-            # loop over all bounding boxes associated with the image
+            # loop over all bounding boxes associated with the images
             for box in image.find_all("box"):
                 # check to see if the bounding box should be ignored
                 if box.has_attr("ignore"):
                     continue
-                # extract the bounding box information + label,
+                # extract the bounding box information + masks,
                 # ensuring that all bounding box dimensions fit
-                # inside the image
+                # inside the images
                 startX = max(0, float(box["left"]))
                 startY = max(0, float(box["top"]))
                 endX = min(w, float(box["width"]) + startX)
                 endY = min(h, float(box["height"]) + startY)
-                label = box.find("label").text
+                label = box.find("masks").text
                 # TensorFlow assumes all bounding boxes are in the
                 # range [0, 1] so we need to scale them
                 xMin = startX / w

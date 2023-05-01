@@ -174,6 +174,8 @@ def train(dataloaders, model, loss_fn, optimizer, epochs, device):
         tqdm_iter.set_postfix(tqdm_dct, refresh=True)
         tqdm_iter.refresh()
 
+    model.save("")
+
 train(dataloaders, model, loss_fn, optimizer, epochs, device)
 
 

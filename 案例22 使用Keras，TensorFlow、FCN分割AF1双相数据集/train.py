@@ -33,7 +33,7 @@ data_gen_args = dict(rotation_range=0.2,
                     horizontal_flip=True,
                     fill_mode='nearest')
 
-myGene = trainGenerator(batch_size,'data/train_af1','image','label', data_gen_args, save_to_dir = None) # 'rgb', 'rgb', 
+myGene = trainGenerator(batch_size,'data/train_af1','images','masks', data_gen_args, save_to_dir = None) # 'rgb', 'rgb',
 
 model_checkpoint = ModelCheckpoint('fcn32_af1_fun.hdf5', monitor='loss', verbose=1, save_best_only=True)
 

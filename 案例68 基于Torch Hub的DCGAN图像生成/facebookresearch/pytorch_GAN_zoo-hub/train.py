@@ -111,7 +111,7 @@ if __name__ == "__main__":
 
     print("Running " + baseArgs.model_name)
 
-    # Path to the image dataset
+    # Path to the images dataset
     pathDB = trainingConfig["pathDB"]
     trainingConfig.pop("pathDB", None)
 

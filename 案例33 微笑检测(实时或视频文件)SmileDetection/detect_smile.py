@@ -41,7 +41,7 @@ while True:
 
 	# loop over the face bounding boxes
 	for (fX, fY, fW, fH) in rects:
-		# extract the ROI of the face from the grayscale image,
+		# extract the ROI of the face from the grayscale images,
 		# resize it to a fixed 28x28 pixels, and then prepare the
 		# ROI for classification via the CNN
 		roi = gray[fY:fY + fH, fX:fX + fW]
@@ -50,10 +50,10 @@ while True:
 		roi = img_to_array(roi)
 		roi = np.expand_dims(roi, axis=0)
 		# determine the probabilities of both "smiling" and "not
-		# smiling", then set the label accordingly
+		# smiling", then set the masks accordingly
 		(notSmiling, smiling) = model.predict(roi)[0]
 		label = "Smiling" if smiling > notSmiling else "Not Smiling"
-		# display the label and bounding box rectangle on the output
+		# display the masks and bounding box rectangle on the output
 		# frame
 		cv2.putText(frameClone, label, (fX, fY - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
 		cv2.rectangle(frameClone, (fX, fY), (fX + fW, fY + fH), (0, 0, 255), 2)

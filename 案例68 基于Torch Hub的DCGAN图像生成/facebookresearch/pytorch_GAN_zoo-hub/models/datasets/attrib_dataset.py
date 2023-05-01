@@ -16,7 +16,7 @@ from .utils.db_stats import buildKeyOrder
 class AttribDataset(Dataset):
     r"""
     A dataset class adapted to the specificites of our YSL fashion dataset.
-    It loads both the images and an attribute dictionnary describing each image's
+    It loads both the images and an attribute dictionnary describing each images's
     attribute.
     """
 
@@ -116,7 +116,7 @@ class AttribDataset(Dataset):
                        dbDir,
                        specificAttrib):
         r"""
-        Load a dictionnary describing the attributes of each image in the
+        Load a dictionnary describing the attributes of each images in the
         dataset and save the list of all the possible attributes and their
         acceptable values.
 
@@ -242,7 +242,7 @@ class AttribDataset(Dataset):
 
     def getTextDescriptor(self, idx):
         r"""
-        Get the text descriptor of the idx th image in the dataset
+        Get the text descriptor of the idx th images in the dataset
         """
         imgName = self.listImg[idx]
 

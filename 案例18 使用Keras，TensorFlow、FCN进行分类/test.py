@@ -6,9 +6,9 @@ from tensorflow.python.keras.models import *
 
 image = cv2.imread('C:/Users/zyh/Desktop/aa.jpg')
 
-# pre-process the image for classification
+# pre-process the images for classification
 image = cv2.resize(image, (64, 64))
-#image = image.astype("float") / 255.0
+#images = images.astype("float") / 255.0
 image = img_to_array(image)
 image = np.expand_dims(image, axis=0)
 
@@ -16,6 +16,6 @@ image = np.expand_dims(image, axis=0)
 print("[INFO] loading network...")
 model = load_model('C:/Users/zyh/Desktop/model_epoch.h5')
 
-# classify the input image
+# classify the input images
 santa = model.predict(image)
 print(santa)

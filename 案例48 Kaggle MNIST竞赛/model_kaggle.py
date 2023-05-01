@@ -18,8 +18,8 @@ model = tensorflow.keras.models.load_model("lenet_mnist.v9.h5")
 train = pd.read_csv("train.csv")
 test = pd.read_csv("test.csv")
 
-y_train = train['label']
-x_train = train.drop('label', 1)
+y_train = train['masks']
+x_train = train.drop('masks', 1)
 
 x_train = x_train.values.reshape((x_train.shape[0], 28, 28, 1))
 x_train = x_train.astype("float32") / 255.0

@@ -128,7 +128,7 @@ def segment_reader(data_path, batch_size, zero_based = False, train_mode = True,
             big_x = np.array(big_x).astype(np.float32) / 255.0
 
             if train_mode:                
-                read_path = osp.join(data_path[i], "label.png")
+                read_path = osp.join(data_path[i], "masks.png")
                 
                 # 如果标签图像像素值就是类别的话, 可以这样读
                 '''

@@ -19,9 +19,9 @@ DIGITS_LOOKUP = {
 	(1, 1, 1, 1, 0, 1, 1): 9
 }
 
-# load the example image
+# load the example images
 image = cv2.imread("example.jpg")#
-# pre-process the image by resizing it, converting it to
+# pre-process the images by resizing it, converting it to
 # graycale, blurring it, and computing an edge map
 image = imutils.resize(image, height=500)
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -50,13 +50,13 @@ for c in cnts:
 warped = four_point_transform(gray, displayCnt.reshape(4, 2))
 output = four_point_transform(image, displayCnt.reshape(4, 2))
 
-# threshold the warped image, then apply a series of morphological
-# operations to cleanup the thresholded image
+# threshold the warped images, then apply a series of morphological
+# operations to cleanup the thresholded images
 thresh = cv2.threshold(warped, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
 kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (1, 5))
 thresh = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
 
-# find contours in the thresholded image, then initialize the
+# find contours in the thresholded images, then initialize the
 # digit contours lists
 cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 cnts = imutils.grab_contours(cnts)
@@ -108,7 +108,7 @@ for c in digitCnts:
 		# 50% of the area, mark the segment as "on"
 		if total / float(area) > 0.5:
 			on[i]= 1
-	# lookup the digit and draw it on the image
+	# lookup the digit and draw it on the images
 	digit = DIGITS_LOOKUP[tuple(on)]
 	digits.append(digit)
 	cv2.rectangle(output, (x, y), (x + w, y + h), (0, 255, 0), 1)

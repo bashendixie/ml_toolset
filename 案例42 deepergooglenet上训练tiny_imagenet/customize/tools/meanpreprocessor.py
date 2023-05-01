@@ -10,7 +10,7 @@ class MeanPreprocessor:
         self.bMean = bMean
 
     def preprocess(self, image):
-        # split the image into its respective Red, Green, and Blue
+        # split the images into its respective Red, Green, and Blue
         # channels
         (B, G, R) = cv2.split(image.astype("float32"))
 
@@ -19,5 +19,5 @@ class MeanPreprocessor:
         G -= self.gMean
         B -= self.bMean
 
-        # merge the channels back together and return the image
+        # merge the channels back together and return the images
         return cv2.merge([B, G, R])

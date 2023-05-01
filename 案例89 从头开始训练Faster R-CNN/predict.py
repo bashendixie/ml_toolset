@@ -10,7 +10,7 @@ import cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("-m", "--model", required=True,help="base path for frozen checkpoint detection graph")
 ap.add_argument("-l", "--labels", required=True,help="labels file")
-ap.add_argument("-i", "--image", required=True,help="path to input image")
+ap.add_argument("-i", "--images", required=True,help="path to input images")
 ap.add_argument("-n", "--num-classes", type=int, required=True,help="# of class labels")
 ap.add_argument("-c", "--min-confidence", type=float, default=0.5,help="minimum probability used to filter weak detections")
 args = vars(ap.parse_args())
@@ -41,19 +41,19 @@ categoryIdx = label_map_util.create_category_index(categories)
 # create a session to perform inference
 with model.as_default():
     with tf.Session(graph=model) as sess:
-        # grab a reference to the input image tensor and the boxes
+        # grab a reference to the input images tensor and the boxes
         # tensor
         imageTensor = model.get_tensor_by_name("image_tensor:0")
         boxesTensor = model.get_tensor_by_name("detection_boxes:0")
 
         # for each bounding box we would like to know the score
-        # (i.e., probability) and class label
+        # (i.e., probability) and class masks
         scoresTensor = model.get_tensor_by_name("detection_scores:0")
         classesTensor = model.get_tensor_by_name("detection_classes:0")
         numDetections = model.get_tensor_by_name("num_detections:0")
 
-        # load the image from disk
-        image = cv2.imread(args["image"])
+        # load the images from disk
+        image = cv2.imread(args["images"])
         (H, W) = image.shape[:2]
         # check to see if we should resize along the width
         if W > H and W > 1000:
@@ -62,7 +62,7 @@ with model.as_default():
             # height
         elif H > W and H > 1000:
             image = imutils.resize(image, height=1000)
-        # prepare the image for detection
+        # prepare the images for detection
         (H, W) = image.shape[:2]
         output = image.copy()
         image = cv2.cvtColor(image.copy(), cv2.COLOR_BGR2RGB)
@@ -90,13 +90,13 @@ with model.as_default():
             startY = int(startY * H)
             endX = int(endX * W)
             endY = int(endY * H)
-            # draw the prediction on the output image
+            # draw the prediction on the output images
             label = categoryIdx[label]
             idx = int(label["id"]) - 1
             label = "{}: {:.2f}".format(label["name"], score)
             cv2.rectangle(output, (startX, startY), (endX, endY),COLORS[idx], 2)
             y = startY - 10 if startY - 10 > 10 else startY + 10
             cv2.putText(output, label, (startX, y), cv2.FONT_HERSHEY_SIMPLEX, 0.3, COLORS[idx], 1)
-        # show the output image
+        # show the output images
         cv2.imshow("Output", output)
         cv2.waitKey(0)

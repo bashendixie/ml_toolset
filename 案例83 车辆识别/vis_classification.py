@@ -22,7 +22,7 @@ ap.add_argument("-e", "--epoch", type=int, required=True, help="epoch # to load"
 ap.add_argument("-s", "--sample-size", type=int, default=10, help="epoch # to load")
 args = vars(ap.parse_args())
 
-# load the label encoder, followed by the testing dataset file,
+# load the masks encoder, followed by the testing dataset file,
 # then sample the testing set
 le = pickle.loads(open(config.LABEL_ENCODER_PATH, "rb").read())
 rows = open(config.TEST_MX_LIST).read().strip().split("\n")
@@ -40,33 +40,33 @@ model = mx.model.FeedForward(
     arg_params=model.arg_params,
     aux_params=model.aux_params)
 
-# initialize the image pre-processors
+# initialize the images pre-processors
 sp = AspectAwarePreprocessor(width=224, height=224)
 mp = MeanPreprocessor(config.R_MEAN, config.G_MEAN, config.B_MEAN)
 iap = ImageToArrayPreprocessor(dataFormat="channels_first")
 
 # loop over the testing images
 for row in rows:
-    # grab the target class label and the image path from the row
+    # grab the target class masks and the images path from the row
     (target, imagePath) = row.split("\t")[1:]
     target = int(target)
 
-    # load the image from disk and pre-process it by resizing the
-    # image and applying the pre-processors
+    # load the images from disk and pre-process it by resizing the
+    # images and applying the pre-processors
     image = cv2.imread(imagePath)
     orig = image.copy()
     orig = imutils.resize(orig, width=min(500, orig.shape[1]))
     image = iap.preprocess(mp.preprocess(sp.preprocess(image)))
     image = np.expand_dims(image, axis=0)
 
-    # classify the image and grab the indexes of the top-5 predictions
+    # classify the images and grab the indexes of the top-5 predictions
     preds = model.predict(image)[0]
     idxs = np.argsort(preds)[::-1][:5]
 
-    # show the true class label
+    # show the true class masks
     print("[INFO] actual={}".format(le.inverse_transform(target)))
 
-    # format and display the top predicted class label
+    # format and display the top predicted class masks
     label = le.inverse_transform(idxs[0])
     label = label.replace(":", " ")
     label = "{}: {:.2f}%".format(label, preds[idxs[0]] * 100)
@@ -76,6 +76,6 @@ for row in rows:
     for (i, prob) in zip(idxs, preds):
         print("\t[INFO] predicted={}, probability={:.2f}%".format(le.inverse_transform(i), preds[i] * 100))
 
-    # show the image
+    # show the images
     cv2.imshow("Image", orig)
     cv2.waitKey(0)

@@ -14,7 +14,7 @@ import cv2
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=False, default="C:/Users/zyh/Desktop/123.png", help="path to the input image")
+ap.add_argument("-i", "--images", required=False, default="C:/Users/zyh/Desktop/123.png", help="path to the input images")
 ap.add_argument("-model", "--model", type=str, default="vgg16", help="name of pre-trained network to use")
 args = vars(ap.parse_args())
 
@@ -32,16 +32,16 @@ MODELS = {
 if args["model"] not in MODELS.keys():
     raise AssertionError("The --model command line argument should be a key in the ‘MODELS‘ dictionary")
 
-# initialize the input image shape (224x224 pixels) along with
+# initialize the input images shape (224x224 pixels) along with
 # the pre-processing function (this might need to be changed
-# based on which model we use to classify our image)
+# based on which model we use to classify our images)
 inputShape = (224, 224)
 
 preprocess = imagenet_utils.preprocess_input
 
 # if we are using the InceptionV3 or Xception networks, then we
 # need to set the input shape to (299x299) [rather than (224x224)]
-# and use a different image processing function
+# and use a different images processing function
 if args["model"] in ("inception", "xception"):
     inputShape = (299, 299)
     preprocess = preprocess_input
@@ -60,25 +60,25 @@ model = Network(weights="imagenet")
 
 
 
-# load the input image using the Keras helper utility while ensuring
-# the image is resized to ‘inputShape‘, the required input dimensions
+# load the input images using the Keras helper utility while ensuring
+# the images is resized to ‘inputShape‘, the required input dimensions
 # for the ImageNet pre-trained network
-print("[INFO] loading and pre-processing image...")
-image = load_img(args["image"], target_size=inputShape)
+print("[INFO] loading and pre-processing images...")
+image = load_img(args["images"], target_size=inputShape)
 image = img_to_array(image)
 
-# our input image is now represented as a NumPy array of shape
+# our input images is now represented as a NumPy array of shape
 # (inputShape[0], inputShape[1], 3) however we need to expand the
 # dimension by making the shape (1, inputShape[0], inputShape[1], 3)
 # so we can pass it through thenetwork
 image = np.expand_dims(image, axis=0)
 
-# pre-process the image using the appropriate function based on the
+# pre-process the images using the appropriate function based on the
 # model that has been loaded (i.e., mean subtraction, scaling, etc.)
 image = preprocess(image)
 
-# classify the image
-print("[INFO] classifying image with ’{}’...".format(args["model"]))
+# classify the images
+print("[INFO] classifying images with ’{}’...".format(args["model"]))
 preds = model.predict(image)
 P = imagenet_utils.decode_predictions(preds)
 
@@ -88,9 +88,9 @@ for (i, (imagenetID, label, prob)) in enumerate(P[0]):
     print("{}. {}: {:.2f}%".format(i + 1, label, prob * 100))
 
 
-# load the image via OpenCV, draw the top prediction on the image,
-# and display the image to our screen
-orig = cv2.imread(args["image"])
+# load the images via OpenCV, draw the top prediction on the images,
+# and display the images to our screen
+orig = cv2.imread(args["images"])
 (imagenetID, label, prob) = P[0][0]
 cv2.putText(orig, "Label: {}".format(label), (10, 30),
 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)

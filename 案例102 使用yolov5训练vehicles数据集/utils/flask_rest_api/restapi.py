@@ -21,13 +21,13 @@ def predict(model):
     if request.method != "POST":
         return
 
-    if request.files.get("image"):
+    if request.files.get("images"):
         # Method 1
-        # with request.files["image"] as f:
+        # with request.files["images"] as f:
         #     im = Image.open(io.BytesIO(f.read()))
 
         # Method 2
-        im_file = request.files["image"]
+        im_file = request.files["images"]
         im_bytes = im_file.read()
         im = Image.open(io.BytesIO(im_bytes))
 

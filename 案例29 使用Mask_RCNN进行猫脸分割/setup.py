@@ -44,7 +44,7 @@ setup(
     include_package_data=True,
     python_requires='>=3.4',
     long_description="""This is an implementation of Mask R-CNN on Python 3, Keras, and TensorFlow. 
-The model generates bounding boxes and segmentation masks for each instance of an object in the image. 
+The model generates bounding boxes and segmentation masks for each instance of an object in the images. 
 It's based on Feature Pyramid Network (FPN) and a ResNet101 backbone.""",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -64,5 +64,5 @@ It's based on Feature Pyramid Network (FPN) and a ResNet101 backbone.""",
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    keywords="image instance segmentation object detection mask rcnn r-cnn tensorflow keras",
+    keywords="images instance segmentation object detection mask rcnn r-cnn tensorflow keras",
 )

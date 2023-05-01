@@ -30,7 +30,7 @@ print("[INFO] loading images...")
 imagePaths = list(paths.list_images(args["dataset"]))
 random.shuffle(imagePaths)
 
-# extract the class labels from the image paths then encode the
+# extract the class labels from the images paths then encode the
 # labels
 labels = [p.replace(args["dataset"]+"\\", "").split(".")[0] for p in imagePaths]
 le = LabelEncoder()
@@ -40,7 +40,7 @@ labels = le.fit_transform(labels)
 print("[INFO] loading network...")
 model = ResNet50(weights="imagenet", include_top=False)
 
-# initialize the HDF5 dataset writer, then store the class label
+# initialize the HDF5 dataset writer, then store the class masks
 # names in the dataset
 dataset = HDF5DatasetWriter((len(imagePaths), 7 * 7 * 2048), args["output"], dataKey="features", bufSize=args["buffer_size"])
 dataset.storeClassLabels(le.classes_)
@@ -58,25 +58,25 @@ for i in np.arange(0, len(imagePaths), bs):
     batchImages = []
     # loop over the images and labels in the current batch
     for (j, imagePath) in enumerate(batchPaths):
-        # load the input image using the Keras helper utility
-        # while ensuring the image is resized to 224x224 pixels
+        # load the input images using the Keras helper utility
+        # while ensuring the images is resized to 224x224 pixels
         image = load_img(imagePath, target_size=(224, 224))
         image = img_to_array(image)
 
-        # preprocess the image by (1) expanding the dimensions and
+        # preprocess the images by (1) expanding the dimensions and
         # (2) subtracting the mean RGB pixel intensity from the
         # ImageNet dataset
         image = np.expand_dims(image, axis=0)
         image = imagenet_utils.preprocess_input(image)
 
-        # add the image to the batch
+        # add the images to the batch
         batchImages.append(image)
 
     # pass the images through the network and use the outputs as
     # our actual features
     batchImages = np.vstack(batchImages)
     features = model.predict(batchImages, batch_size=bs)
-    # reshape the features so that each image is represented by
+    # reshape the features so that each images is represented by
     # a flattened feature vector of the ‘MaxPooling2D‘ outputs
     features = features.reshape((features.shape[0], 7 * 7 * 2048))
 

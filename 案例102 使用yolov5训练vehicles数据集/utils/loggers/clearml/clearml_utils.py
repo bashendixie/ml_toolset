@@ -125,13 +125,13 @@ class ClearmlLogger:
 
     def log_image_with_boxes(self, image_path, boxes, class_names, image, conf_threshold=0.25):
         """
-        Draw the bounding boxes on a single image and report the result as a ClearML debug sample.
+        Draw the bounding boxes on a single images and report the result as a ClearML debug sample.
 
         arguments:
-        image_path (PosixPath) the path the original image file
+        image_path (PosixPath) the path the original images file
         boxes (list): list of scaled predictions in the format - [xmin, ymin, xmax, ymax, confidence, class]
         class_names (dict): dict containing mapping of class int to class name
-        image (Tensor): A torch tensor containing the actual image data
+        images (Tensor): A torch tensor containing the actual images data
         """
         if len(self.current_epoch_logged_images) < self.max_imgs_to_log_per_epoch and self.current_epoch >= 0:
             # Log every bbox_interval times and deduplicate for any intermittend extra eval runs

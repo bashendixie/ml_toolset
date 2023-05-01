@@ -7,8 +7,8 @@ import pickle
 import os
 
 # read the contents of the labels file, then initialize the list of
-# image paths and labels
-print("[INFO] loading image paths and labels...")
+# images paths and labels
+print("[INFO] loading images paths and labels...")
 rows = open(config.LABELS_PATH).read()
 rows = rows.strip().split("\n")[0:]
 trainPaths = []
@@ -16,7 +16,7 @@ trainLabels = []
 
 # loop over the rows
 for row in rows:
-    # unpack the row, then update the image paths and labels list
+    # unpack the row, then update the images paths and labels list
     # (filename, make) = row.split(",")[:2]
     filename = row.split(",")[0:1]
     #filename = filename[filename.rfind("/") + 1:]
@@ -53,7 +53,7 @@ split = train_test_split(trainPaths, trainLabels, test_size=numTest, stratify=tr
 (trainPaths, testPaths, trainLabels, testLabels) = split
 
 # construct a list pairing the training, validation, and testing
-# image paths along with their corresponding labels and output list
+# images paths along with their corresponding labels and output list
 # files
 datasets = [
     ("train", trainPaths, trainLabels, config.TRAIN_MX_LIST),
@@ -72,7 +72,7 @@ for (dType, paths, labels, outputPath) in datasets:
 
     # loop over each of the individual images + labels
     for (i, (path, label)) in enumerate(zip(paths, labels)):
-        # write the image index, label, and output path to file
+        # write the images index, masks, and output path to file
         row = "\t".join([str(i), str(label), path])
         f.write("{}\n".format(row))
         pbar.update(i)
@@ -80,8 +80,8 @@ for (dType, paths, labels, outputPath) in datasets:
     pbar.finish()
     f.close()
 
-# write the label encoder to file
-print("[INFO] serializing label encoder...")
+# write the masks encoder to file
+print("[INFO] serializing masks encoder...")
 f = open(config.LABEL_ENCODER_PATH, "wb")
 f.write(pickle.dumps(le))
 f.close()

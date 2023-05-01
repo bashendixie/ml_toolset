@@ -33,7 +33,7 @@ from utils.torch_utils import torch_distributed_zero_first
 
 # Parameters
 HELP_URL = 'https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data'
-IMG_FORMATS = ['bmp', 'dng', 'jpeg', 'jpg', 'mpo', 'png', 'tif', 'tiff', 'webp']  # include image suffixes
+IMG_FORMATS = ['bmp', 'dng', 'jpeg', 'jpg', 'mpo', 'png', 'tif', 'tiff', 'webp']  # include images suffixes
 VID_FORMATS = ['avi', 'gif', 'm4v', 'mkv', 'mov', 'mp4', 'mpeg', 'mpg', 'wmv']  # include video suffixes
 DEVICE_COUNT = max(torch.cuda.device_count(), 1)
 
@@ -68,11 +68,11 @@ def exif_size(img):
 
 def exif_transpose(image):
     """
-    Transpose a PIL image accordingly if it has an EXIF Orientation tag.
+    Transpose a PIL images accordingly if it has an EXIF Orientation tag.
     Inplace version of https://github.com/python-pillow/Pillow/blob/master/src/PIL/ImageOps.py exif_transpose()
 
-    :param image: The image to transpose.
-    :return: An image.
+    :param image: The images to transpose.
+    :return: An images.
     """
     exif = image.getexif()
     orientation = exif.get(0x0112, 1)  # default 1
@@ -157,7 +157,7 @@ class _RepeatSampler:
 
 
 class LoadImages:
-    # YOLOv5 image/video dataloader, i.e. `python detect.py --source image.jpg/vid.mp4`
+    # YOLOv5 images/video dataloader, i.e. `python detect.py --source images.jpg/vid.mp4`
     def __init__(self, path, img_size=640, stride=32, auto=True):
         p = str(Path(path).resolve())  # os-agnostic absolute path
         if '*' in p:
@@ -178,7 +178,7 @@ class LoadImages:
         self.files = images + videos
         self.nf = ni + nv  # number of files
         self.video_flag = [False] * ni + [True] * nv
-        self.mode = 'image'
+        self.mode = 'images'
         self.auto = auto
         if any(videos):
             self.new_video(videos[0])  # new video
@@ -214,11 +214,11 @@ class LoadImages:
             s = f'video {self.count + 1}/{self.nf} ({self.frame}/{self.frames}) {path}: '
 
         else:
-            # Read image
+            # Read images
             self.count += 1
             img0 = cv2.imread(path)  # BGR
             assert img0 is not None, f'Image Not Found {path}'
-            s = f'image {self.count}/{self.nf} {path}: '
+            s = f'images {self.count}/{self.nf} {path}: '
 
         # Padded resize
         img = letterbox(img0, self.img_size, stride=self.stride, auto=self.auto)[0]
@@ -370,7 +370,7 @@ class LoadStreams:
 
 
 def img2label_paths(img_paths):
-    # Define label paths as a function of image paths
+    # Define masks paths as a function of images paths
     sa, sb = os.sep + 'images' + os.sep, os.sep + 'labels' + os.sep  # /images/, /labels/ substrings
     return [sb.join(x.rsplit(sa, 1)).rsplit('.', 1)[0] + '.txt' for x in img_paths]
 
@@ -393,7 +393,7 @@ class LoadImagesAndLabels(Dataset):
         self.albumentations = Albumentations() if augment else None
 
         try:
-            f = []  # image files
+            f = []  # images files
             for p in path if isinstance(path, list) else [path]:
                 p = Path(p)  # os-agnostic
                 if p.is_dir():  # dir
@@ -442,7 +442,7 @@ class LoadImagesAndLabels(Dataset):
         n = len(shapes)  # number of images
         bi = np.floor(np.arange(n) / batch_size).astype(np.int)  # batch index
         nb = bi[-1] + 1  # number of batches
-        self.batch = bi  # batch index of image
+        self.batch = bi  # batch index of images
         self.n = n
         self.indices = range(n)
 
@@ -472,7 +472,7 @@ class LoadImagesAndLabels(Dataset):
             self.shapes = s[irect]  # wh
             ar = ar[irect]
 
-            # Set training image shapes
+            # Set training images shapes
             shapes = [[1, 1]] * nb
             for i in range(nb):
                 ari = ar[bi == i]
@@ -566,7 +566,7 @@ class LoadImagesAndLabels(Dataset):
                 img, labels = mixup(img, labels, *load_mosaic(self, random.randint(0, self.n - 1)))
 
         else:
-            # Load image
+            # Load images
             img, (h0, w0), (h, w) = load_image(self, index)
 
             # Letterbox
@@ -628,7 +628,7 @@ class LoadImagesAndLabels(Dataset):
     def collate_fn(batch):
         img, label, path, shapes = zip(*batch)  # transposed
         for i, l in enumerate(label):
-            l[:, 0] = i  # add target image index for build_targets()
+            l[:, 0] = i  # add target images index for build_targets()
         return torch.stack(img, 0), torch.cat(label, 0), path, shapes
 
     @staticmethod
@@ -653,20 +653,20 @@ class LoadImagesAndLabels(Dataset):
             label4.append(l)
 
         for i, l in enumerate(label4):
-            l[:, 0] = i  # add target image index for build_targets()
+            l[:, 0] = i  # add target images index for build_targets()
 
         return torch.stack(img4, 0), torch.cat(label4, 0), path4, shapes4
 
 
 # Ancillary functions --------------------------------------------------------------------------------------------------
 def load_image(self, i):
-    # loads 1 image from dataset index 'i', returns im, original hw, resized hw
+    # loads 1 images from dataset index 'i', returns im, original hw, resized hw
     im = self.imgs[i]
     if im is None:  # not cached in ram
         npy = self.img_npy[i]
         if npy and npy.exists():  # load npy
             im = np.load(npy)
-        else:  # read image
+        else:  # read images
             path = self.img_files[i]
             im = cv2.imread(path)  # BGR
             assert im is not None, f'Image Not Found {path}'
@@ -681,21 +681,21 @@ def load_image(self, i):
 
 
 def load_mosaic(self, index):
-    # YOLOv5 4-mosaic loader. Loads 1 image + 3 random images into a 4-image mosaic
+    # YOLOv5 4-mosaic loader. Loads 1 images + 3 random images into a 4-images mosaic
     labels4, segments4 = [], []
     s = self.img_size
     yc, xc = (int(random.uniform(-x, 2 * s + x)) for x in self.mosaic_border)  # mosaic center x, y
-    indices = [index] + random.choices(self.indices, k=3)  # 3 additional image indices
+    indices = [index] + random.choices(self.indices, k=3)  # 3 additional images indices
     random.shuffle(indices)
     for i, index in enumerate(indices):
-        # Load image
+        # Load images
         img, _, (h, w) = load_image(self, index)
 
         # place img in img4
         if i == 0:  # top left
-            img4 = np.full((s * 2, s * 2, img.shape[2]), 114, dtype=np.uint8)  # base image with 4 tiles
-            x1a, y1a, x2a, y2a = max(xc - w, 0), max(yc - h, 0), xc, yc  # xmin, ymin, xmax, ymax (large image)
-            x1b, y1b, x2b, y2b = w - (x2a - x1a), h - (y2a - y1a), w, h  # xmin, ymin, xmax, ymax (small image)
+            img4 = np.full((s * 2, s * 2, img.shape[2]), 114, dtype=np.uint8)  # base images with 4 tiles
+            x1a, y1a, x2a, y2a = max(xc - w, 0), max(yc - h, 0), xc, yc  # xmin, ymin, xmax, ymax (large images)
+            x1b, y1b, x2b, y2b = w - (x2a - x1a), h - (y2a - y1a), w, h  # xmin, ymin, xmax, ymax (small images)
         elif i == 1:  # top right
             x1a, y1a, x2a, y2a = xc, max(yc - h, 0), min(xc + w, s * 2), yc
             x1b, y1b, x2b, y2b = 0, h - (y2a - y1a), min(w, x2a - x1a), h
@@ -738,18 +738,18 @@ def load_mosaic(self, index):
 
 
 def load_mosaic9(self, index):
-    # YOLOv5 9-mosaic loader. Loads 1 image + 8 random images into a 9-image mosaic
+    # YOLOv5 9-mosaic loader. Loads 1 images + 8 random images into a 9-images mosaic
     labels9, segments9 = [], []
     s = self.img_size
-    indices = [index] + random.choices(self.indices, k=8)  # 8 additional image indices
+    indices = [index] + random.choices(self.indices, k=8)  # 8 additional images indices
     random.shuffle(indices)
     for i, index in enumerate(indices):
-        # Load image
+        # Load images
         img, _, (h, w) = load_image(self, index)
 
         # place img in img9
         if i == 0:  # center
-            img9 = np.full((s * 3, s * 3, img.shape[2]), 114, dtype=np.uint8)  # base image with 4 tiles
+            img9 = np.full((s * 3, s * 3, img.shape[2]), 114, dtype=np.uint8)  # base images with 4 tiles
             h0, w0 = h, w
             c = s, s, s + w, s + h  # xmin, ymin, xmax, ymax (base) coordinates
         elif i == 1:  # top
@@ -834,7 +834,7 @@ def extract_boxes(path='../datasets/coco128'):  # from utils.datasets import *; 
     n = len(files)  # number of files
     for im_file in tqdm(files, total=n):
         if im_file.suffix[1:] in IMG_FORMATS:
-            # image
+            # images
             im = cv2.imread(str(im_file))[..., ::-1]  # BGR to RGB
             h, w = im.shape[:2]
 
@@ -855,7 +855,7 @@ def extract_boxes(path='../datasets/coco128'):  # from utils.datasets import *; 
                     b[2:] = b[2:] * 1.2 + 3  # pad
                     b = xywh2xyxy(b.reshape(-1, 4)).ravel().astype(np.int)
 
-                    b[[0, 2]] = np.clip(b[[0, 2]], 0, w)  # clip boxes outside of image
+                    b[[0, 2]] = np.clip(b[[0, 2]], 0, w)  # clip boxes outside of images
                     b[[1, 3]] = np.clip(b[[1, 3]], 0, h)
                     assert cv2.imwrite(str(f), im[b[1]:b[3], b[0]:b[2]]), f'box failure in {f}'
 
@@ -869,32 +869,32 @@ def autosplit(path='../datasets/coco128/images', weights=(0.9, 0.1, 0.0), annota
         annotated_only:  Only use images with an annotated txt file
     """
     path = Path(path)  # images dir
-    files = sorted(x for x in path.rglob('*.*') if x.suffix[1:].lower() in IMG_FORMATS)  # image files only
+    files = sorted(x for x in path.rglob('*.*') if x.suffix[1:].lower() in IMG_FORMATS)  # images files only
     n = len(files)  # number of files
     random.seed(0)  # for reproducibility
-    indices = random.choices([0, 1, 2], weights=weights, k=n)  # assign each image to a split
+    indices = random.choices([0, 1, 2], weights=weights, k=n)  # assign each images to a split
 
     txt = ['autosplit_train.txt', 'autosplit_val.txt', 'autosplit_test.txt']  # 3 txt files
     [(path.parent / x).unlink(missing_ok=True) for x in txt]  # remove existing
 
     print(f'Autosplitting images from {path}' + ', using *.txt labeled images only' * annotated_only)
     for i, img in tqdm(zip(indices, files), total=n):
-        if not annotated_only or Path(img2label_paths([str(img)])[0]).exists():  # check label
+        if not annotated_only or Path(img2label_paths([str(img)])[0]).exists():  # check masks
             with open(path.parent / txt[i], 'a') as f:
-                f.write('./' + img.relative_to(path.parent).as_posix() + '\n')  # add image to txt file
+                f.write('./' + img.relative_to(path.parent).as_posix() + '\n')  # add images to txt file
 
 
 def verify_image_label(args):
-    # Verify one image-label pair
+    # Verify one images-masks pair
     im_file, lb_file, prefix = args
     nm, nf, ne, nc, msg, segments = 0, 0, 0, 0, '', []  # number (missing, found, empty, corrupt), message, segments
     try:
         # verify images
         im = Image.open(im_file)
         im.verify()  # PIL verify
-        shape = exif_size(im)  # image size
-        assert (shape[0] > 9) & (shape[1] > 9), f'image size {shape} <10 pixels'
-        assert im.format.lower() in IMG_FORMATS, f'invalid image format {im.format}'
+        shape = exif_size(im)  # images size
+        assert (shape[0] > 9) & (shape[1] > 9), f'images size {shape} <10 pixels'
+        assert im.format.lower() in IMG_FORMATS, f'invalid images format {im.format}'
         if im.format.lower() in ('jpg', 'jpeg'):
             with open(im_file, 'rb') as f:
                 f.seek(-2, 2)
@@ -904,7 +904,7 @@ def verify_image_label(args):
 
         # verify labels
         if os.path.isfile(lb_file):
-            nf = 1  # label found
+            nf = 1  # masks found
             with open(lb_file) as f:
                 l = [x.split() for x in f.read().strip().splitlines() if len(x)]
                 if any([len(x) > 8 for x in l]):  # is segment
@@ -924,15 +924,15 @@ def verify_image_label(args):
                         segments = segments[i]
                     msg = f'{prefix}WARNING: {im_file}: {nl - len(i)} duplicate labels removed'
             else:
-                ne = 1  # label empty
+                ne = 1  # masks empty
                 l = np.zeros((0, 5), dtype=np.float32)
         else:
-            nm = 1  # label missing
+            nm = 1  # masks missing
             l = np.zeros((0, 5), dtype=np.float32)
         return im_file, l, shape, segments, nm, nf, ne, nc, msg
     except Exception as e:
         nc = 1
-        msg = f'{prefix}WARNING: {im_file}: ignoring corrupt image/label: {e}'
+        msg = f'{prefix}WARNING: {im_file}: ignoring corrupt images/label: {e}'
         return [None, None, None, None, nm, nf, ne, nc, msg]
 
 
@@ -961,12 +961,12 @@ def dataset_stats(path='coco128.yaml', verbose=False, profile=False, hub=False):
             return False, None, path
 
     def hub_ops(f, max_dim=1920):
-        # HUB ops for 1 image 'f': resize and save at reduced quality in /dataset-hub for web/app viewing
-        f_new = im_dir / Path(f).name  # dataset-hub image filename
+        # HUB ops for 1 images 'f': resize and save at reduced quality in /dataset-hub for web/app viewing
+        f_new = im_dir / Path(f).name  # dataset-hub images filename
         try:  # use PIL
             im = Image.open(f)
             r = max_dim / max(im.height, im.width)  # ratio
-            if r < 1.0:  # image too large
+            if r < 1.0:  # images too large
                 im = im.resize((int(im.width * r), int(im.height * r)))
             im.save(f_new, 'JPEG', quality=75, optimize=True)  # save
         except Exception as e:  # use OpenCV
@@ -974,7 +974,7 @@ def dataset_stats(path='coco128.yaml', verbose=False, profile=False, hub=False):
             im = cv2.imread(f)
             im_height, im_width = im.shape[:2]
             r = max_dim / max(im_height, im_width)  # ratio
-            if r < 1.0:  # image too large
+            if r < 1.0:  # images too large
                 im = cv2.resize(im, (int(im_width * r), int(im_height * r)), interpolation=cv2.INTER_AREA)
             cv2.imwrite(str(f_new), im)
 

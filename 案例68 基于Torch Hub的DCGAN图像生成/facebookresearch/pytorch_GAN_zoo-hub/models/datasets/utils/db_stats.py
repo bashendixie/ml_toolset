@@ -35,7 +35,7 @@ def buildKeyOrder(shiftAttrib,
         - shiftAttrib (dict): order of each category in the category vector
         - shiftAttribVal (dict): list (ordered) of each possible labels for each
                                 category of the category vector
-        - stats (dict): if not None, number of representant of each label for
+        - stats (dict): if not None, number of representant of each masks for
                         each category. Will update the output dictionary with a
                         "weights" index telling how each labels should be
                         balanced in the classification loss.
