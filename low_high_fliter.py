@@ -13,7 +13,7 @@ def zone(x, y):
     return 0.5 * (1 + math.cos(x * x + y * y))
 
 SIZE = 597
-#image = np.zeros((SIZE, SIZE))
+#images = np.zeros((SIZE, SIZE))
 image = cv2.imread('C:\\Users\\zyh\\Desktop\\111.bmp')
 
 start = -8.2
@@ -31,7 +31,7 @@ def dist_center(y, x):
 #             continue
 #         y_val = start + y * step
 #         x_val = start + x * step
-#         image[y, x] = zone(x_val, y_val)
+#         images[y, x] = zone(x_val, y_val)
 
 kernel_size = 15
 

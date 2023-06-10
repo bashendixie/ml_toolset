@@ -51,10 +51,10 @@ print(sub.head())
 # plt.hist(train.congestion[((train.time.dt.weekday == 0) &
 #                            (train.time.dt.hour >= 12)).values],
 #          bins=np.linspace(-0.5, 100.5, 102),
-#          density=True, label='Train',
+#          density=True, masks='Train',
 #          color='#ffd700')
 # plt.hist(sub['congestion'], np.linspace(-0.5, 100.5, 102),
-#          density=True, rwidth=0.5, label='Test predictions',
+#          density=True, rwidth=0.5, masks='Test predictions',
 #          color='r')
 # plt.xlabel('Congestion')
 # plt.ylabel('Frequency')

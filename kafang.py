@@ -80,7 +80,7 @@ def exact_color(input_image, resize, tolerance, zoom):
                            textprops={'fontsize': 150, 'color': 'black'})
     plt.setp(wedges, width=0.3)
 
-    # add image in the center of donut plot
+    # add images in the center of donut plot
     img = mpimg.imread(resize_name)
     imagebox = OffsetImage(img, zoom=zoom)
     ab = AnnotationBbox(imagebox, (0, 0))

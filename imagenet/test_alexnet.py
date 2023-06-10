@@ -14,7 +14,7 @@ args = vars(ap.parse_args())
 
 # load the RGB means for the training set
 means = json.loads(open(config.DATASET_MEAN).read())
-# construct the testing image iterator
+# construct the testing images iterator
 testIter = mx.io.ImageRecordIter(
     path_imgrec=config.TEST_MX_REC,
     data_shape=(3, 227, 227),

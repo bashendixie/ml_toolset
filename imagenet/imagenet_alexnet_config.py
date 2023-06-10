@@ -5,18 +5,18 @@ from os import path
 # devkit are stored on disk)
 BASE_PATH = "/raid/datasets/imagenet/ILSVRC2015"
 
-# based on the base path, derive the images base path, image sets
+# based on the base path, derive the images base path, images sets
 # path, and devkit path
 IMAGES_PATH = path.sep.join([BASE_PATH, "Data/CLS-LOC"])
 IMAGE_SETS_PATH = path.sep.join([BASE_PATH, "ImageSets/CLS-LOC/"])
 DEVKIT_PATH = path.sep.join([BASE_PATH, "devkit/data"])
 
 # define the path that maps the 1,000 possible WordNet IDs to the
-# class label integers
+# class masks integers
 WORD_IDS = path.sep.join([DEVKIT_PATH, "map_clsloc.txt"])
 
 # define the paths to the training file that maps the (partial)
-# image filename to integer class label
+# images filename to integer class masks
 TRAIN_LIST = path.sep.join([IMAGE_SETS_PATH, "train_cls.txt"])
 
 # define the paths to to the validation filenames along with the
@@ -39,7 +39,7 @@ TRAIN_MX_LIST = path.sep.join([MX_OUTPUT, "lists/train.lst"])
 VAL_MX_LIST = path.sep.join([MX_OUTPUT, "lists/val.lst"])
 TEST_MX_LIST = path.sep.join([MX_OUTPUT, "lists/test.lst"])
 # define the path to the output training, validation, and testing
-# image records
+# images records
 TRAIN_MX_REC = path.sep.join([MX_OUTPUT, "rec/train.rec"])
 VAL_MX_REC = path.sep.join([MX_OUTPUT, "rec/val.rec"])
 TEST_MX_REC = path.sep.join([MX_OUTPUT, "rec/test.rec"])

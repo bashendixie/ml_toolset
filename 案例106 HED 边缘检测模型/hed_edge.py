@@ -5,9 +5,9 @@ parser = argparse.ArgumentParser(
         description='This sample shows how to define custom OpenCV deep learning layers in Python. '
                     'Holistically-Nested Edge Detection (https://arxiv.org/abs/1504.06375) neural network '
                     'is used as an example model. Find a pre-trained model at https://github.com/s9xie/hed.')
-parser.add_argument('--input', help='Path to image or video. Skip to capture frames from camera', default='C:\\Users\\zyh\\Desktop\\2117.png')
-parser.add_argument('--prototxt', help='Path to deploy.prototxt', required=False, default='C:\\Users\\zyh\\Desktop\\deploy.prototxt')
-parser.add_argument('--caffemodel', help='Path to hed_pretrained_bsds.caffemodel', required=False, default='C:\\Users\\zyh\\Desktop\\hed_pretrained_bsds.caffemodel')
+parser.add_argument('--input', help='Path to image or video. Skip to capture frames from camera', default='C:\\Users\\zyh\\Desktop\\hh_788.jpg')
+parser.add_argument('--prototxt', help='Path to deploy.prototxt', required=False, default='C:\\Users\\zyh\\Desktop\\ed\\deploy.prototxt')
+parser.add_argument('--caffemodel', help='Path to hed_pretrained_bsds.caffemodel', required=False, default='C:\\Users\\zyh\\Desktop\\ed\\hed_pretrained_bsds.caffemodel')
 parser.add_argument('--width', help='Resize input image to a specific width', default=1287, type=int)
 parser.add_argument('--height', help='Resize input image to a specific height', default=672, type=int)
 args = parser.parse_args()
