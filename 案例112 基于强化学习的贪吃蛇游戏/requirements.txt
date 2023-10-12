@@ -1,0 +1,35 @@
+absl-py==0.8.0
+certifi==2020.12.5
+cmake-example==0.0.1
+cycler==0.10.0
+dataclasses==0.8
+decorator==4.4.2
+google-pasta==0.1.7
+GPy==1.9.9
+GPyOpt==1.2.6
+kiwisolver==1.2.0
+matplotlib==3.2.0
+mkl-fft==1.2.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+msgpack-numpy==0.4.4.3
+numpy==1.18.1
+olefile==0.46
+pandas==0.25.1
+paramz==0.9.5
+Pillow @ file:///C:/ci/pillow_1603822370986/work
+pygame==1.9.6
+pyparsing==2.4.7
+python-dateutil==2.8.1
+pytz==2020.1
+scipy @ file:///C:/ci/scipy_1597675683670/work
+seaborn==0.10.1
+six @ file:///C:/ci/six_1605187303045/work
+tabulate==0.8.3
+tensorflow-estimator==1.14.0
+tensorpack==0.9.4
+tgan==0.1.0
+torch==1.7.1
+typing-extensions @ file:///tmp/build/80754af9/typing_extensions_1598376058250/work
+wincertstore==0.2
+wrapt==1.11.2
