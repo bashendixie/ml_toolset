@@ -9,6 +9,7 @@ import cv2
 import extcolors
 from colormap import rgb2hex
 from skimage.metrics import structural_similarity as ssim
+from scipy.stats import chi2_contingency
 
 
 # 比较结构相似性
@@ -21,7 +22,7 @@ def compute_ssim():
     return ssim(aaa, bbb)
 
 
-
+# 颜色转十六进制hex 保存为df数据
 def color_to_df(input):
     colors_pre_list = str(input).replace('([(', '').split(', (')[0:-1]
     df_rgb = [i.split('), ')[0] + ')' for i in colors_pre_list]
@@ -36,6 +37,24 @@ def color_to_df(input):
     return df
 
 
+# 卡方检验
+# 卡方检验是一种假设检验方法，属于非参数检验，用来统计两个及两个以上样本的实际观测值与理论推断值之间的拟合程度。
+# 简单来说，卡方检验用于比较定类变量之间有没有关系。
+def compute_kafang():
+    # defining the table
+    data = [[207, 282, 241], [234, 242, 232]]
+    stat, p, dof, expected = chi2_contingency(data)
+
+    # interpret p-value
+    alpha = 0.05
+    print("p value is " + str(p))
+    if p <= alpha:
+        print('Dependent (reject H0)')
+    else:
+        print('Independent (H0 holds true)')
+
+
+# 颜色抽取，计算图片中的颜色百分比
 def exact_color(input_image, resize, tolerance, zoom):
     # background
     bg = 'bg.png'
@@ -103,7 +122,7 @@ def exact_color(input_image, resize, tolerance, zoom):
     return plt.show()
 
 
-exact_color('C:/Users/zyh/Desktop/456.jpg', 900, 12, 2.5)
+exact_color('C:/Users/zyh/Desktop/456.png', 500, 12, 2.5)
 
 
 
@@ -111,16 +130,3 @@ exact_color('C:/Users/zyh/Desktop/456.jpg', 900, 12, 2.5)
 
 
 
-from scipy.stats import chi2_contingency
-
-# defining the table
-data = [[207, 282, 241], [234, 242, 232]]
-stat, p, dof, expected = chi2_contingency(data)
-
-# interpret p-value
-alpha = 0.05
-print("p value is " + str(p))
-if p <= alpha:
-    print('Dependent (reject H0)')
-else:
-    print('Independent (H0 holds true)')
