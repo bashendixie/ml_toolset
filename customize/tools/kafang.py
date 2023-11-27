@@ -3,27 +3,22 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import matplotlib.image as mpimg
-
 from PIL import Image
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
-
 import cv2
 import extcolors
-
 from colormap import rgb2hex
+from skimage.metrics import structural_similarity as ssim
 
 
+# 比较结构相似性
+def compute_ssim():
+    aaa = cv2.imread("C:\\Users\\zyh\\Desktop\\111.jpg")
+    bbb = cv2.imread("C:\\Users\\zyh\\Desktop\\222.jpg")
 
-# from skimage.metrics import structural_similarity as ssim
-#
-# aaa = cv2.imread("C:\\Users\\zyh\\Desktop\\111.jpg")
-# bbb = cv2.imread("C:\\Users\\zyh\\Desktop\\222.jpg")
-#
-# aaa = cv2.cvtColor(aaa, cv2.COLOR_BGR2GRAY)
-# bbb = cv2.cvtColor(bbb, cv2.COLOR_BGR2GRAY)
-# s = ssim(aaa, bbb)
-#
-# aaa1 = cv2.imread("C:\\Users\\zyh\\Desktop\\111.jpg")
+    aaa = cv2.cvtColor(aaa, cv2.COLOR_BGR2GRAY)
+    bbb = cv2.cvtColor(bbb, cv2.COLOR_BGR2GRAY)
+    return ssim(aaa, bbb)
 
 
 
