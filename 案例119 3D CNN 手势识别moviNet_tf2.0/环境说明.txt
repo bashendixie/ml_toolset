@@ -1,0 +1,10 @@
+conda环境名 tfEnv
+python = 3.8.18
+tensorflow = 2.10.0	（cpu版本）
+
+
+D:\数据集\简单五种手势数据集
+
+参考代码和数据集
+https://www.tensorflow.org/tutorials/video/video_classification
+https://aistudio.baidu.com/datasetdetail/105113

@@ -1,0 +1,1 @@
+E:\0跟进中\0手势识别\gluoncv_py\data\kinetics400\val_256\huadong_up22.avi
