@@ -180,7 +180,7 @@ model.load_weights("models/best_model.h5")
 
 #model = load_model("models/best_model.h5")
 
-path = "C:\\Users\\zyh\\Desktop\\dianji40.avi"
+path = "test.avi"
 
 result = []
 
